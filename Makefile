@@ -3,11 +3,13 @@ help: ## Display this help section
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z0-9_-]+:.*?## / {printf "\033[36m%-38s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 .DEFAULT_GOAL := help
 
+.PHONY: update
 update: ## Updates dotfiles
 	@echo "Updating repo..."
 	@git pull
 	@(ENV="" $(MAKE) install-externals --no-print-directory)
 
+.PHONY: install
 install:
 	@echo "Use either 'install-mac' or 'install-linux'"
 
@@ -27,9 +29,11 @@ install-linux: ## Installs core and linux specific dotfiles
 	@ln -s $(PWD)/gitconfig.linux $(HOME)/.gitconfig
 	@[ ! -f $(PWD)/local/zsh/linux.zsh ] && ln -s $(PWD)/zsh/linux.zsh $(PWD)/local/zsh/linux.zsh
 
+.PHONY: clean-local
 clean-local:
 	@rm -rf $(PWD)/local/*.bak $(PWD)/local/zsh/zprofile.zsh $(PWD)/local/zsh/zsh-better-npm-completion.plugin.zsh $(PWD)/local/zsh/zsh-history-substring-search.zsh $(PWD)/local/zsh/geometry.zsh $(PWD)/local/zsh/fast-syntax-highlighting.zsh $(PWD)/local/zsh/linux.zsh $(PWD)/local/zsh/mac.zsh 2> /dev/null
 
+.PHONY: install-core
 install-core:
 	@echo "Installing..."
 	@mkdir -p "$(PWD)/local"
@@ -50,6 +54,7 @@ install-core:
 	@echo "Backing up the current .gitconfig..."
 	@[ -f $(HOME)/.gitconfig ] && mv $(HOME)/.gitconfig $(PWD)/local/gitconfig.bak
 
+.PHONY: install-externals
 install-externals:
 	@echo "Updating external libraries..."
 	@git submodule update --init
