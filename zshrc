@@ -27,6 +27,7 @@ setopt hist_reduce_blanks # Remove superfluous blanks from history items
 setopt inc_append_history # Save history entries as soon as they are entered
 setopt share_history # Share history between different instances of the shell
 setopt correct_all # Autocorrect commands
+alias go="nocorrect go" # Avoid autocorrect when running go get ./... or go test ./...
 
 autoload -Uz compinit
 compinit
