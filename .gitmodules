@@ -16,3 +16,6 @@
 [submodule "zsh/dircolors-solarized"]
 	path = zsh/dircolors-solarized
 	url = git://github.com/seebi/dircolors-solarized.git
+[submodule "zsh/fzf-tab"]
+	path = zsh/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
