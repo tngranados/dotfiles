@@ -102,3 +102,8 @@ done
 # Configure prompt
 GEOMETRY_PATH_SHOW_BASENAME=true
 
+# Use fzf-tab plugin for auto copmletion.
+if (( $+commands[fzf] )); then
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  source "$DOTFILES/zsh/fzf-tab/fzf-tab.plugin.zsh"
+fi
