@@ -28,6 +28,8 @@ setopt inc_append_history # Save history entries as soon as they are entered
 setopt share_history # Share history between different instances of the shell
 setopt correct_all # Autocorrect commands
 alias go="nocorrect go" # Avoid autocorrect when running go get ./... or go test ./...
+alias ruby="nocorrect ruby" # Avoid autocorrect ruby
+alias rails="nocorrect rails" # Avoid autocorrect rails
 
 autoload -Uz compinit
 compinit
@@ -107,3 +109,9 @@ if (( $+commands[fzf] )); then
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   source "$DOTFILES/zsh/fzf-tab/fzf-tab.plugin.zsh"
 fi
+
+# Help stuff
+cheat() {
+  curl "http://cheat.sh/$1"
+}
+
