@@ -3,9 +3,6 @@ if [ "${DOTFILES+set}" != set ]; then
   DOTFILES="$HOME/dotfiles"
 fi
 
-# Activate dircolors
-eval "`dircolors -b $DOTFILES/zsh/dircolors-solarized/dircolors.256dark 2> /dev/null`"
-
 # Useful command aliases
 export EDITOR="vim"
 alias g="git"
@@ -13,12 +10,6 @@ alias vi="vim"
 alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias -g G="| grep -i"
 alias shttp="python -m SimpleHTTPServer 8000"
-
-# Auto ls after cd
-function chpwd() {
-    emulate -L zsh
-    ls
-}
 
 # Setup 'infinite' history
 HISTFILE=~/.zsh_history

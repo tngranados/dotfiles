@@ -1,4 +1,19 @@
-export LSCOLORS="EHfxcxdxBxegecabagacad" 
+# Colors for ls command
+if (( $+commands[gls] )); then
+  eval "`gdircolors -b $DOTFILES/zsh/dircolors-solarized/dircolors.ansi-dark 2> /dev/null`"
+  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # Use LS_COLORS for completion
+  alias ls="gls --color=auto"
+else
+  export LSCOLORS=exfxfeaeBxxehehbadacea
+  zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS} # Use LSCOLORS for completion
+  alias ls="ls -G"
+fi
+
+# Auto ls after cd
+function chpwd() {
+    emulate -L zsh
+    ls
+}
 
 # History keybindings
 bindkey '^[[A' history-substring-search-up
