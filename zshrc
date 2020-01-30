@@ -14,6 +14,12 @@ alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias -g G="| grep -i"
 alias shttp="python -m SimpleHTTPServer 8000"
 
+# Auto ls after cd
+function chpwd() {
+    emulate -L zsh
+    ls
+}
+
 # Setup 'infinite' history
 HISTFILE=~/.zsh_history
 HISTSIZE=999999999
