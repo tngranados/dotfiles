@@ -11,6 +11,14 @@ alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias -g G="| grep -i"
 alias shttp="python -m SimpleHTTPServer 8000"
 
+# Docker
+dockerrmf() {
+  docker rm -vf $(docker ps -a -q)
+}
+dockerrmif() {
+  docker rmi -f $(docker images -a -q)
+}
+
 # Setup 'infinite' history
 HISTFILE=~/.zsh_history
 HISTSIZE=999999999
