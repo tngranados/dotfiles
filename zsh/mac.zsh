@@ -27,6 +27,7 @@ bindkey '^[altleft' backward-word
 bindkey '^[cmdleft' beginning-of-line
 bindkey '^[altright' forward-word
 bindkey '^[cmdright' end-of-line
+bindkey '^[deleteforward' delete-char
 bindkey '^[cmddeleteforward' kill-line
 bindkey '^[altdeleteforward' kill-word
 bindkey '^[home' beginning-of-line
