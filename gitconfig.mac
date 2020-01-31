@@ -1,6 +1,6 @@
 [user]
 	name = Toni Granados
-	email = antoniogra7@gmail.com
+	email = antonio.granados@algorath.com
 [core]
 	editor = vim
 	pager = diff-so-fancy | less --tabs=1,5 -R
