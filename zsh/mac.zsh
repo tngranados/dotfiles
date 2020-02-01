@@ -32,3 +32,6 @@ bindkey '^[cmddeleteforward' kill-line
 bindkey '^[altdeleteforward' kill-word
 bindkey '^[home' beginning-of-line
 bindkey '^[end' end-of-line
+
+# iTerm 2
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
