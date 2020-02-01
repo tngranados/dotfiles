@@ -3,6 +3,9 @@ if [ "${DOTFILES+set}" != set ]; then
   DOTFILES="$HOME/dotfiles"
 fi
 
+# Folder aliases
+alias dev="cd $HOME/Developer"
+
 # Useful command aliases
 export EDITOR="vim"
 alias g="git"
