@@ -6,14 +6,14 @@ bindkey '^[OB' history-substring-search-down
 eval "`dircolors -b $DOTFILES/zsh/dircolors-solarized/dircolors.256dark 2> /dev/null`"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # Use LS_COLORS for completion
 
+# Enable ls colors
+alias ls="ls --color"
+
 # Auto ls after cd
 function chpwd() {
     emulate -L zsh
     ls
 }
-
-# Enable ls colors
-alias ls="ls --color"
 
 # Use xdg-open as open
 alias open="xdg-open"
