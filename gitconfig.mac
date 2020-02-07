@@ -3,7 +3,7 @@
 	email = antonio.granados@algorath.com
 [core]
 	editor = vim
-	pager = diff-so-fancy | less --tabs=1,5 -R
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -12,7 +12,7 @@
 	newNormal = green bold
 	newHighlight = green bold 22
 [color "diff"]
-	meta = 11
+	meta = yellow
 	frag = magenta bold
 	commit = yellow bold
 	old = red bold
@@ -34,3 +34,5 @@
 	a = add .
 [credential]
 	helper = osxkeychain
+[diff-so-fancy]
+	first-run = false
