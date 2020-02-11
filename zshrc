@@ -5,6 +5,7 @@ fi
 
 # Folder aliases
 alias dev="cd $HOME/Developer"
+alias down="cd $HOME/Downloads"
 
 # Useful command aliases
 export EDITOR="vim"
