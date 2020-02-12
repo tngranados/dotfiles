@@ -1,12 +1,12 @@
-# Colors for ls command
+# Enable ls colors and use human readable file sizes
 if (( $+commands[gls] )); then
   eval "`gdircolors -b $DOTFILES/zsh/dircolors-solarized/dircolors.ansi-dark 2> /dev/null`"
   zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # Use LS_COLORS for completion
-  alias ls="gls --color=auto"
+  alias ls="gls --color=auto -h"
 else
   export LSCOLORS=exfxfeaeBxxehehbadacea
   zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS} # Use LSCOLORS for completion
-  alias ls="ls -G"
+  alias ls="ls -G -h"
 fi
 
 # Auto ls after cd
