@@ -41,6 +41,8 @@ dockerrmf() {
 dockerrmif() {
   docker rmi -f $(docker images -a -q)
 }
+alias dcup="docker-compose up -d"
+alias dcdown="docker-compose down"
 
 # Setup 'infinite' history
 HISTFILE=~/.zsh_history
