@@ -7,8 +7,10 @@ fi
 alias dev="cd $HOME/Developer"
 alias down="cd $HOME/Downloads"
 
-# Useful command aliases
 export EDITOR="vim"
+
+# Useful command aliases
+alias rsource="source $HOME/.zshrc"
 alias g="git"
 alias vi="vim"
 alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
