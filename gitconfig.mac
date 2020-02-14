@@ -36,3 +36,5 @@
 	helper = osxkeychain
 [diff-so-fancy]
 	first-run = false
+[fetch]
+	prune = true
