@@ -34,3 +34,5 @@
 	a = add .
 [credential]
 	helper = store
+[fetch]
+	prune = true
