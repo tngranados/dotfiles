@@ -52,6 +52,7 @@ HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 
 # ZSH configuration
+alias ssh-hosts="grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'"
 alias dotfiles="cd $DOTFILES"
 alias zprofile=" $EDITOR $DOTFILES/local/zsh/zprofile.zsh"
 setopt hist_ignore_all_dups # Remove older duplicate entries from history
