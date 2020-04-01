@@ -1,4 +1,9 @@
 [user]
+	useConfigOnly = true
+[user "me"]
+	name = Toni Granados
+	email = antoniogra7@gmail.com
+[user "work"]
 	name = Toni Granados
 	email = antonio.granados@algorath.com
 [core]
@@ -32,6 +37,7 @@
 	rc = rebase --continue
 	cm = commit -m
 	a = add .
+	id = "! git config user.name \"$(git config user.$1.name)\"; git config user.email \"$(git config user.$1.email)\"; git config user.signingkey \"$(git config user.$1.signingkey)\"; :"
 [credential]
 	helper = store
 [fetch]
