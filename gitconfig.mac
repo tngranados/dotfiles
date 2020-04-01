@@ -1,4 +1,9 @@
 [user]
+	useConfigOnly = true
+[user "me"]
+	name = Toni Granados
+	email = antoniogra7@gmail.com
+[user "work"]
 	name = Toni Granados
 	email = antonio.granados@algorath.com
 [core]
