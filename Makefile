@@ -31,7 +31,7 @@ install-linux: ## Installs core and linux specific dotfiles
 
 .PHONY: clean-local
 clean-local:
-	@rm -rf $(PWD)/local/*.bak $(PWD)/local/zsh/zprofile.zsh $(PWD)/local/zsh/zsh-better-npm-completion.plugin.zsh $(PWD)/local/zsh/zsh-history-substring-search.zsh $(PWD)/local/zsh/geometry.zsh $(PWD)/local/zsh/fast-syntax-highlighting.zsh $(PWD)/local/zsh/linux.zsh $(PWD)/local/zsh/mac.zsh 2> /dev/null
+	@rm -rf $(PWD)/local/*.bak $(PWD)/local/zsh/zprofile.zsh $(PWD)/local/zsh/z.zsh $(PWD)/local/zsh/zsh-better-npm-completion.plugin.zsh $(PWD)/local/zsh/zsh-history-substring-search.zsh $(PWD)/local/zsh/geometry.zsh $(PWD)/local/zsh/fast-syntax-highlighting.zsh $(PWD)/local/zsh/linux.zsh $(PWD)/local/zsh/mac.zsh 2> /dev/null
 
 .PHONY: install-core
 install-core:
@@ -52,6 +52,8 @@ install-core:
 	@[ ! -f $(PWD)/local/zsh/zsh-history-substring-search.zsh ] && ln -s $(PWD)/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh $(PWD)/local/zsh/zsh-history-substring-search.zsh && echo "done" || echo "already done"
 	@echo -n "Setting up npm completion... "
 	@[ ! -f $(PWD)/local/zsh/zsh-better-npm-completion.plugin.zsh ] && ln -s $(PWD)/zsh/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh $(PWD)/local/zsh/zsh-better-npm-completion.plugin.zsh && echo "done" || echo "already done"
+	@echo -n "Setting up z..."
+	@[ ! -f $(PWD)/local/zsh/z.sh ] && ln -s $(PWD)/zsh/z/z.sh $(PWD)/local/zsh/z.zsh && echo "done" || echo "already done"
 	@echo -n "Backing up the current .gitconfig... "
 	@[ -f $(HOME)/.gitconfig ] && mv $(HOME)/.gitconfig $(PWD)/local/gitconfig.bak && echo "done" || echo "already done"
 
