@@ -63,6 +63,11 @@ setopt correct_all # Autocorrect commands
 alias go="nocorrect go" # Avoid autocorrect when running go get ./... or go test ./...
 alias ruby="nocorrect ruby" # Avoid autocorrect ruby
 alias rails="nocorrect rails" # Avoid autocorrect rails
+alias cls="clear; printf '\033[3J'" # Clear screen and scroll buffer
+alias cp="cp -i"; # Confirm before overwrite
+alias mv="mv -i"; # Confirm before overwrite
+alias df="df -h"; # Human-readable sizes
+alias historystats="history 1 | awk '{print $2}' | sort | uniq -c | sort -n"
 
 autoload -Uz compinit
 compinit
