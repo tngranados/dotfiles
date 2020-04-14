@@ -68,6 +68,7 @@ alias cp="cp -i"; # Confirm before overwrite
 alias mv="mv -i"; # Confirm before overwrite
 alias df="df -h"; # Human-readable sizes
 alias historystats="history 1 | awk '{print $2}' | sort | uniq -c | sort -n"
+alias gitprune="git branch --merged | grep -Ev '(master)' >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
 
 autoload -Uz compinit
 compinit
