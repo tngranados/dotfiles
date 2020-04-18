@@ -147,4 +147,3 @@ GEOMETRY_PATH_SHOW_BASENAME=true
 cheat() {
   curl "http://cheat.sh/$1"
 }
-
