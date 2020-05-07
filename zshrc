@@ -60,10 +60,6 @@ setopt hist_ignore_all_dups # Remove older duplicate entries from history
 setopt hist_reduce_blanks # Remove superfluous blanks from history items
 setopt inc_append_history # Save history entries as soon as they are entered
 setopt share_history # Share history between different instances of the shell
-setopt correct_all # Autocorrect commands
-alias go="nocorrect go" # Avoid autocorrect when running go get ./... or go test ./...
-alias ruby="nocorrect ruby" # Avoid autocorrect ruby
-alias rails="nocorrect rails" # Avoid autocorrect rails
 alias cls="clear; printf '\033[3J'" # Clear screen and scroll buffer
 alias cp="cp -i"; # Confirm before overwrite
 alias mv="mv -i"; # Confirm before overwrite
