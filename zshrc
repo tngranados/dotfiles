@@ -16,6 +16,7 @@ alias g="git"
 alias vi="vim"
 alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias -g G="| grep -i"
+alias -s git="git clone"
 
 # Creates a static server using ruby, php, or python 2 or 3, whichever is
 # available. It support an optional port (default is 8000).
