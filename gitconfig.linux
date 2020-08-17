@@ -8,7 +8,7 @@
 	email = toni@alkimii.com
 [core]
 	editor = vim
-	pager = diff-so-fancy | less --tabs=1,5 -R
+	pager = diff-so-fancy | less --tabs=2 -RFX
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -17,7 +17,7 @@
 	newNormal = green bold
 	newHighlight = green bold 22
 [color "diff"]
-	meta = 11
+	meta = yellow
 	frag = magenta bold
 	commit = yellow bold
 	old = red bold
@@ -40,5 +40,7 @@
 	id = "! git config user.name \"$(git config user.$1.name)\"; git config user.email \"$(git config user.$1.email)\"; git config user.signingkey \"$(git config user.$1.signingkey)\"; :"
 [credential]
 	helper = store
+[diff-so-fancy]
+	first-run = false
 [fetch]
 	prune = true
