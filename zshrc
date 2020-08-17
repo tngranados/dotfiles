@@ -67,6 +67,17 @@ dockerrmif() {
 alias dcup="docker-compose up -d"
 alias dcdown="docker-compose down"
 
+# Grep something over a git repository currently modified or added files. First paremter is the search term, the rest of
+# them are regexp of ignored files.
+gitg() {
+  local term=$1
+
+  shift
+  local ignored_files=${(j:|:)${@}}
+
+  git status --porcelain | awk 'match($1, "A|M"){print $2}' | rg -v "${ignored_files}" | xargs rg $term
+}
+
 # Setup 'infinite' history
 HISTFILE=~/.zsh_history
 HISTSIZE=999999999
@@ -164,3 +175,6 @@ GEOMETRY_PATH_SHOW_BASENAME=true
 cheat() {
   curl "http://cheat.sh/$1"
 }
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
