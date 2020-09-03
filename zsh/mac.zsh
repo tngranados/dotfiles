@@ -46,3 +46,5 @@ code() {
     fi
 }
 
+# Aliases
+alias logs="cd /usr/local/var/log"
