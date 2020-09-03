@@ -23,15 +23,19 @@ if [ "${DOTFILES+set}" != set ]; then
 fi
 
 # Folder aliases
+alias home="cd $HOME"
 alias dev="cd $HOME/Developer"
+alias tn="cd $HOME/Developer/tngranados"
 alias down="cd $HOME/Downloads"
 alias desk="cd $HOME/Desktop"
 
 export EDITOR="vim"
 
 # Useful command aliases
+alias vimrc="$EDITOR $HOME/.vimrc"
 alias rsource="source $HOME/.zshrc"
 alias g="git"
+alias gs="g s"
 alias vi="vim"
 alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias -g G="| grep -i"
@@ -86,7 +90,7 @@ SAVEHIST=$HISTSIZE
 # ZSH configuration
 alias ssh-hosts="grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'"
 alias dotfiles="cd $DOTFILES"
-alias zprofile=" $EDITOR $DOTFILES/local/zsh/zprofile.zsh"
+alias zprofile="$EDITOR $DOTFILES/local/zsh/zprofile.zsh"
 setopt hist_ignore_all_dups # Remove older duplicate entries from history
 setopt hist_reduce_blanks # Remove superfluous blanks from history items
 setopt inc_append_history # Save history entries as soon as they are entered
