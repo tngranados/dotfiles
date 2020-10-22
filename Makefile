@@ -54,6 +54,10 @@ install-core:
 	@[ ! -f $(PWD)/local/zsh/zsh-better-npm-completion.plugin.zsh ] && ln -s $(PWD)/zsh/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh $(PWD)/local/zsh/zsh-better-npm-completion.plugin.zsh && echo "done" || echo "already done"
 	@echo -n "Setting up z..."
 	@[ ! -f $(PWD)/local/zsh/z.sh ] && ln -s $(PWD)/zsh/z/z.sh $(PWD)/local/zsh/z.zsh && echo "done" || echo "already done"
+	@echo -n "Backing up the current .gitattributes... "
+	@[ -f $(HOME)/.gitattributes ] && mv $(HOME)/.gitattributes $(PWD)/local/gitattributes.bak && echo "done" || echo "already done"
+	@echo -n "Setting up .gitattributes in the home directory... "
+	@ln -s $(PWD)/gitattributes $(HOME)/.gitattributes && echo "done"
 	@echo -n "Backing up the current .gitconfig... "
 	@[ -f $(HOME)/.gitconfig ] && mv $(HOME)/.gitconfig $(PWD)/local/gitconfig.bak && echo "done" || echo "already done"
 

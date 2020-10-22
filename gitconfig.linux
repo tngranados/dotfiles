@@ -9,6 +9,7 @@
 [core]
 	editor = vim
 	pager = diff-so-fancy | less --tabs=2 -RFX
+	attributesfile = ~/.gitattributes
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -44,3 +45,7 @@
 	first-run = false
 [fetch]
 	prune = true
+[diff "ecmascript"]
+	xfuncname = "^((.*function.*)|([ \t]+it\\(.*))$"
+[diff "pdf"]
+	textconv = pdftotext-stdout
