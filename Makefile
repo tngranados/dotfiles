@@ -19,6 +19,8 @@ install-mac: ## Installs core and mac specific dotfiles
 	@(ENV="" $(MAKE) install-core --no-print-directory)
 	@echo -n "Setting up .gitconfig in the home directory... "
 	@ln -s $(PWD)/gitconfig.mac $(HOME)/.gitconfig && echo "done"
+	@echo -n "Setting up .finicky.js in the home directory... "
+	@ln -s $(PWD)/.finicky.js $(HOME)/.finicky.js && echo "done"
 	@[ ! -f $(PWD)/local/zsh/mac.zsh ] && ln -s $(PWD)/zsh/mac.zsh $(PWD)/local/zsh/mac.zsh || :
 
 .PHONY: install-linux
@@ -60,6 +62,8 @@ install-core:
 	@ln -s $(PWD)/gitattributes $(HOME)/.gitattributes && echo "done"
 	@echo -n "Backing up the current .gitconfig... "
 	@[ -f $(HOME)/.gitconfig ] && mv $(HOME)/.gitconfig $(PWD)/local/gitconfig.bak && echo "done" || echo "already done"
+	@echo -n "Backing up the current .finicky.js... "
+	@[ -f $(HOME)/.finicky.js ] && mv $(HOME)/.finicky.js $(PWD)/local/.finicky.js.bak && echo "done" || echo "already done"
 
 .PHONY: install-externals
 install-externals:
