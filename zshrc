@@ -186,3 +186,21 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # Add yarn to PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+# LGTM
+lgtm() {
+  yarn lint || { echo -e '\n\n \e[31mSomething went wrong: javascript linting\e[m \n\n' && error-sound && return false }
+  rubocop -a || { echo -e '\n\n \e[31mSomething went wrong: ruby linting\e[m \n\n' && error-sound && return false }
+  yarn test || { echo -e '\n\n \e[31mSomething went wrong: javascript testing\e[m \n\n' && error-sound && return false }
+  rspec || { echo -e '\n\n \e[31mSomething went wrong: ruby testing\e[m \n\n' && error-sound && return false }
+
+  success-sound
+
+  if [[ -n $(git status -s) ]]; then
+    git status
+    echo -e '\n\n \e[33mAll good, but git status is dirty\e[m \n\n'
+  else
+    echo -e '\n\n \e[32mAll good, LGTM!\e[m  \n\n'
+  fi
+
+  return true
+}
