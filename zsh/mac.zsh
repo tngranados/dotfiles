@@ -48,3 +48,13 @@ code() {
 
 # Aliases
 alias logs="cd /usr/local/var/log"
+
+# Sound functions
+error-sound() {
+  ( afplay /System/Library/Sounds/Blow.aiff & )
+}
+
+success-sound() {
+  ( afplay /System/Library/Sounds/Submarine.aiff & )
+}
+
