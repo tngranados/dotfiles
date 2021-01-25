@@ -167,11 +167,6 @@ setopt AUTO_PUSHD
 # Don’t push multiple copies of the same directory onto the directory stack.
 setopt PUSHD_IGNORE_DUPS
 
-# Source all the custom zsh files in ./local/zsh
-for file in $DOTFILES/local/zsh/*.zsh; do
-  source "$file"
-done
-
 # Configure prompt
 GEOMETRY_PATH_SHOW_BASENAME=true
 
@@ -204,3 +199,8 @@ lgtm() {
 
   return true
 }
+
+# Source all the custom zsh files in ./local/zsh
+for file in $DOTFILES/local/zsh/*.zsh; do
+  source "$file"
+done
