@@ -49,3 +49,5 @@
 	xfuncname = "^((.*function.*)|([ \t]+it\\(.*))$"
 [diff "pdf"]
 	textconv = pdftotext-stdout
+[pull]
+	ff = only
