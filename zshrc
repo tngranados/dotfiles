@@ -200,6 +200,23 @@ lgtm() {
   return true
 }
 
+# Append automatically % to numbers in fg and bg
+fg() {
+    if [[ $# -eq 1 && $1 = - ]]; then
+        builtin fg %-
+    else
+        builtin fg %"$@"
+    fi
+}
+
+bg() {
+    if [[ $# -eq 1 && $1 = - ]]; then
+        builtin bg %-
+    else
+        builtin bg %"$@"
+    fi
+}
+
 # Source all the custom zsh files in ./local/zsh
 for file in $DOTFILES/local/zsh/*.zsh; do
   source "$file"
