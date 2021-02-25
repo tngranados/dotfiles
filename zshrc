@@ -184,7 +184,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # LGTM
 lgtm() {
-  yarn lint || { echo -e '\n\n \e[31mSomething went wrong: javascript linting\e[m \n\n' && error-sound && return false }
+  yarn lint --fix || { echo -e '\n\n \e[31mSomething went wrong: javascript linting\e[m \n\n' && error-sound && return false }
   rubocop -a || { echo -e '\n\n \e[31mSomething went wrong: ruby linting\e[m \n\n' && error-sound && return false }
   yarn test || { echo -e '\n\n \e[31mSomething went wrong: javascript testing\e[m \n\n' && error-sound && return false }
   rspec || { echo -e '\n\n \e[31mSomething went wrong: ruby testing\e[m \n\n' && error-sound && return false }
