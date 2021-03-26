@@ -29,14 +29,15 @@ alias tn="cd $HOME/Developer/tngranados"
 alias down="cd $HOME/Downloads"
 alias desk="cd $HOME/Desktop"
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # Useful command aliases
-alias vimrc="$EDITOR $HOME/.vimrc"
+alias vimrc="$EDITOR $HOME/.config/nvim/init.vim"
 alias rsource="source $HOME/.zshrc"
 alias g="git"
 alias gs="g s"
-alias vi="vim"
+alias vi="nvim"
+alias vim="nvim"
 alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias -g G="| grep -i"
 alias -s git="git clone"
