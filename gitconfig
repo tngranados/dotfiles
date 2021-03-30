@@ -38,7 +38,6 @@
 	mc = merge --continue
 	cm = commit -m
 	a = add .
-	id = "! git config user.name \"$(git config user.$1.name)\"; git config user.email \"$(git config user.$1.email)\"; git config user.signingkey \"$(git config user.$1.signingkey)\"; :"
 	frbi = "!f() { git rebase -i $(git log --pretty=oneline --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
 	cof = !git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads | fzf | xargs
 [credential]
