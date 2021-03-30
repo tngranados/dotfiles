@@ -34,6 +34,7 @@ export EDITOR="nvim"
 
 # Useful command aliases
 alias vimrc="$EDITOR $HOME/.config/nvim/init.vim"
+alias zprofile="$EDITOR $DOTFILES/local/zsh/zprofile.zsh"
 alias rsource="source $HOME/.zshrc"
 alias g="git"
 alias gs="g s"
@@ -43,6 +44,12 @@ alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias -g G="| grep -i"
 alias -s git="git clone"
 alias j="z"
+alias cls="clear; printf '\033[3J'" # Clear screen and scroll buffer
+alias cp="cp -i"; # Confirm before overwrite
+alias mv="mv -i"; # Confirm before overwrite
+alias df="df -h"; # Human-readable sizes
+alias historystats="history 1 | awk '{print $2}' | sort | uniq -c | sort -n"
+alias gitprune="git branch --merged | grep -Ev '(master)' >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
 
 # Creates a static server using ruby, php, or python 2 or 3, whichever is
 # available. It support an optional port (default is 8000).
@@ -92,18 +99,10 @@ SAVEHIST=$HISTSIZE
 
 # ZSH configuration
 alias ssh-hosts="grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'"
-alias dotfiles="cd $DOTFILES"
-alias zprofile="$EDITOR $DOTFILES/local/zsh/zprofile.zsh"
 setopt hist_ignore_all_dups # Remove older duplicate entries from history
 setopt hist_reduce_blanks # Remove superfluous blanks from history items
 setopt inc_append_history # Save history entries as soon as they are entered
 setopt share_history # Share history between different instances of the shell
-alias cls="clear; printf '\033[3J'" # Clear screen and scroll buffer
-alias cp="cp -i"; # Confirm before overwrite
-alias mv="mv -i"; # Confirm before overwrite
-alias df="df -h"; # Human-readable sizes
-alias historystats="history 1 | awk '{print $2}' | sort | uniq -c | sort -n"
-alias gitprune="git branch --merged | grep -Ev '(master)' >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
 
 autoload -Uz compinit
 compinit
