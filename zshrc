@@ -81,7 +81,7 @@ gitg() {
   shift
   local ignored_files=${(j:|:)${@}}
 
-  git status --porcelain | awk 'match($1, "A|M"){print $2}' | rg -v "${ignored_files}" | xargs rg $term
+  git status --porcelain | awk 'match($1, "A|M"){print $2}' | rg -v "${ignored_files:-_}" | xargs rg $term
 }
 
 # Setup 'infinite' history
