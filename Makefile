@@ -7,7 +7,9 @@ help: ## Display this help section
 update: ## Updates dotfiles
 	@printf "Updating repo...\n"
 	@git pull
-	@(ENV="" $(MAKE) install-externals --no-print-directory)
+	@printf "Updating externals... "
+	@git submodule update --remote --merge
+	@printf "done\n"
 
 .PHONY: install
 install: ## Installs core and mac specific dotfiles
