@@ -50,6 +50,8 @@ alias mv="mv -i"; # Confirm before overwrite
 alias df="df -h"; # Human-readable sizes
 alias historystats="history 1 | awk '{print $2}' | sort | uniq -c | sort -n"
 alias gitprune="git branch --merged | grep -Ev '(master)' >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
+alias cat="bat -p --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark|| echo GitHub)"
+alias -g C="| cat --paging=never"
 
 # Creates a static server using ruby, php, or python 2 or 3, whichever is
 # available. It support an optional port (default is 8000).
