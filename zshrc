@@ -25,9 +25,10 @@ fi
 # Folder aliases
 alias home="cd $HOME"
 alias dev="cd $HOME/Developer"
-alias tn="cd $HOME/Developer/tngranados"
+alias work="cd $HOME/Developer/work"
 alias down="cd $HOME/Downloads"
 alias desk="cd $HOME/Desktop"
+alias dotfiles="cd $DOTFILES"
 
 export EDITOR="nvim"
 
