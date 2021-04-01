@@ -222,6 +222,11 @@ bg() {
     fi
 }
 
+# Source all modules
+for file in $DOTFILES/modules/*.zsh; do
+  source "$file"
+done
+
 # Source all the custom zsh files in ./local/zsh
 for file in $DOTFILES/local/zsh/*.zsh; do
   source "$file"
