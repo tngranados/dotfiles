@@ -23,6 +23,3 @@ git submodule add <remote_url> ./zsh/<plugin_folder>
 @[ ! -f $(PWD)/local/zsh/<plugin_name>.plugin.zsh ] && ln -s $(PWD)/zsh/<plugin_folder/<plugin_name>.plugin.zsh $(PWD)/local/zsh/<plugin_name>.plugin.zsh && printf "done\n" || printf "already done\n"
 ```
 
-## Credits
-
-Inspired by [seebi's zshrc](https://github.com/seebi/zshrc) and random internet articles.
