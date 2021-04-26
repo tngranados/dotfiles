@@ -55,10 +55,10 @@ alias logs="cd /usr/local/var/log"
 
 # Sound functions
 error-sound() {
-  ( afplay /System/Library/Sounds/Blow.aiff & )
+  ( afplay /System/Library/Sounds/Sosumi.aiff & )
 }
 
 success-sound() {
-  ( afplay /System/Library/Sounds/Submarine.aiff & )
+  ( afplay /System/Library/Sounds/Glass.aiff & )
 }
 
