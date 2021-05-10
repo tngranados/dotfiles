@@ -84,6 +84,9 @@ dockerrmif() {
 alias dcup="docker-compose up -d"
 alias dcdown="docker-compose down"
 
+# GitHub
+eval "$(gh completion -s zsh)"
+
 # Grep something over a git repository currently modified or added files. First paremter is the search term, the rest of
 # them are regexp of ignored files.
 gitg() {
