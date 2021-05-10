@@ -12,6 +12,13 @@ If not cloned in `~/dotfiles` you need to setup a `$DOTFILES` variable with its 
 
 You can include your own zsh files in `$DOTFILES/local/zsh` and they will be loaded automatically.
 
+## Dependencies
+
+To install all of the dependencies run:
+```zsh
+brew install diff-so-fancy bat ripgrep fzf nvim gh
+```
+
 ### To add a new zsh plugin:
 1. Add the gitsubmodule to ./zsh
 ```zsh
