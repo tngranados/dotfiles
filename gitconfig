@@ -9,6 +9,7 @@
 	attributesfile = ~/.gitattributes
 [interactive]
 	diffFilter = diff-so-fancy --patch
+	singlekey = true
 [color]
 	ui = true
 [color "diff-highlight"]
