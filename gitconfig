@@ -58,3 +58,5 @@
 	ff = only
 [includeIf "gitdir:~/Developer/work/"]
 	path = ~/Developer/work/.gitconfig
+[rerere]
+	enabled = true
