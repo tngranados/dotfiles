@@ -87,6 +87,14 @@ alias dcdown="docker-compose down"
 # GitHub
 eval "$(gh completion -s zsh)"
 
+# Git rebase progress
+rprogress() {
+  local RMD=$(git rev-parse --git-path 'rebase-merge/')
+  local N=$(cat "${RMD}msgnum")
+  local L=$(cat "${RMD}end")
+  echo "${N}/${L}"
+}
+
 # Grep something over a git repository currently modified or added files. First paremter is the search term, the rest of
 # them are regexp of ignored files.
 gitg() {
