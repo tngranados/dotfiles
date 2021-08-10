@@ -88,7 +88,7 @@ alias dcdown="docker-compose down"
 eval "$(gh completion -s zsh)"
 
 # Brew
-eval "$(/usr/local/bin/brew shellenv)"
+eval "$(brew shellenv)"
 
 # Git rebase progress
 rprogress() {
