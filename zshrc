@@ -53,6 +53,7 @@ alias gitprune="git branch --merged | grep -Ev '(master)' >/tmp/merged-branches 
 alias cat="bat -p --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark|| echo GitHub)"
 alias -g C="| cat --paging=never"
 alias lastcommitfiles="git show --pretty="" --name-only HEAD"
+alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc"
 
 # Creates a static server using ruby, php, or python 2 or 3, whichever is
 # available. It support an optional port (default is 8000).
