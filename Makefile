@@ -17,6 +17,9 @@ install: ## Installs core and mac specific dotfiles
 	@(ENV="" $(MAKE) install-core --no-print-directory)
 	@printf "Setting up .gitconfig in the home directory... "
 	@ln -s $(PWD)/gitconfig $(HOME)/.gitconfig && printf "done\n"
+	@printf "Setting up work .gitconfig in the work directory... "
+	@mkdir -p "$(HOME)/Developer/work"
+	@ln -s $(PWD)/gitconfig-work $(HOME)/Developer/work/.gitconfig && printf "done\n"
 	@printf "Setting up .finicky.js in the home directory... "
 	@ln -s $(PWD)/.finicky.js $(HOME)/.finicky.js && printf "done\n"
 	@[ ! -f $(PWD)/local/zsh/mac.zsh ] && ln -s $(PWD)/zsh/mac.zsh $(PWD)/local/zsh/mac.zsh || :
