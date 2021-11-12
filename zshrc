@@ -43,12 +43,10 @@ alias vim="nvim"
 alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias -g G="| grep -i"
 alias -s git="git clone"
-alias j="z"
 alias cls="clear; printf '\033[3J'" # Clear screen and scroll buffer
 alias cp="cp -i"; # Confirm before overwrite
 alias mv="mv -i"; # Confirm before overwrite
 alias df="df -h"; # Human-readable sizes
-alias historystats="history 1 | awk '{print $2}' | sort | uniq -c | sort -n"
 alias gitprune="git branch --merged | grep -Ev '(master)' >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
 alias cat="bat -p --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark|| echo GitHub)"
 alias -g C="| cat --paging=never"
@@ -116,7 +114,6 @@ HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 
 # ZSH configuration
-alias ssh-hosts="grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'"
 setopt hist_ignore_all_dups # Remove older duplicate entries from history
 setopt hist_reduce_blanks # Remove superfluous blanks from history items
 setopt inc_append_history # Save history entries as soon as they are entered
@@ -127,9 +124,6 @@ compinit
 
 # Load completions system
 zmodload -i zsh/complist
-
-# Ctrl + space to go to subdirectories
-bindkey -M menuselect '^@' accept-and-infer-next-history
 
 # Auto rehash commands
 # http://www.zsh.org/mla/users/2011/msg00531.html
@@ -195,11 +189,11 @@ cheat() {
   curl "http://cheat.sh/$1"
 }
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 # Add yarn to PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 
 # LGTM
 lgtm() {
