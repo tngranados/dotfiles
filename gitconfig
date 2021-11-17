@@ -38,6 +38,7 @@
 	rc = rebase --continue
 	mc = merge --continue
 	cm = commit -m
+	pick = cherry-pick
 	a = add .
 	# Use fzf to start an interactive rebase
 	frbi = "!f() { git rebase -i $(git log --pretty=oneline --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f; unset f"
