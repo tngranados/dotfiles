@@ -6,6 +6,10 @@ module.exports = {
   },
   handlers: [
     {
+      match: /zoom\.us\/join/,
+      browser: 'com.apple.ScriptEditor.id.open-URL'
+    },
+    {
       match: () => {
         const startTime = 9 * 60;
         const endTime = 18 * 60;
@@ -18,5 +22,16 @@ module.exports = {
       },
       browser: "Google Chrome"
     }
+  ],
+  rewrite: [
+    {
+      match: /zoom\.us\/j\//,
+      url: ({ url }) => ({
+        ...url,
+        search: `confno=${url.pathname.match(/\/j\/(\d+)($|\/)/)[1]}&pwd=${url.search.match(/pwd=([^&]+)/)[1]}`,
+        pathname: '/join',
+        protocol: "zoommtg"
+      })
+    },
   ]
 }
