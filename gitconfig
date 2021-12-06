@@ -25,7 +25,8 @@
 	new = green bold
 	whitespace = red reverse
 [alias]
-	s = status
+	s = status --short
+	ss = status
 	d = diff
 	co = checkout
 	br = branch

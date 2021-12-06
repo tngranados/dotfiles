@@ -38,6 +38,7 @@ alias zprofile="$EDITOR $DOTFILES/local/zsh/zprofile.zsh"
 alias rsource="source $HOME/.zshrc"
 alias g="git"
 alias gs="g s"
+alias gss="g ss"
 alias gap="g ap"
 alias vi="nvim"
 alias vim="nvim"
@@ -241,3 +242,4 @@ done
 for file in $DOTFILES/local/zsh/*.zsh; do
   source "$file"
 done
+
