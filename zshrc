@@ -49,7 +49,8 @@ alias cls="clear; printf '\033[3J'" # Clear screen and scroll buffer
 alias cp="cp -i"; # Confirm before overwrite
 alias mv="mv -i"; # Confirm before overwrite
 alias df="df -h"; # Human-readable sizes
-alias gitprune="git branch --merged | grep -Ev '(master)' >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
+alias gitprune="git branch --merged | grep -Ev '(^\*|master|main)' >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
+alias gitprunef="git branch --merged | grep -Ev '(^\*|master|main)' | xargs git branch -d"
 alias cat="bat -p --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark|| echo GitHub)"
 alias -g C="| cat --paging=never"
 alias lastcommitfiles="git show --pretty="" --name-only HEAD"
