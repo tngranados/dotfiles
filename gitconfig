@@ -1,6 +1,7 @@
 [user]
 	name = tngranados
 	email = antoniogra7@gmail.com
+	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFkkN7Sposqabq6SUgcxoc/UEH6dcifoTkEFN1WacbhG
 [init]
 	defaultBranch = main
 [core]
@@ -68,3 +69,7 @@
 	path = ~/Developer/work/.gitconfig
 [rerere]
 	enabled = true
+[commit]
+	gpgSign = true
+[gpg]
+	format = ssh
