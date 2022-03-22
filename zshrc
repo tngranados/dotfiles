@@ -86,11 +86,11 @@ dockerrmif() {
 alias dcup="docker-compose up -d"
 alias dcdown="docker-compose down"
 
-# GitHub
-eval "$(gh completion -s zsh)"
-
 # Brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# GitHub
+eval "$(gh completion -s zsh)"
 
 # Git rebase progress
 rprogress() {
