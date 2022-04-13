@@ -33,6 +33,7 @@ alias dotfiles="cd $DOTFILES"
 export EDITOR="nvim"
 
 # Useful command aliases
+alias fullhistory="history -fD 0"
 alias vimrc="$EDITOR $HOME/.config/nvim/init.vim"
 alias zprofile="$EDITOR $DOTFILES/local/zsh/zprofile.zsh"
 alias rsource="source $HOME/.zshrc"
