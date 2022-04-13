@@ -120,8 +120,8 @@ SAVEHIST=$HISTSIZE
 # ZSH configuration
 setopt hist_ignore_all_dups # Remove older duplicate entries from history
 setopt hist_reduce_blanks # Remove superfluous blanks from history items
-setopt inc_append_history # Save history entries as soon as they are entered
-setopt share_history # Share history between different instances of the shell
+setopt inc_append_history_time # Save history entries as soon as they are entered, keeping different terminal separated while running
+setopt extended_history # Save command duration as well as timestamp
 
 autoload -Uz compinit
 compinit
