@@ -6,10 +6,10 @@
 	defaultBranch = main
 [core]
 	editor = nvim
-	pager = diff-so-fancy | less --tabs=2 -RFX
+	pager = delta
 	attributesfile = ~/.gitattributes
 [interactive]
-	diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
 	singlekey = true
 [color]
 	ui = true
@@ -25,6 +25,12 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[delta]
+    navigate = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
 [alias]
 	s = status --short
 	ss = status
@@ -55,8 +61,6 @@
 	ap = add -p
 [credential]
 	helper = osxkeychain
-[diff-so-fancy]
-	first-run = false
 [fetch]
 	prune = true
 [diff "ecmascript"]
