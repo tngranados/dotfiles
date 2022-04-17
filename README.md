@@ -16,7 +16,7 @@ You can include your own zsh files in `$DOTFILES/local/zsh` and they will be loa
 
 To install all of the dependencies run:
 ```zsh
-brew install git git-delta bat ripgrep fzf nvim gh fd
+brew install git git-delta bat ripgrep fzf nvim gh fd tldr httpie lazygit jq zoxide
 ```
 
 ### To add a new zsh plugin:

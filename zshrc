@@ -56,6 +56,7 @@ alias cat="bat -p --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> 
 alias -g C="| cat --paging=never"
 alias lastcommitfiles="git show --pretty="" --name-only HEAD"
 alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc"
+alias lgit="lazygit"
 
 # Creates a static server using ruby, php, or python 2 or 3, whichever is
 # available. It support an optional port (default is 8000).
@@ -275,6 +276,8 @@ function try_till_success {
 
   return $exitCode
 }
+
+eval "$(zoxide init zsh)"
 
 # Source all modules
 for file in $DOTFILES/modules/*.zsh; do
