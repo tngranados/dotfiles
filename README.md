@@ -30,3 +30,9 @@ git submodule add <remote_url> ./zsh/<plugin_folder>
 @[ ! -f $(PWD)/local/zsh/<plugin_name>.plugin.zsh ] && ln -s $(PWD)/zsh/<plugin_folder/<plugin_name>.plugin.zsh $(PWD)/local/zsh/<plugin_name>.plugin.zsh && printf "done\n" || printf "already done\n"
 ```
 
+### To remove a zsh plugin
+1. Delete the relevant line from the .gitmodules file
+2. Delete the relevant section from .git/config
+3. Run `git rm --cached ./zsh/<plugin_folder>`
+4. Update Makefile's install-core function to remove relevant section
+5. Commit and delete the now untracked submodule files

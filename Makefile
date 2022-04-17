@@ -49,8 +49,6 @@ install-core:
 	@[ ! -f $(PWD)/local/zsh/zsh-better-npm-completion.plugin.zsh ] && ln -s $(PWD)/zsh/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh $(PWD)/local/zsh/zsh-better-npm-completion.plugin.zsh && printf "done\n" || printf "already done\n"
 	@printf "Setting up better zsh vim mode... "
 	@[ ! -f $(PWD)/local/zsh/zsh-vim-mode.plugin.zsh ] && ln -s $(PWD)/zsh/zsh-vim-mode/zsh-vim-mode.plugin.zsh $(PWD)/local/zsh/zsh-vim-mode.plugin.zsh && printf "done\n" || printf "already done\n"
-	@printf "Setting up z..."
-	@[ ! -f $(PWD)/local/zsh/z.sh ] && ln -s $(PWD)/zsh/z/z.sh $(PWD)/local/zsh/z.sh && printf "done\n" || printf "already done\n"
 	@printf "Backing up the current .gitattributes... "
 	@[ -f $(HOME)/.gitattributes ] && mv $(HOME)/.gitattributes $(PWD)/local/gitattributes.bak && printf "done\n" || printf "already done\n"
 	@printf "Setting up .gitattributes in the home directory... "
