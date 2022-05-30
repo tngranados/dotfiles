@@ -30,7 +30,13 @@ alias down="cd $HOME/Downloads"
 alias desk="cd $HOME/Desktop"
 alias dotfiles="cd $DOTFILES"
 
-export EDITOR="nvim"
+if hash nvim 2>/dev/null; then
+  export EDITOR=nvim
+elif hash vim 2>/dev/null; then
+  export EDITOR=vim
+else
+  export EDITOR=vi
+fi
 
 # Useful command aliases
 alias fullhistory="history -fD 0"

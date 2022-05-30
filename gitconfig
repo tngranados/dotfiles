@@ -5,7 +5,6 @@
 [init]
 	defaultBranch = main
 [core]
-	editor = nvim
 	pager = delta
 	attributesfile = ~/.gitattributes
 [interactive]
