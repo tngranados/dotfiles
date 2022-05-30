@@ -54,6 +54,16 @@ code() {
 alias logs="cd /usr/local/var/log"
 
 # Sound functions
+boop() {
+  local last="$?"
+  if [[ "$last" == '0' ]]; then
+    success-sound
+  else
+    error-sound
+  fi
+  $(exit "$last")
+}
+
 error-sound() {
   ( afplay /System/Library/Sounds/Sosumi.aiff & )
 }
