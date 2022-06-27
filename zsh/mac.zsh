@@ -1,10 +1,12 @@
+export COLORS_PATH=$DOTFILES/zsh/dircolors-solarized/dircolors.ansi-universal
+
 # Enable ls colors and use human readable file sizes
 if (( $+commands[exa] )); then
-  eval "`gdircolors -b $DOTFILES/zsh/dircolors-solarized/dircolors.ansi-dark 2> /dev/null`"
+  eval "`gdircolors -b $COLORS_PATH 2> /dev/null`"
   zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # Use LS_COLORS for completion
   alias ls='exa --color=auto'
 elif (( $+commands[gls] )); then
-  eval "`gdircolors -b $DOTFILES/zsh/dircolors-solarized/dircolors.ansi-dark 2> /dev/null`"
+  eval "`gdircolors -b $COLORS_PATH 2> /dev/null`"
   zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # Use LS_COLORS for completion
   alias ls="gls --color=auto -h"
 else
