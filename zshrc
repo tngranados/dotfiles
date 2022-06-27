@@ -181,6 +181,9 @@ bindkey "^[[1;5D" .backward-word
 bindkey "^[[1;5C" .forward-word
 bindkey "^[[1;6D" backward-delete-word
 bindkey "^[[1;6C" delete-word
+bindkey "^[^[[A" beginning-of-line
+bindkey "^[^[[B" end-of-line
+
 # fn-left
 bindkey "^[[H" .backward-word
 # fn-right
