@@ -239,6 +239,10 @@ rubocop-changed() {
   git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bin/rubocop -a --force-exclusion
 }
 
+swiftlint-branch() {
+  git diff-tree -r --no-commit-id --name-only --diff-filter=d master head -- "*.swift" | xargs ./Pods/SwiftLint/swiftlint --lenient
+}
+
 # Append automatically % to numbers in fg and bg
 fg() {
     if [[ $# -eq 1 && $1 = - ]]; then
