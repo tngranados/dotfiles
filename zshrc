@@ -243,6 +243,10 @@ swiftlint-branch() {
   git diff-tree -r --no-commit-id --name-only --diff-filter=d master head -- "*.swift" | xargs ./Pods/SwiftLint/swiftlint --lenient
 }
 
+remove-tonidebug() {
+  rg "tonidebug" . --files-with-matches | xargs sed -i '' '/tonidebug/d'
+}
+
 # Append automatically % to numbers in fg and bg
 fg() {
     if [[ $# -eq 1 && $1 = - ]]; then
