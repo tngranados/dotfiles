@@ -72,7 +72,5 @@
 	path = ~/Developer/work/.gitconfig
 [rerere]
 	enabled = true
-[commit]
-	gpgSign = true
-[gpg]
-	format = ssh
+[push]
+	default = current
