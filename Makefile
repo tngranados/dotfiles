@@ -22,6 +22,8 @@ install: ## Installs core and mac specific dotfiles
 	@[ ! -f $(HOME)/Developer/work/.gitconfig ] && ln -s $(PWD)/gitconfig-work $(HOME)/Developer/work/.gitconfig && printf "done\n" || printf "already done\n"
 	@printf "Setting up .finicky.js in the home directory... "
 	@ln -s $(PWD)/.finicky.js $(HOME)/.finicky.js && printf "done\n"
+	@printf "Setting up .wezterm.lua in the home directory... "
+	@ln -s $(PWD)/.wezterm.lua $(HOME)/.wezterm.lua && printf "done\n"
 	@[ ! -f $(PWD)/local/zsh/mac.zsh ] && ln -s $(PWD)/zsh/mac.zsh $(PWD)/local/zsh/mac.zsh || :
 
 .PHONY: clean-local
@@ -57,6 +59,8 @@ install-core:
 	@[ -f $(HOME)/.gitconfig ] && mv $(HOME)/.gitconfig $(PWD)/local/gitconfig.bak && printf "done\n" || printf "already done\n"
 	@printf "Backing up the current .finicky.js... "
 	@[ -f $(HOME)/.finicky.js ] && mv $(HOME)/.finicky.js $(PWD)/local/.finicky.js.bak && printf "done\n" || printf "already done\n"
+	@printf "Backing up the current .wezterm.lua... "
+	@[ -f $(HOME)/.wezterm.lua ] && mv $(HOME)/.wezterm.lua $(PWD)/local/.wezterm.lua.bak && printf "done\n" || printf "already done\n"
 
 .PHONY: install-externals
 install-externals:
