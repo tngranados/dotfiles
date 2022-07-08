@@ -31,13 +31,25 @@ local theme = wezterm.get_builtin_color_schemes()[color_scheme()]
 
 return {
   scrollback_lines = 100000,
-  -- enable_scroll_bar = true,
   use_fancy_tab_bar = true,
   color_scheme = color_scheme(),
   keys = {
     -- Turn off the default CMD-k Clear scrollback action
-    {key="k", mods="CMD", action="DisableDefaultAssignment"}
+    {key="k", mods="CMD", action="DisableDefaultAssignment"},
+    -- Split vertically
+    {key="d", mods="CMD", action=wezterm.action.SplitVertical{domain="CurrentPaneDomain"}},
+    -- Split horizontally
+    {key="d", mods="CMD|SHIFT", action=wezterm.action.SplitHorizontal{domain="CurrentPaneDomain"}},
+    -- Close split pane
+    {key="w", mods="CMD", action=wezterm.action.CloseCurrentPane{confirm=false}},
+    -- Pane switch by direction
+    {key="LeftArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Left")},
+    {key="RightArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Right")},
+    {key="UpArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Up")},
+    {key="DownArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Down")},
   },
+  inactive_pane_saturation = 0.7,
+  inactive_pane_brightness = 0.6,
   window_frame = {
     inactive_titlebar_bg = color_mod(theme.background, -15),
     inactive_titlebar_fg = theme.foreground,
