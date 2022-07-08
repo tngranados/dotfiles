@@ -317,3 +317,5 @@ for file in $DOTFILES/local/zsh/*.zsh; do
   source "$file"
 done
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
