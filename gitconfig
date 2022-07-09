@@ -5,25 +5,13 @@
 [init]
 	defaultBranch = main
 [core]
-	pager = delta
+	pager = "delta --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark|| echo OneHalfLight)"
 	attributesfile = ~/.gitattributes
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = "delta --color-only --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark|| echo OneHalfLight)"
 	singlekey = true
 [color]
 	ui = true
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
 [delta]
     navigate = true
 [merge]
