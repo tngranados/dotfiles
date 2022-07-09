@@ -39,6 +39,7 @@ return {
   initial_rows = 30,
 
   -- Apperance
+  font = wezterm.font('Iosevka Term', {stretch="Expanded", weight="Regular"}),
   use_fancy_tab_bar = true,
   inactive_pane_hsb = {
     saturation = 0.75,
