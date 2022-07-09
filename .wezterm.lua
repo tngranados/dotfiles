@@ -40,8 +40,10 @@ return {
 
   -- Apperance
   use_fancy_tab_bar = true,
-  inactive_pane_saturation = 0.7,
-  inactive_pane_brightness = 0.6,
+  inactive_pane_hsb = {
+    saturation = 0.75,
+    brightness = 0.65,
+  },
   window_frame = {
     inactive_titlebar_bg = color_mod(theme.background, -15),
     inactive_titlebar_fg = theme.foreground,
