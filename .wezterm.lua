@@ -30,26 +30,16 @@ end
 local theme = wezterm.get_builtin_color_schemes()[color_scheme()]
 
 return {
+  -- Platform
+  send_composed_key_when_left_alt_is_pressed = true,
+
+  -- Window
   scrollback_lines = 100000,
+  initial_cols = 100,
+  initial_rows = 30,
+
+  -- Apperance
   use_fancy_tab_bar = true,
-  color_scheme = color_scheme(),
-  keys = {
-    -- Turn off the default CMD-k Clear scrollback action
-    {key="k", mods="CMD", action="DisableDefaultAssignment"},
-    -- Use Shift+Cmd+K to first clear screen and viewport 
-    {key="k", mods="CMD|SHIFT", action=wezterm.action.ClearScrollback("ScrollbackAndViewport")},
-    -- Split vertically
-    {key="d", mods="CMD", action=wezterm.action.SplitVertical{domain="CurrentPaneDomain"}},
-    -- Split horizontally
-    {key="d", mods="CMD|SHIFT", action=wezterm.action.SplitHorizontal{domain="CurrentPaneDomain"}},
-    -- Close split pane
-    {key="w", mods="CMD", action=wezterm.action.CloseCurrentPane{confirm=false}},
-    -- Pane switch by direction
-    {key="LeftArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Left")},
-    {key="RightArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Right")},
-    {key="UpArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Up")},
-    {key="DownArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Down")},
-  },
   inactive_pane_saturation = 0.7,
   inactive_pane_brightness = 0.6,
   window_frame = {
@@ -58,6 +48,7 @@ return {
     active_titlebar_bg = color_mod(theme.background, -15),
     active_titlebar_fg = theme.foreground,
   },
+  color_scheme = color_scheme(),
   colors = {
     tab_bar = {
       inactive_tab_edge = color_mod(theme.background, -15),
@@ -83,19 +74,24 @@ return {
       }
     },
   },
-  send_composed_key_when_left_alt_is_pressed = true
+
+  -- Keys
+  keys = {
+    -- Turn off the default CMD-k Clear scrollback action
+    {key="k", mods="CMD", action="DisableDefaultAssignment"},
+    -- Use Shift+Cmd+K to first clear screen and viewport
+    {key="k", mods="CMD|SHIFT", action=wezterm.action.ClearScrollback("ScrollbackAndViewport")},
+    -- Split vertically
+    {key="d", mods="CMD", action=wezterm.action.SplitVertical{domain="CurrentPaneDomain"}},
+    -- Split horizontally
+    {key="d", mods="CMD|SHIFT", action=wezterm.action.SplitHorizontal{domain="CurrentPaneDomain"}},
+    -- Close split pane
+    {key="w", mods="CMD", action=wezterm.action.CloseCurrentPane{confirm=false}},
+    -- Pane switch by direction
+    {key="LeftArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Left")},
+    {key="RightArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Right")},
+    {key="UpArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Up")},
+    {key="DownArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Down")},
+  },
 }
 
-
--- # Tomorrow
--- [colors]
--- foreground = "#4d4d4c"
--- background = "#ffffff"
--- cursor_bg = "#4d4d4c"
--- cursor_border = "#4d4d4c"
--- cursor_fg = "#ffffff"
--- selection_bg = "#d6d6d6"
--- selection_fg = "#4d4d4c"
-
--- ansi = ["#000000","#c82829","#718c00","#eab700","#4271ae","#8959a8","#3e999f","#ffffff"]
--- brights = ["#000000","#c82829","#718c00","#eab700","#4271ae","#8959a8","#3e999f","#ffffff"]
