@@ -36,6 +36,8 @@ return {
   keys = {
     -- Turn off the default CMD-k Clear scrollback action
     {key="k", mods="CMD", action="DisableDefaultAssignment"},
+    -- Use Shift+Cmd+K to first clear screen and viewport 
+    {key="k", mods="CMD|SHIFT", action=wezterm.action.ClearScrollback("ScrollbackAndViewport")},
     -- Split vertically
     {key="d", mods="CMD", action=wezterm.action.SplitVertical{domain="CurrentPaneDomain"}},
     -- Split horizontally
