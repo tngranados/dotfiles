@@ -24,6 +24,9 @@ install: ## Installs core and mac specific dotfiles
 	@ln -s $(PWD)/.finicky.js $(HOME)/.finicky.js && printf "done\n"
 	@printf "Setting up .wezterm.lua in the home directory... "
 	@ln -s $(PWD)/.wezterm.lua $(HOME)/.wezterm.lua && printf "done\n"
+	@printf "Setting up nvim config in the home/.config directory... "
+	@mkdir -p "$(HOME)/.config/"
+	@ln -s $(PWD)/nvim $(HOME)/.config/nvim && printf "done\n"
 	@[ ! -f $(PWD)/local/zsh/mac.zsh ] && ln -s $(PWD)/zsh/mac.zsh $(PWD)/local/zsh/mac.zsh || :
 
 .PHONY: clean-local
@@ -61,6 +64,8 @@ install-core:
 	@[ -f $(HOME)/.finicky.js ] && mv $(HOME)/.finicky.js $(PWD)/local/.finicky.js.bak && printf "done\n" || printf "already done\n"
 	@printf "Backing up the current .wezterm.lua... "
 	@[ -f $(HOME)/.wezterm.lua ] && mv $(HOME)/.wezterm.lua $(PWD)/local/.wezterm.lua.bak && printf "done\n" || printf "already done\n"
+	@printf "Backing up the current nvim config... "
+	@[ -f $(HOME)/.config/nvim ] && mv $(HOME)/.config/nvim $(PWD)/local/nvim.bak && printf "done\n" || printf "already done\n"
 
 .PHONY: install-externals
 install-externals:
