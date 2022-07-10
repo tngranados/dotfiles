@@ -16,6 +16,20 @@ function color_scheme()
   end
 end
 
+function inactive_pane_hsb()
+  if is_dark_mode() then
+    return {
+      saturation = 0.75,
+      brightness = 0.65,
+    }
+  else
+    return {
+      saturation = 0.8,
+      brightness = 0.85,
+    }
+  end
+end
+
 local function clamp(component)
   return math.min(math.max(component, 0), 255)
 end
@@ -41,10 +55,7 @@ return {
   -- Apperance
   font = wezterm.font('Iosevka Term', {stretch="Expanded", weight="Regular"}),
   use_fancy_tab_bar = true,
-  inactive_pane_hsb = {
-    saturation = 0.75,
-    brightness = 0.65,
-  },
+  inactive_pane_hsb = inactive_pane_hsb(),
   window_frame = {
     inactive_titlebar_bg = color_mod(theme.background, -15),
     inactive_titlebar_fg = theme.foreground,
