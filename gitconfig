@@ -5,15 +5,18 @@
 [init]
 	defaultBranch = main
 [core]
-	pager = "delta --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark|| echo OneHalfLight)"
+	pager = "delta --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub)"
 	attributesfile = ~/.gitattributes
 [interactive]
-	diffFilter = "delta --color-only --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark|| echo OneHalfLight)"
+	diffFilter = "delta --color-only --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub)"
 	singlekey = true
+[add.interactive]
+    useBuiltin = false
 [color]
 	ui = true
 [delta]
     navigate = true
+    line-numbers = true
 [merge]
     conflictstyle = diff3
 [diff]
