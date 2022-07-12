@@ -232,11 +232,11 @@ lgtm() {
 }
 
 rubocop-branch() {
-  git diff-tree -r --no-commit-id --name-only --diff-filter=d master head -- "*.rb" | xargs bin/rubocop -a --force-exclusion
+  git diff-tree -r --no-commit-id --name-only --diff-filter=d master head -- "*.rb" | xargs bundle exec rubocop -a --force-exclusion
 }
 
 rubocop-changed() {
-  git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bin/rubocop -a --force-exclusion
+  git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bundle exec rubocop -a --force-exclusion
 }
 
 swiftlint-branch() {
