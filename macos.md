@@ -48,6 +48,8 @@
   # Set Home as the default location for new Finder windows
   defaults write com.apple.finder NewWindowTarget -string "PfLo"
   defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+  # Show path bar
+  defaults write com.apple.finder ShowPathbar -bool true
 
   ## Dock
   # Remove the auto-hiding Dock delay
