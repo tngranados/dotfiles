@@ -43,6 +43,12 @@
 
   # Create ~/Developer folder if it doesn't exists yet
   mkdir -p Developer
+
+  ## Screenshots
+  # Set iCloud Drive Screenshos folder
+  defaults write com.apple.screencapture "location" -string "~/Library/Mobile Documents/com~apple~CloudDocs/Screenshots/"
+  # Use jpg instead of png to reduce file size as quality is good enough
+  defaults write com.apple.screencapture "type" -string "jpg"
   
   ## Finder
   # Set Home as the default location for new Finder windows
@@ -50,6 +56,9 @@
   defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
   # Show path bar
   defaults write com.apple.finder ShowPathbar -bool true
+
+  ## Disable anoying warning when disconnecting media
+  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.DiskArbitration.diskarbitrationd.plist DADisableEjectNotification -bool YES && sudo pkill diskarbitrationd
 
   ## Dock
   # Remove the auto-hiding Dock delay
