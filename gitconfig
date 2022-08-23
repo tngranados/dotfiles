@@ -63,6 +63,10 @@
 	path = ~/Developer/work/.gitconfig
 [rerere]
 	enabled = true
+[commit]
+	gpgSign = true
+[gpg]
+	format = ssh
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
