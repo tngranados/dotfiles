@@ -125,6 +125,7 @@ HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 
 # ZSH configuration
+setopt hist_ignore_space # Don't record a history entry if it starts with a space
 setopt hist_ignore_all_dups # Remove older duplicate entries from history
 setopt hist_reduce_blanks # Remove superfluous blanks from history items
 setopt inc_append_history_time # Save history entries as soon as they are entered, keeping different terminal separated while running
