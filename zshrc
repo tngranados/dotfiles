@@ -63,6 +63,10 @@ alias -g C="| cat --paging=never"
 alias lastcommitfiles="git show --pretty="" --name-only HEAD"
 alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc"
 alias lgit="lazygit"
+alias brownnoise="play -n synth brownnoise synth pinknoise mix"
+alias brownnoisewaves="play -n synth brownnoise synth pinknoise mix synth sine amod 0.1 80"
+alias whitenoise="play -q -c 2 -n synth brownnoise band -n 1600 1500 tremolo .1 30"
+alias pinknoise="play -t sl -r48000 -c2 -n synth -1 pinknoise .1 80"
 
 # Creates a static server using ruby, php, or python 2 or 3, whichever is
 # available. It support an optional port (default is 8000).
