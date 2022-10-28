@@ -124,7 +124,7 @@ gitg() {
 }
 
 # Setup 'infinite' history
-HISTFILE=~/.zsh_history
+HISTFILE=$DOTFILES/local/.zsh_history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 
