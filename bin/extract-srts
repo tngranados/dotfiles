@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+def main(arg)
+  files = Dir.entries(arg[0] || ".")
+  files = files.select{ |file| File.extname(file) == ".mkv"}
+
+  failed_files = []
+
+  files.each do |file|
+    puts "\nProcessing #{file}\n"
+
+    langs = `ffprobe -loglevel error -select_streams s -show_entries stream=index:stream_tags=language -of csv=p=0 #{file}`
+
+    spa_langs = langs.split("\n").select{|lang| lang.include?('spa')}
+
+    if spa_langs.count == 0
+      failed_files.append(file)
+
+      next
+    end
+
+    puts spa_langs
+    
+    spa = spa_langs.first.split(",").first.to_i
+
+    sub = "#{File.basename(file,'.*')}.srt"
+
+    `ffmpeg -i #{file} -map 0:s:#{spa-1} #{sub}`
+  end
+
+  puts "\nDONE\n"
+
+  if failed_files.count > 0
+    puts `\nErrors:\n`
+
+    failed_files.each { |failed_file| puts failed_file }
+  end
+end
+
+main(ARGV)
