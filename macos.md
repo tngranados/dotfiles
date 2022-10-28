@@ -11,6 +11,8 @@
 * Fix audit issue with zsh
     `sudo chown -R $(whoami) /usr/local/share/zsh /usr/local/share/zsh/site-functions && chmod u+w /usr/local/share/zsh /usr/local/share/zsh/site-functions`
 * Install vscode and login through GitHub
+* Fix annoying opt+space shortcut inserting a non-breaking space
+    `mkdir -p $HOME/Library/KeyBindings && echo '{\n"~ " = ("insertText:", " ");\n}' > ~/Library/KeyBindings/DefaultKeyBinding.dict`
 * Defaults
   ```sh
   ## Basic UI
