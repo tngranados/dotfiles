@@ -72,9 +72,7 @@ alias pinknoise="play -t sl -r48000 -c2 -n synth -1 pinknoise .1 80"
 # available. It support an optional port (default is 8000).
 shttp() {
   local port="${1:-8000}"
-  if (( $+commands[ruby] )); then
-    ruby -run -ehttpd . -p$port
-  elif (( $+commands[php] )); then
+  if (( $+commands[php] )); then
     php -S localhost:$port
   elif (( $+commands[python] )); then
     local pythonVer=$(python -c 'import platform; major, _, _ = platform.python_version_tuple(); print(major);')
@@ -83,6 +81,8 @@ shttp() {
     else
       python -m http.server $port
     fi
+  elif (( $+commands[ruby] )); then
+    ruby -run -ehttpd . -p$port
   else
     echo "Error: Ruby, PHP or Python needed"
   fi
