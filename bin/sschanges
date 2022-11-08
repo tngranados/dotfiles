@@ -38,7 +38,7 @@ end
 def annotate(path, text)
   file = Tempfile.new
 
-  `convert #{path} -gravity North -pointsize 90 -fill red -annotate -0+30 '#{text}' #{file.path}`
+  `convert #{path} -gravity North -pointsize 90 -fill red -annotate -0+40 '#{text}' #{file.path}`
 
   file.path
 end
