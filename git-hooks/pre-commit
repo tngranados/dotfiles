@@ -1,0 +1,10 @@
+#!/bin/sh
+
+ount=$(git diff --cached --name-only --diff-filter=ACM -z | xargs -0 rg "tonidebug" --files-with-matches | wc -l | xargs)
+
+if [ count = '0' ]; then
+  $(exit 0)
+else
+  echo "There are tonidebug statement left"
+  $(exit -1)
+fi
