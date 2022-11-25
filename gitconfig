@@ -55,6 +55,7 @@
 	unstage = reset HEAD --
 	revertfile = checkout --
 	ap = add -p
+	rp = reset -p
 [credential]
 	helper = osxkeychain
 [fetch]
