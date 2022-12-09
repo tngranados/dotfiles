@@ -274,6 +274,10 @@ get-uuid() {
     system_profiler SPUSBDataType | sed -n -e '/iPad/,/Serial/p' -e '/iPhone/,/Serial/p'
 }
 
+plain-clipboard() {
+    pbpaste | textutil -convert txt -stdin -stdout -encoding 30 | pbcopy
+}
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Retries a command a with backoff.
