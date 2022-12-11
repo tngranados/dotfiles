@@ -278,6 +278,10 @@ plain-clipboard() {
     pbpaste | textutil -convert txt -stdin -stdout -encoding 30 | pbcopy
 }
 
+preman() {
+    mandoc -T pdf "$(/usr/bin/man -w $@)" | open -fa Preview
+}
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Retries a command a with backoff.
