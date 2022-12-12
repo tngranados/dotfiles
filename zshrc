@@ -282,6 +282,10 @@ preman() {
     mandoc -T pdf "$(/usr/bin/man -w $@)" | open -fa Preview
 }
 
+copy-pr() {
+    gh pr view --json url -q ".url" | pbcopy
+}
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Retries a command a with backoff.
