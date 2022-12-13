@@ -1,0 +1,10 @@
+{
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#da9866",    
+    "statusBar.foreground": "#464646",
+    "statusBarItem.remoteBackground": "#b6825a",
+    "statusBarItem.remoteForeground": "#464646",
+  },
+  "activitusbar.activeColour": "#571a0a",
+  "activitusbar.inactiveColour": "#464646"
+}
