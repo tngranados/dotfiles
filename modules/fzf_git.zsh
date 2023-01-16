@@ -37,7 +37,6 @@ fco() {
   
   tagsAndBranches=$(echo "$tags"; echo "$branches")
   # if there is only one branch, just check it out
-  echo $(echo "$tagsAndBranches" | wc -l)
   if [ $(echo "$tagsAndBranches" | wc -l) -eq 1 ]; then
     git checkout $(echo "$tagsAndBranches" | awk '{print $2}')
     return
