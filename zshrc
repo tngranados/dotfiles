@@ -327,6 +327,10 @@ function try_till_success {
   return $exitCode
 }
 
+HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+source $DOTFILES/zsh/zsh-histdb/sqlite-history.zsh
+autoload -Uz add-zsh-hook
+
 eval "$(zoxide init zsh)"
 
 # Source all modules
