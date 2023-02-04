@@ -89,6 +89,15 @@ return {
     },
   },
 
+  -- Close confirmation
+  skip_close_confirmation_for_processes_named = {
+    'bash',
+    'sh',
+    'zsh',
+    'fish',
+    'tmux',
+  },
+
   -- Keys
   keys = {
     -- Use Shift+Cmd+K to first clear screen and viewport
@@ -99,7 +108,7 @@ return {
     -- Split horizontally
     {key="d", mods="CMD|SHIFT", action=wezterm.action.SplitHorizontal{domain="CurrentPaneDomain"}},
     -- Close split pane
-    {key="w", mods="CMD", action=wezterm.action.CloseCurrentPane{confirm=false}},
+    {key="w", mods="CMD", action=wezterm.action.CloseCurrentPane{confirm=true}},
     -- Pane switch by direction
     {key="LeftArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Left")},
     {key="RightArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Right")},
