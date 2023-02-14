@@ -54,6 +54,7 @@
 	revertfile = checkout --
 	ap = add -p
 	rp = reset -p
+	rmp = restore -p
 [credential]
 	helper = osxkeychain
 [fetch]
