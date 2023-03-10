@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby
 
-require 'tempfile'
+require 'bundler/inline'
+
+gemfile do
+  source 'https://rubygems.org'
+
+  gem 'tempfile'
+end
 
 def main(arg)
   before = arg[0]
