@@ -8,6 +8,7 @@
 	pager = "delta --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub)"
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/dotfiles/globalgitignore
+	hooksPath = ~/dotfiles/git-hooks
 [interactive]
 	diffFilter = "delta --color-only --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub)"
 	singlekey = true
