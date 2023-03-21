@@ -10,7 +10,7 @@ end
 
 function color_scheme()
   if is_dark_mode() then
-    return "Afterglow"
+    return "zenwritten_dark"
   else 
     return "Tomorrow"
   end
