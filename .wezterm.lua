@@ -102,6 +102,8 @@ return {
 
   -- Keys
   keys = {
+    -- Use Cmd+P to open command palette
+    {key="P", mods="CMD", action=wezterm.action.ActivateCommandPalette},
     -- Use Shift+Cmd+K to first clear screen and viewport
     {key="k", mods="CMD", action=wezterm.action.ClearScrollback("ScrollbackAndViewport")},
     {key="k", mods="CMD|SHIFT", action=wezterm.action.ClearScrollback("ScrollbackAndViewport")},
