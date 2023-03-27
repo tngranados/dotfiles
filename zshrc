@@ -293,39 +293,39 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 #
 # The retry count is given by ATTEMPTS (default 100), the
 # initial backoff timeout is given by TIMEOUT in seconds
-# (default 5.)
+# (default 5), or the second argument to the function.
 #
 # Successive backoffs increase the timeout by ~33%.
 #
 # Beware of set -e killing your whole script!
-function try_till_success {
-  local max_attempts=${ATTEMPTS-100}
-  local timeout=${TIMEOUT-5}
-  local attempt=0
-  local exitCode=0
+retry() {
+  local cmd="$1"
+  local initial_wait=${TIMEOUT-"$2"}
+  local max_retries=${ATTEMPTS-100}
+  local attempt=1
 
-  while [[ $attempt < $max_attempts ]]
-  do
-    "$@"
-    exitCode=$?
-
-    if [[ $exitCode == 0 ]]
-    then
-      break
-    fi
-
-    echo "Failure! Retrying in $timeout.." 1>&2
-    sleep $timeout
-    attempt=$(( attempt + 1 ))
-    timeout=$(( timeout * 40 / 30 ))
-  done
-
-  if [[ $exitCode != 0 ]]
-  then
-    echo "You've failed me for the last time! ($@)" 1>&2
+  if [ -z "$cmd" ] || [ -z "$initial_wait" ]; then
+    echo "Usage: retry_with_exp_backoff <command> <initial_wait_time>"
+    return 1
   fi
 
-  return $exitCode
+  while true; do
+    echo "Attempt #$attempt:"
+    if eval "$cmd"; then
+      echo "Command succeeded."
+      break
+    else
+      if [ "$attempt" -ge "$max_retries" ]; then
+        echo "Max retries reached. Command failed."
+        return -1
+      else
+        local wait_time=$((initial_wait * (0.33 ** (attempt - 1))))
+        echo "Command failed. Retrying in $wait_time seconds..."
+        sleep $wait_time
+        attempt=$((attempt + 1))
+      fi
+    fi
+  done
 }
 
 HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
