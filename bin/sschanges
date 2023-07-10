@@ -15,7 +15,7 @@ def main(arg)
 
   gif = File.extname(out) == '.gif'
 
-  width = 296
+  width = 350
   if arg[3] == '--resize'
     width = arg[4]
   end
@@ -33,7 +33,7 @@ def main(arg)
   end
 end
 
-def resize(path, width = 296)
+def resize(path, width = 350)
   file = Tempfile.new
 
   `convert #{path} -resize #{width} #{file.path}`
