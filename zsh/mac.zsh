@@ -44,10 +44,10 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Workaround to avoid multiple VSCode icons in the dock when using the code tool.
 # https://github.com/microsoft/vscode/issues/60579
-code() { 
-    if [ -t 1 ] && [ -t 0 ]; then 
+code() {
+    if [ -t 1 ] && [ -t 0 ]; then
         open -a Visual\ Studio\ Code.app "$@"
-    else 
+    else
         open -a Visual\ Studio\ Code.app -f
     fi
 }
@@ -74,3 +74,6 @@ success-sound() {
   ( afplay /System/Library/Sounds/Glass.aiff & )
 }
 
+reset-icloud-tabs() {
+  rm $HOME/Library/Containers/com.apple.Safari/Data/Library/Safari/CloudTabs.db*
+}
