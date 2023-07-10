@@ -149,7 +149,7 @@ zstyle ':completion:*' rehash true
 # Menu selection
 zstyle ':completion:*' menu select=1
 # Select completions with arrow keys
-zstyle ':completion:*' menu select 
+zstyle ':completion:*' menu select
 # Completion of .. directories
 zstyle ':completion:*' special-dirs true
 # Group results by category
@@ -172,7 +172,7 @@ zstyle ':completion:*:default' select-prompt $'\e[01;35m -- Match %M    %P -- \e
 # Show comments when present
 zstyle ':completion:*' verbose yes
 # Case-insensitive -> partial-word (cs) -> substring completion:
-zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'  
+zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # Reorder output sorting: named dirs over userdirs
 zstyle ':completion::*:-tilde-:*:*' group-order named-directories users
 # Advanced kill completion

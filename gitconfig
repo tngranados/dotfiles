@@ -56,6 +56,14 @@
 	ap = add -p
 	rp = reset -p
 	rmp = restore -p
+	authors-list = shortlog -e -s -n
+	amend = commit --amend
+	authors-count = shortlog -s -n
+	sl = !git smartlog
+	log-commit = log -1 --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%n%C(bold cyan)%s%n%n%C(cyan)%b%n%Creset'
+	logcm = !git log-commit
+	nuke = reset --hard
+	purge = clean -fd
 [credential]
 	helper = osxkeychain
 [fetch]
