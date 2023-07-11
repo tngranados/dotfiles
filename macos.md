@@ -93,6 +93,10 @@
   # Allow everyone to discover me through airdrop
   defaults write com.apple.sharingd DiscoverableMode -string "Everyone"
 
+  ## Clock
+  # Show seconds
+  defaults write com.apple.menuextra.clock "ShowSeconds" -bool true
+
   ## Safari
   # Prevent Safari from opening ‘safe’ files automatically after downloading
   defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
