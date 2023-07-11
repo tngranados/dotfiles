@@ -1,19 +1,20 @@
 # Mac setup
 
-* Basic setup
-* Setup SSH key
-* Download and install Xcode from the App Store and accept EULA
-* Install brew
-* Download dot files
-    `cd $HOME && git clone git@github.com:tngranados/dotfiles.git && cd dotfiles && make install`
-* Install dotfiles dependencies
-	`brew install git git-delta bat ripgrep fzf nvim gh fd tldr httpie lazygit jq zoxide entr imagemagick difftastic`
-* Fix audit issue with zsh
-    `sudo chown -R $(whoami) /usr/local/share/zsh /usr/local/share/zsh/site-functions && chmod u+w /usr/local/share/zsh /usr/local/share/zsh/site-functions`
-* Install vscode and login through GitHub
-* Fix annoying opt+space shortcut inserting a non-breaking space
-    `mkdir -p $HOME/Library/KeyBindings && echo '{\n"~ " = ("insertText:", " ");\n}' > ~/Library/KeyBindings/DefaultKeyBinding.dict`
-* Defaults
+- Basic setup
+- Setup SSH key
+- Download and install Xcode from the App Store and accept EULA
+- Install brew
+- Download dot files
+  `cd $HOME && git clone git@github.com:tngranados/dotfiles.git && cd dotfiles && make install`
+- Install dotfiles dependencies
+  `brew install git git-delta bat ripgrep fzf nvim gh fd tldr httpie lazygit jq zoxide entr imagemagick difftastic`
+- Fix audit issue with zsh
+  `sudo chown -R $(whoami) /usr/local/share/zsh /usr/local/share/zsh/site-functions && chmod u+w /usr/local/share/zsh /usr/local/share/zsh/site-functions`
+- Install vscode and login through GitHub
+- Fix annoying opt+space shortcut inserting a non-breaking space
+  `mkdir -p $HOME/Library/KeyBindings && echo '{\n"~ " = ("insertText:", " ");\n}' > ~/Library/KeyBindings/DefaultKeyBinding.dict`
+- Defaults
+
   ```sh
   ## Basic UI
   # Only show scrollbars when scrolling
@@ -51,7 +52,7 @@
   defaults write com.apple.screencapture "location" -string "~/Library/Mobile Documents/com~apple~CloudDocs/Screenshots/"
   # Use jpg instead of png to reduce file size as quality is good enough
   defaults write com.apple.screencapture "type" -string "jpg"
-  
+
   ## Finder
   # Set Home as the default location for new Finder windows
   defaults write com.apple.finder NewWindowTarget -string "PfLo"
@@ -121,7 +122,7 @@
 
   # Set spanish input source
   defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.Spanish-ISO"
-  
+
   ## Transmission
   # Trash original torrent files
   defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
@@ -146,7 +147,7 @@
   defaults write com.apple.dt.Xcode DVTTextIndentOnPaste -bool true
 
   # Easier work with MVVM
-  defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add "ViewModel" "View" 
+  defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add "ViewModel" "View"
 
   # Stop current task when running again
   defaults write com.apple.dt.Xcode IDESuppressStopBuildWarning -bool true
@@ -154,13 +155,13 @@
 
   # Enable spell check
   defaults write com.apple.dt.Xcode AutomaticallyCheckSpellingWhileTyping -bool true
-  
+
   # Automatically trim whitespace-only lines
   defaults write com.apple.dt.Xcode DVTTextEditorTrimWhitespaceOnlyLines -bool true
-  
+
   # Enable better build system that uses more cores
-  defaults write com.apple.dt.XCBuild EnableSwiftBuildSystemIntegration 1 
-  
+  defaults write com.apple.dt.XCBuild EnableSwiftBuildSystemIntegration 1
+
   # Use notifications instead of modals for crashes
   defaults write com.apple.CrashReporter UseUNC 1
 
@@ -168,10 +169,10 @@
   defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool true
   ```
 
-
 Work specific
-* Install asdf with ruby and node plugins
-* Install dependencies
+
+- Install asdf with ruby and node plugins
+- Install dependencies
   ```sh
     brew install postgresql redis
     brew services start postgresql
@@ -180,62 +181,20 @@ Work specific
     bundle install
     mkdir -p ~/Developer/work
   ```
-* Add `.gitconfig` at `~/Developer/work` with correct user name and email
-* Install aws cli
-* Install cocoapods
+- Add `.gitconfig` at `~/Developer/work` with correct user name and email
+- Install aws cli
+- Install cocoapods
   `sudo gem install cocoapods`
-* Defaults
+- Defaults
   ```sh
   # Show page guide at column 120
   defaults write com.apple.dt.Xcode DVTTextPageGuideLocation -int 120
   # Better counterparts
   defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add "Protocol" "Protocols" "Network"
   ```
-* Install gpg and dependencies to sign commits [based gist](https://gist.github.com/troyfontaine/18c9146295168ee9ca2b30c00bd1b41e)
-```sh
-  brew install gpg2 gnupg pinentry-mac       
-```
-  * Create a `.gnupg` directory and `~/.gnupg/gpg.conf`
-  ```sh
-    mkdir -p ~/.gnupg
-    echo 'use-agent' > ~/.gnupg/gpg.conf
-  ```
-  * Add var to zprofile and resource
-  ```sh
-    echo 'export GPG_TTY=$(tty)' >> $DOTFILES/local/zsh/zprofile.zsh
-    rsource
-    chmod 700 ~/.gnupg
-  ```
-  * Generate key
-  ```sh
-    gpg --full-gen-key
-  ```
-  * Get key id
-  ```sh
-    gpg -K --keyid-format SHORT
-  ```
-  * Export fingerprint and add this to github
-  ```sh
-    gpg --armor --export <your key id>
-  ```
-  * Configure git to use gpg
-  ```sh
-    git config gpg.program $(which gpg)
-  ```
-  * Configure git repos to use signing key
-  ```sh
-    git config user.signingkey <your key id>
-  ```
-  * Configure git repos to sign commits
-  ```sh
-    git config commit.gpgsign true
-  ```
-  * Commit like this
-  ```sh
-    git commit -S -s -m "My Signed Commit"
-  ```
 
 ### Restart affected apps
+
 ```sh
   for app in "Activity Monitor" \
     "cfprefsd" \
@@ -255,5 +214,6 @@ Work specific
 ```
 
 ### Credits
+
 https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 https://macos-defaults.com/

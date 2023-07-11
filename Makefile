@@ -70,4 +70,6 @@ install-core:
 .PHONY: install-externals
 install-externals:
 	@printf "Updating external libraries...\n"
-	@git submodule update --init
+	@git submodule sync
+	@git submodule init
+	@git submodule update

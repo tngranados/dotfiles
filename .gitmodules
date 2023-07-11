@@ -1,21 +1,24 @@
 [submodule "dircolors-solarized"]
 	path = zsh/dircolors-solarized
-	url = git://github.com/seebi/dircolors-solarized.git
+	url = git@github.com:seebi/dircolors-solarized.git
 [submodule "zsh/fast-syntax-highlighting"]
 	path = zsh/fast-syntax-highlighting
-	url = git://github.com/zdharma/fast-syntax-highlighting.git
+	url = git@github.com:zdharma/fast-syntax-highlighting.git
 [submodule "zsh/geometry"]
 	path = zsh/geometry
-	url = git://github.com/geometry-zsh/geometry.git
+	url = git@github.com:geometry-zsh/geometry.git
 [submodule "zsh/zsh-history-substring-search"]
 	path = zsh/zsh-history-substring-search
-	url = git://github.com/zsh-users/zsh-history-substring-search.git
+	url = git@github.com:zsh-users/zsh-history-substring-search.git
 [submodule "zsh/zsh-better-npm-completion"]
 	path = zsh/zsh-better-npm-completion
-	url = git://github.com/lukechilds/zsh-better-npm-completion.git
+	url = git@github.com:lukechilds/zsh-better-npm-completion.git
 [submodule "zsh/dircolors-solarized"]
 	path = zsh/dircolors-solarized
-	url = git://github.com/seebi/dircolors-solarized.git
+	url = git@github.com:seebi/dircolors-solarized.git
 [submodule "zsh/zsh-vim-mode"]
 	path = zsh/zsh-vim-mode
-	url = https://github.com/softmoth/zsh-vim-mode.git
+	url = git@github.com:softmoth/zsh-vim-mode.git
+[submodule "zsh/zsh-histdb"]
+	path = zsh/zsh-histdb
+	url = git@github.com:larkery/zsh-histdb.git
