@@ -7,7 +7,7 @@
 - Download dot files
   `cd $HOME && git clone git@github.com:tngranados/dotfiles.git && cd dotfiles && make install`
 - Install dotfiles dependencies
-  `brew install git git-delta bat ripgrep fzf nvim gh fd tldr httpie lazygit jq zoxide entr imagemagick difftastic eza`
+  `brew install git git-delta bat ripgrep fzf nvim gh fd tldr httpie lazygit jq zoxide entr imagemagick difftastic eza asdf`
 - Fix audit issue with zsh
   `sudo chown -R $(whoami) /usr/local/share/zsh /usr/local/share/zsh/site-functions && chmod u+w /usr/local/share/zsh /usr/local/share/zsh/site-functions`
 - Install vscode and login through GitHub
