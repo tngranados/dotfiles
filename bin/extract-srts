@@ -9,7 +9,7 @@ def main(arg)
   files.each do |file|
     puts "\nProcessing #{file}\n"
 
-    langs = `ffprobe -loglevel error -select_streams s -show_entries stream=index:stream_tags=language -of csv=p=0 #{file}`
+    langs = `ffprobe -loglevel error -select_streams s -show_entries stream=index:stream_tags=language -of csv=p=0 "#{file}"`
 
     spa_langs = langs.split("\n").select{|lang| lang.include?('spa')}
 
