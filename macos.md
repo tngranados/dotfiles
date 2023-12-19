@@ -82,6 +82,9 @@
   # Add bluetooth to menu bar
   defaults write "com.apple.controlcenter" "NSStatusItem Visible Bluetooth" -bool true
   defaults write "com.apple.controlcenter" "NSStatusItem Preferred Position Bluetooth" -int 310
+  # Reduce padding and sizing of menu bar icons so they fit better with a notch
+  defaults -currentHost delete -globalDomain NSStatusItemSpacing
+  defaults -currentHost delete -globalDomain NSStatusItemSelectionPadding
 
   # Add iOS & Watch Simulator to Launchpad
   #sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
