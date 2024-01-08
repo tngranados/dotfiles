@@ -19,7 +19,7 @@ To install all of the dependencies run:
 ```zsh
 brew tap homebrew/cask-fonts
 brew install --cask font-iosevka
-brew install git git-delta bat ripgrep fzf nvim gh fd tldr httpie lazygit jq zoxide entr imagemagick difftastic sox wezterm ncdu eza asdf
+brew install git git-delta bat ripgrep fzf nvim gh fd tldr httpie lazygit jq zoxide entr imagemagick difftastic sox wezterm ncdu eza asdf glow duf dust
 ```
 
 ### To add a new zsh plugin:

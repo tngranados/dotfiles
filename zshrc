@@ -60,7 +60,6 @@ alias mv="mv -i"; # Confirm before overwrite
 alias df="df -h"; # Human-readable sizes
 alias gitprune="git branch --merged | grep -Ev '(^\*|master|main)' >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
 alias gitprunef="git branch --merged | grep -Ev '(^\*|master|main)' | xargs git branch -d"
-alias cat="bat -p --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub)"
 alias -g C="| cat --paging=never"
 alias lastcommitfiles="git show --pretty="" --name-only HEAD"
 alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc"
@@ -333,6 +332,17 @@ source $DOTFILES/zsh/zsh-histdb/sqlite-history.zsh
 autoload -Uz add-zsh-hook
 
 eval "$(zoxide init zsh)"
+
+# Unix tools replacements
+if (( $+commands[duf] )); then
+  alias df='duf'
+fi
+if (( $+commands[bat] )); then
+  alias cat="bat -p --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub)"
+fi
+if (( $+commands[dust] )); then
+  alias du="dust"
+fi
 
 # Source all modules
 for file in $DOTFILES/modules/*.zsh; do
