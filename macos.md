@@ -50,6 +50,8 @@
   ## Screenshots
   # Set iCloud Drive Screenshos folder
   defaults write com.apple.screencapture "location" -string "~/Library/Mobile Documents/com~apple~CloudDocs/Screenshots/"
+  # Set the same folder for simulator screenshots
+  defaults write com.apple.iphonesimulator ScreenShotSaveLocation -string "~/Library/Mobile Documents/com~apple~CloudDocs/Screenshots/"
   # Use jpg instead of png to reduce file size as quality is good enough
   defaults write com.apple.screencapture "type" -string "jpg"
 
