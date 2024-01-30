@@ -106,7 +106,6 @@ return {
     {key="P", mods="CMD", action=wezterm.action.ActivateCommandPalette},
     -- Use Shift+Cmd+K to first clear screen and viewport
     {key="k", mods="CMD", action=wezterm.action.ClearScrollback("ScrollbackAndViewport")},
-    {key="k", mods="CMD|SHIFT", action=wezterm.action.ClearScrollback("ScrollbackAndViewport")},
     -- Split vertically
     {key="d", mods="CMD", action=wezterm.action.SplitVertical{domain="CurrentPaneDomain"}},
     -- Split horizontally
@@ -118,6 +117,11 @@ return {
     {key="RightArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Right")},
     {key="UpArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Up")},
     {key="DownArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Down")},
+    -- Pane switch by direction (vim)
+    {key="h", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Left")},
+    {key="l", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Right")},
+    {key="k", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Up")},
+    {key="j", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Down")},
   },
 
   -- Other
