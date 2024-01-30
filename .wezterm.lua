@@ -11,7 +11,7 @@ end
 function color_scheme()
   if is_dark_mode() then
     return "zenwritten_dark"
-  else 
+  else
     return "Tomorrow"
   end
 end
@@ -119,5 +119,8 @@ return {
     {key="UpArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Up")},
     {key="DownArrow", mods="CMD|SHIFT", action=wezterm.action.ActivatePaneDirection("Down")},
   },
+
+  -- Other
+  check_for_updates = false
 }
 
