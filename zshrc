@@ -302,6 +302,7 @@ retry() {
   local initial_wait=${TIMEOUT-"$2"}
   local max_retries=${ATTEMPTS-100}
   local attempt=1
+  local wait_time=${initial_wait}
 
   if [ -z "$cmd" ] || [ -z "$initial_wait" ]; then
     echo "Usage: retry_with_exp_backoff <command> <initial_wait_time>"
@@ -318,9 +319,9 @@ retry() {
         echo "Max retries reached. Command failed."
         return -1
       else
-        local wait_time=$((initial_wait * (0.33 ** (attempt - 1))))
-        echo "Command failed. Retrying in $wait_time seconds..."
+        echo "Command failed. Retrying in $(printf "%.2f" $wait_time) seconds..."
         sleep $wait_time
+        wait_time=$((wait_time * 1.33))
         attempt=$((attempt + 1))
       fi
     fi
