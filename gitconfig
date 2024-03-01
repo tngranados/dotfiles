@@ -9,6 +9,7 @@
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/dotfiles/globalgitignore
 	hooksPath = ~/dotfiles/git-hooks
+	autocrlf = false
 [interactive]
 	diffFilter = "delta --color-only --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub)"
 	singlekey = true
@@ -20,10 +21,17 @@
     navigate = true
     line-numbers = true
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
+		tool = meld
+[rebase]
+		autosquash = true
 [diff]
     colorMoved = default
+		colorMovedWS = allow-indentation-change
 		tool = difftastic
+		algorithm = histogram
+		submodule = log
+		context = 10
 [difftool]
 		prompt = false
 [difftool "difftastic"]
@@ -68,18 +76,19 @@
 	helper = osxkeychain
 [fetch]
 	prune = true
+	prunetags = true
+	fsckobjects = true
 [diff "ecmascript"]
 	xfuncname = "^((.*function.*)|([ \t]+it\\(.*))$"
 [diff "pdf"]
 	textconv = pdftotext-stdout
-[pull]
-	ff = only
 [includeIf "gitdir:~/Developer/work/"]
 	path = ~/Developer/work/.gitconfig
 [rerere]
 	enabled = true
 [commit]
 	gpgSign = true
+	verbose = true
 [gpg]
 	format = ssh
 [filter "lfs"]
@@ -89,5 +98,22 @@
 	smudge = git-lfs smudge -- %f
 [push]
 	autoSetupRemote = true
+	followtags = true
 [diff "swift"]
     xfuncname = ^[ \t]*(((private |public |internal |final |open )*class|(private |public |internal )*struct|(private |public |internal )*actor|(private |public |internal )*func|(private |public |internal )*extension|(private |public |internal )*enum)[ \t].*)$
+[help]
+	autocorrect = prompt
+[url "git@github.com:"]
+	insteadOf = "gh:"
+[transfer]
+	fsckobjects = true
+[receive]
+	fsckobjects = true
+[status]
+	submoduleSummary = true
+[submodule]
+	recurse = true
+[branch]
+	sort = -committerdate
+[log]
+	date = iso
