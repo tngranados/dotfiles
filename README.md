@@ -26,7 +26,7 @@ After all dependencies are installed, you can run `stow` from the dotfiles direc
 stow -t $HOME -d $HOME/dotfiles/config .
 ```
 
-Now, restart the shell or run `rsource` to reload the settings.
+Now, restart the shell or run `source /Users/tngranados/.zshrc` to reload the settings.
 
 To setup the basic macOS configuration, run:
 
