@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+require 'bundler/inline'
+
+gemfile do
+  source 'https://rubygems.org'
+
+  gem 'tempfile'
+end
+
+def main(arg)
+  before = arg[0]
+  after = arg[1]
+  out = arg[2]
+
+  gif = File.extname(out) == '.gif'
+
+  width = 350
+  if arg[3] == '--resize'
+    width = arg[4]
+  end
+
+  before = annotate(before, 'Before')
+  after = annotate(after, 'After')
+
+  before = resize(before, width)
+  after = resize(after, width)
+
+  if gif
+    make_gif(before, after, out)
+  else
+    join(before, after, out)
+  end
+end
+
+def resize(path, width = 350)
+  file = Tempfile.new
+
+  `convert #{path} -resize #{width} #{file.path}`
+
+  file.path
+end
+
+def annotate(path, text)
+  file = Tempfile.new
+
+  `convert #{path} -gravity North -pointsize 90 -fill red -annotate -0+40 '#{text}' #{file.path}`
+
+  file.path
+end
+
+def join(path1, path2, out)
+  `montage #{path1} #{path2} -tile 2x1 -geometry +10+10 -background none #{out}`
+end
+
+def make_gif(path1, path2, out)
+  `convert -delay 100 -loop 0 #{path1} #{path2} #{out}`
+end
+
+if ARGV.size < 2
+  puts 'Usage:'
+  puts 'sschanges before.png after.png out.png # Join two screenshots side by side annotated'
+  puts 'sschanges before.png after.png out.gif # Create a gif of the before and after changes annotated'
+  puts 'sschanges before.png after.png out.png --resize 500 # Resize the images to 500px wide'
+  exit 1
+else
+  main(ARGV)
+end
