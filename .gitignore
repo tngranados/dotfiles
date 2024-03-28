@@ -1,5 +1,3 @@
 .DS_Store
 Icon*
-bin/local
-zsh/local
-local
+/local

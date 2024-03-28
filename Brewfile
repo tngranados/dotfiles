@@ -8,6 +8,7 @@ brew 'entr' # run commands when files change
 brew 'antidote' # zsh plugin manager
 
 # Git
+brew 'git-crypt' # encrypt files in a git repo
 brew 'git-delta' # syntax-highlighting pager for git, diff, and grep output
 brew 'difftastic' # git diff tool
 
