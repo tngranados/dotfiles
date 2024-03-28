@@ -12,10 +12,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 brew tap Homebrew/bundle
 ```
 
-Then, clone the repository and install all of the dependencies and tools:
+After setting up the ssh keys, clone the repository and install all of the dependencies and tools:
 
 ```zsh
-git clone https://github.com/tngranados/dotfiles.git
+git clone git@github.com:tngranados/dotfiles.git
 cd dotfiles
 brew bundle
 ```
