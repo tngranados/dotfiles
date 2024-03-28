@@ -1,6 +1,9 @@
+tap "homebrew/core"
+
 # Basics
 brew 'git'
 brew 'stow' # symlink manager for dotfiles
+brew "mas" # Mac App Store CLI
 
 # Shell
 brew 'zoxide' # smarter cd
@@ -41,3 +44,40 @@ brew 'asdf' # version manager
 # Fonts
 tap 'homebrew/cask-fonts'
 cask 'font-iosevka'
+
+# Casks
+tap "homebrew/cask"
+cask "cleanshot"
+cask "fork"
+cask "google-chrome"
+cask "hyperkey"
+cask "iina"
+cask "insomnia"
+cask "istat-menus"
+cask "keyboardcleantool"
+cask "mac-mouse-fix"
+cask "netnewswire"
+cask "obsidian"
+cask "raycast"
+cask "tableplus"
+cask "the-unarchiver"
+cask "transmission"
+cask "visual-studio-code"
+cask "vivid"
+cask "whatsapp"
+cask "xcodes"
+
+# Mac App Store
+mas "1Blocker", id: 1365531024
+mas "Day One", id: 1055511498
+mas "Developer", id: 640199958
+mas "Userscripts", id: 1463298887
+mas "TestFlight", id: 899247664
+mas "Velja", id: 1607635845
+
+# Work
+cask "1Password"
+cask "android-studio"
+cask "microsoft-teams"
+cask "orbstack"
+cask "zoom"
