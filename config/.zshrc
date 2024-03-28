@@ -126,6 +126,9 @@ HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
 HISTDB_FILE=$DOTFILES/local/zsh-history.db
 source "$(antidote home)/https-COLON--SLASH--SLASH-github.com-SLASH-larkery-SLASH-zsh-histdb/sqlite-history.zsh"
 
+# Configure prompt
+GEOMETRY_PATH_SHOW_BASENAME=true
+
 # Source all modules
 for file in $DOTFILES/zsh/*.zsh; do
   source "$file"

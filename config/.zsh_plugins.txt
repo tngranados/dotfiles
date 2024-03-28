@@ -3,6 +3,7 @@ larkery/zsh-histdb
 zsh-users/zsh-history-substring-search
 
 # Basics
+geometry-zsh/geometry
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
 # Tools
