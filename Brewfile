@@ -1,5 +1,3 @@
-tap "homebrew/core"
-
 # Basics
 brew 'git'
 brew 'stow' # symlink manager for dotfiles
@@ -46,7 +44,6 @@ tap 'homebrew/cask-fonts'
 cask 'font-iosevka'
 
 # Casks
-tap "homebrew/cask"
 cask "cleanshot"
 cask "fork"
 cask "google-chrome"
