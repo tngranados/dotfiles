@@ -3,8 +3,8 @@
 # ------------- -----------  -----------  ------
 #  /etc/zshenv       1            1         1
 #    ~/.zshenv       2            2         2
-# /etc/zprofile      3
-#   ~/.zprofile      4
+# /etc/zprofile       3
+#   ~/.zprofile       4
 # /etc/zshrc         5            3
 #   ~/.zshrc         6            4
 # /etc/zlogin        7

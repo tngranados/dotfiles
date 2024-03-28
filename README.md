@@ -27,3 +27,9 @@ stow -t $HOME -d $HOME/dotfiles/config .
 ```
 
 Now, restart the shell or run `rsource` to reload the settings.
+
+To setup the basic macOS configuration, run:
+
+```zsh
+./setup-mac.sh
+```
