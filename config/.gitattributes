@@ -1,0 +1,37 @@
+*.c     diff=cpp
+*.h     diff=cpp
+*.c++   diff=cpp
+*.h++   diff=cpp
+*.cpp   diff=cpp
+*.hpp   diff=cpp
+*.cc    diff=cpp
+*.hh    diff=cpp
+*.m     diff=objc
+*.mm    diff=objc
+*.cs    diff=csharp
+*.css   diff=css
+*.html  diff=html
+*.xhtml diff=html
+*.ex    diff=elixir
+*.exs   diff=elixir
+*.go    diff=golang
+*.php   diff=php
+*.pl    diff=perl
+*.py    diff=python
+*.md    diff=markdown
+*.erb   diff=html
+*.rb    diff=ruby
+*.rake  diff=ruby
+*.rs    diff=rust
+*.lisp  diff=lisp
+*.el    diff=lisp
+*.js    diff=ecmascript
+*.ts    diff=ecmascript
+
+*.pdf   diff=pdf
+*.png   diff=exif
+*.jpg   diff=exif
+*.jpeg  diff=exif
+*.gif   diff=exif
+
+*.swift diff=swift

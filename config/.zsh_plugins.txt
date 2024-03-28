@@ -1,0 +1,9 @@
+# History
+larkery/zsh-histdb
+zsh-users/zsh-history-substring-search
+
+# Basics
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+# Tools
+lukechilds/zsh-better-npm-completion kind:defer
