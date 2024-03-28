@@ -133,6 +133,10 @@ done
 
 # Source all the custom zsh files in ./zsh/local
 for file in $DOTFILES/zsh/local/*.zsh; do
+  if head -n 1 "$file" | grep -q 'GITCRYPT'; then
+    echo "Warning: $file is encrypted with git-crypt and was not loaded"
+    continue
+  fi
   source "$file"
 done
 
