@@ -29,7 +29,7 @@ stow -t $HOME -d $HOME/dotfiles/config .
 Note, some of the files in this repo are encrypted with `git-crypt`, in order to decrypt them, run:
 
 ```zsh
-git-crypt --unlock /path/to/key
+git-crypt unlock /path/to/key
 ```
 
 Now, restart the shell or run `source /Users/tngranados/.zshrc` to reload the settings.
