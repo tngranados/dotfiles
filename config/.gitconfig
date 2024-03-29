@@ -2,8 +2,8 @@
 	name = Toni Granados
 	email = toni@tngranados.com
 	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFkkN7Sposqabq6SUgcxoc/UEH6dcifoTkEFN1WacbhG
-[includeIf "gitdir:~/Developer/Alkimii/"]
-  path = .gitconfig-alkimii
+[includeIf "gitdir:~/Developer/Work/"]
+  path = .gitconfig-work
 [init]
 	defaultBranch = main
 [core]
@@ -82,8 +82,6 @@
 	fsckobjects = true
 [diff "ecmascript"]
 	xfuncname = "^((.*function.*)|([ \t]+it\\(.*))$"
-[includeIf "gitdir:~/Developer/work/"]
-	path = ~/Developer/work/.gitconfig
 [rerere]
 	enabled = true
 [commit]

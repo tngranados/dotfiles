@@ -32,7 +32,7 @@ antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 # Folder aliases
 alias home="cd $HOME"
 alias dev="cd $HOME/Developer"
-alias work="cd $HOME/Developer/work"
+alias work="cd $HOME/Developer/Work"
 alias down="cd $HOME/Downloads"
 alias desk="cd $HOME/Desktop"
 alias dotfiles="cd $DOTFILES"
