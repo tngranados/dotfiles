@@ -34,7 +34,7 @@ git-crypt unlock /path/to/key
 
 Now, restart the shell or run `source /Users/tngranados/.zshrc` to reload the settings.
 
-To setup the basic macOS configuration, run:
+To setup the basic macOS configuration, first grant the Terminal full disk access (System Preferences -> Privacy -> Full Disk Access), then run:
 
 ```zsh
 ./setup-mac.sh

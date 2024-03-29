@@ -29,7 +29,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 20
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 # Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+chflags nohidden ~/Library
 
 # Create ~/Developer folder if it doesn't exists yet
 mkdir -p Developer
@@ -72,8 +72,8 @@ defaults write com.apple.Siri StatusMenuVisible -bool false
 defaults write "com.apple.controlcenter" "NSStatusItem Visible Bluetooth" -bool true
 defaults write "com.apple.controlcenter" "NSStatusItem Preferred Position Bluetooth" -int 310
 # Reduce padding and sizing of menu bar icons so they fit better with a notch
-defaults -currentHost delete -globalDomain NSStatusItemSpacing
-defaults -currentHost delete -globalDomain NSStatusItemSelectionPadding
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 12
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 8
 
 # Add iOS & Watch Simulator to Launchpad
 #sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
@@ -110,9 +110,12 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 ## System
 # Set 'Move focus to next window' to ⌘º
-defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "{enabled = 1; value = { parameters = (186, 10, 1048576); type = 'standard'; }; }"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 "{enabled = 1; value = { parameters = (65535, 10, 1048576); type = 'standard'; }; }"
 # Set 'Move focus to the widnow drawer' ⌥⌘º
-defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 51 "{enabled = 1; value = { parameters = (186, 10, 1572864); type = 'standard'; }; }"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 51 "{enabled = 1; value = { parameters = (65535, 10, 1572864); type = 'standard'; }; }"
+# Disable spotlight shortcut
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 0; value = { parameters = (32, 49, 1048576); type = 'standard'; }; }"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "{enabled = 0; value = { parameters = (32, 49, 1572864); type = 'standard'; }; }"
 # Move windows by cmd+ctrl+clicking in any part of it
 # defaults write -g NSWindowShouldDragOnGesture -bool true # Disabled because it interfers with Xcode's jump to definition
 
