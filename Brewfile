@@ -1,3 +1,5 @@
+tap "homebrew/bundle"
+
 # Basics
 brew 'git'
 brew 'stow' # symlink manager for dotfiles
