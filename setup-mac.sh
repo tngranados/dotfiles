@@ -173,22 +173,6 @@ defaults write com.apple.dt.Xcode DVTTextPageGuideLocation -int 120
 # Better counterparts
 defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add "Protocol" "Protocols" "Network"
 
-for app in "Activity Monitor" \
-  "cfprefsd" \
-  "Contacts" \
-  "Dock" \
-  "Finder" \
-  "Mail" \
-  "Photos" \
-  "Safari" \
-  "SystemUIServer" \
-  "Terminal" \
-  "Transmission"; do
-  killall "${app}" &> /dev/null
-done
-
-echo "Done. Note that some of these changes require a logout/restart to take effect."
-
 # Hyperkey
 defaults write com.knollsoft.Hyperkey capsLockRemapped -int 2
 defaults write com.knollsoft.Hyperkey keyRemap -int 1
@@ -209,3 +193,26 @@ defaults write com.xcodesorg.xcodesapp unxipExperimental -bool true
 defaults write dev.kdrag0n.MacVirt SUAutomaticallyUpdate -bool true
 defaults write dev.kdrag0n.MacVirt global_showMenubarExtra -bool false
 defaults write dev.kdrag0n.MacVirt global_stayInBackground2 -bool true
+
+# Velja
+defaults write com.sindresorhus.Velja hideMenuBarIcon -bool true
+defaults write com.sindresorhus.Velja "NSStatusItem Visible Item-0" -bool false
+defaults write com.sindresorhus.Velja alternativeBrowser -string "com.google.Chrome"
+defaults write com.sindresorhus.Velja removeTrackingParameters -bool false
+
+## Kill affected applications
+for app in "Activity Monitor" \
+  "cfprefsd" \
+  "Contacts" \
+  "Dock" \
+  "Finder" \
+  "Mail" \
+  "Photos" \
+  "Safari" \
+  "SystemUIServer" \
+  "Terminal" \
+  "Transmission" \; do
+  killall "${app}" &> /dev/null
+done
+
+echo "Done. Note that some of these changes require a logout/restart to take effect."
