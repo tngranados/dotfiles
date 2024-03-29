@@ -204,3 +204,8 @@ defaults write com.macpaw.site.theunarchiver autoupdatesEnabled -bool true
 defaults write com.xcodesorg.xcodesapp SUEnableAutomaticChecks -bool true
 defaults write com.xcodesorg.xcodesapp onSelectActionType -string "rename"
 defaults write com.xcodesorg.xcodesapp unxipExperimental -bool true
+
+# OrbStack
+defaults write dev.kdrag0n.MacVirt SUAutomaticallyUpdate -bool true
+defaults write dev.kdrag0n.MacVirt global_showMenubarExtra -bool false
+defaults write dev.kdrag0n.MacVirt global_stayInBackground2 -bool true
