@@ -75,6 +75,7 @@ mas "TestFlight", id: 899247664
 mas "Velja", id: 1607635845
 
 # Work
+brew "awscli"
 cask "1Password"
 cask "android-studio"
 cask "microsoft-teams"
