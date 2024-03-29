@@ -188,3 +188,19 @@ for app in "Activity Monitor" \
 done
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+# Hyperkey
+defaults write com.knollsoft.Hyperkey capsLockRemapped -int 2
+defaults write com.knollsoft.Hyperkey keyRemap -int 1
+defaults write "NSStatusItem Visible Item-0" -bool false
+defaults write hideMenuBarIcon -bool true
+defaults write launchOnLogin -bool true
+
+# The Unarchiver
+defaults write com.macpaw.site.theunarchiver userAgreedToNewTOSAndPrivacy -bool true
+defaults write com.macpaw.site.theunarchiver autoupdatesEnabled -bool true
+
+# Xcodes
+defaults write com.xcodesorg.xcodesapp SUEnableAutomaticChecks -bool true
+defaults write com.xcodesorg.xcodesapp onSelectActionType -string "rename"
+defaults write com.xcodesorg.xcodesapp unxipExperimental -bool true
