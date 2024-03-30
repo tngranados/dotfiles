@@ -209,6 +209,9 @@ defaults write com.sindresorhus.Velja "NSStatusItem Visible Item-0" -bool false
 defaults write com.sindresorhus.Velja alternativeBrowser -string "com.google.Chrome"
 defaults write com.sindresorhus.Velja removeTrackingParameters -bool false
 
+# NetNewsWire
+defaults write com.ranchero.NetNewsWire-Evergreen SUEnableAutomaticChecks -bool true
+
 ## Kill affected applications
 for app in "Activity Monitor" \
   "cfprefsd" \
