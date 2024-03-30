@@ -119,6 +119,8 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 51 "{ena
 # Disable spotlight shortcut
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 0; value = { parameters = (32, 49, 1048576); type = 'standard'; }; }"
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "{enabled = 0; value = { parameters = (32, 49, 1572864); type = 'standard'; }; }"
+# Hide spotlight from menu bar
+defaults write com.apple.Spotlight "NSStatusItem Visible Item-0" -bool false
 # Hide widget onboarding
 defaults write com.apple.widgets ShowAddSheetOnboardingBanner -bool false
 # Move windows by cmd+ctrl+clicking in any part of it
