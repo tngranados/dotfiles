@@ -155,7 +155,11 @@ defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add "V
 
 # Stop current task when running again
 defaults write com.apple.dt.Xcode IDESuppressStopBuildWarning -bool true
+defaults write com.apple.dt.Xcode IDESuppressStopExecutionWarning -bool true
 defaults write com.apple.dt.Xcode IDESuppressStopExecutionWarningTarget -string "IDESuppressStopExecutionWarningTargetValue_Stop"
+
+# Dismiss Xcode cloud
+defaults write com.apple.dt.Xcode XcodeCloudUserHasDismissedSignInPrompt -bool true
 
 # Enable spell check
 defaults write com.apple.dt.Xcode AutomaticallyCheckSpellingWhileTyping -bool true
