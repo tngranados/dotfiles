@@ -63,6 +63,7 @@ cask "the-unarchiver"
 cask "transmission"
 cask "visual-studio-code"
 cask "vivid"
+cask "wezterm"
 cask "whatsapp"
 cask "xcodes"
 
@@ -76,6 +77,7 @@ mas "Velja", id: 1607635845
 
 # Work
 brew "awscli"
+brew "xcodegen"
 cask "1Password"
 cask "android-studio"
 cask "microsoft-teams"
