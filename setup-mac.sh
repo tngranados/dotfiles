@@ -28,6 +28,9 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 20
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
+# Disable click to show desktop
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
@@ -116,6 +119,8 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 51 "{ena
 # Disable spotlight shortcut
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{enabled = 0; value = { parameters = (32, 49, 1048576); type = 'standard'; }; }"
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "{enabled = 0; value = { parameters = (32, 49, 1572864); type = 'standard'; }; }"
+# Hide widget onboarding
+defaults write com.apple.widgets ShowAddSheetOnboardingBanner -bool false
 # Move windows by cmd+ctrl+clicking in any part of it
 # defaults write -g NSWindowShouldDragOnGesture -bool true # Disabled because it interfers with Xcode's jump to definition
 
