@@ -129,6 +129,13 @@ defaults write com.apple.widgets ShowAddSheetOnboardingBanner -bool false
 # Set spanish input source
 defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.Spanish-ISO"
 
+## Peripherals
+# Magic Mouse
+# Enable right click
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string TwoButton
+# Increase tracking speed
+defaults write -g com.apple.mouse.scaling 3
+
 ## Transmission
 # Trash original torrent files
 defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
