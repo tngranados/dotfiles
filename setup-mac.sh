@@ -101,7 +101,9 @@ defaults write com.apple.Safari ShowFavoritesBar -bool false
 
 # Enable Safari’s debug menu and inspector
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
-defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults write com.apple.Safari DeveloperMenuVisibility -bool true
+defaults write com.apple.Safari WebKitPreferences.developerExtrasEnabled -bool true
+defaults write com.apple.Safari MobileDeviceRemoteXPCEnabled -bool true
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
 # Add a context menu item for showing the Web Inspector in web views
