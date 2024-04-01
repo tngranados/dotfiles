@@ -76,6 +76,7 @@ mas "TestFlight", id: 899247664
 mas "Velja", id: 1607635845
 
 # Work
+brew "autossh"
 brew "awscli"
 brew "xcodegen"
 cask "1Password"
