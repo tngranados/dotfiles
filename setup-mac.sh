@@ -131,6 +131,9 @@ defaults write com.apple.widgets ShowAddSheetOnboardingBanner -bool false
 # Set spanish input source
 defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.Spanish-ISO"
 
+# Keychain Access, dismiss password prompt
+defaults write com.apple.keychainaccess "User Has Acknowledged Passwords Settings Dialog" -bool true
+
 ## Peripherals
 # Magic Mouse
 # Enable right click
