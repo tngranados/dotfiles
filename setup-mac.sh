@@ -55,6 +55,10 @@ defaults write com.apple.finder ShowPathbar -bool true
 ## Disable anoying warning when disconnecting media
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.DiskArbitration.diskarbitrationd.plist DADisableEjectNotification -bool YES && sudo pkill diskarbitrationd
 
+## AddressBook
+# Order by first name
+defaults -currentHost write -globalDomain NSPersonNameDefaultDisplayNameOrder -int 2
+
 ## Dock
 # Remove the auto-hiding Dock delay
 defaults write com.apple.dock autohide-delay -float 0
