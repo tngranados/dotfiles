@@ -69,6 +69,7 @@ cask "xcodes"
 
 # Mac App Store
 mas "1Blocker", id: 1365531024
+mas "Amphetamine", id: 937984704
 mas "Day One", id: 1055511498
 mas "Developer", id: 640199958
 mas "Userscripts", id: 1463298887
