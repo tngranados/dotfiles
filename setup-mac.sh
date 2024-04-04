@@ -230,6 +230,15 @@ defaults write com.sindresorhus.Velja removeTrackingParameters -bool false
 # NetNewsWire
 defaults write com.ranchero.NetNewsWire-Evergreen SUEnableAutomaticChecks -bool true
 
+# Amphetamine
+defaults write com.if.Amphetamine "Adjust Volume For CDM Warning" -bool true
+defaults write com.if.Amphetamine "Allow Closed-Display Sleep" -bool false
+defaults write com.if.Amphetamine "Allow Display Sleep" -bool true
+defaults write com.if.Amphetamine "Enable CDM Warning" -bool true
+defaults write com.if.Amphetamine "End Session On Low Battery" -bool true
+defaults write com.if.Amphetamine "Show Welcome Window" -bool false
+defaults write com.if.Amphetamine "Volume Level For CDM Warning" -int 25
+
 ## Kill affected applications
 for app in "Activity Monitor" \
   "cfprefsd" \
