@@ -46,6 +46,7 @@ tap 'homebrew/cask-fonts'
 cask 'font-iosevka'
 
 # Casks
+cask "brave-browser"
 cask "cleanshot"
 cask "fork"
 cask "google-chrome"
