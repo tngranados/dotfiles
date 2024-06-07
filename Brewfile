@@ -29,6 +29,7 @@ brew 'jq' # json parser
 brew 'glow' # markdown reader
 brew 'aria2' # download utility
 brew 'yt-dlp' # download videos
+brew 'ollama' # llms
 
 # CLI Apps
 brew 'nvim' # neovim
@@ -46,18 +47,19 @@ tap 'homebrew/cask-fonts'
 cask 'font-iosevka'
 
 # Casks
+cask "bruno"
 cask "cleanshot"
 cask "fork"
 cask "google-chrome"
 cask "hyperkey"
 cask "iina"
-cask "insomnia"
 cask "istat-menus"
 cask "keyboardcleantool"
 cask "mac-mouse-fix"
 cask "netnewswire"
 cask "obsidian"
 cask "raycast"
+cask "rectangle"
 cask "tableplus"
 cask "the-unarchiver"
 cask "transmission"
