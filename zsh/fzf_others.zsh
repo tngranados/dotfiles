@@ -8,3 +8,10 @@ fkill() {
         --preview='echo {}' --preview-window=down,3,wrap \
         --height=80% | awk '{print $2}' | xargs kill -9)
 }
+
+fvim() {
+  local file
+
+  file=$(fzf --query="$1" --preview="bat --style=numbers --color=always {}" --preview-window=down:3:wrap --height=80%)
+  [ -n "$file" ] && vim "$file"
+}
