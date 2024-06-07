@@ -143,4 +143,6 @@ for file in $DOTFILES/zsh/local/*.zsh; do
   source "$file"
 done
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if (( $+commands[fzf] )); then
+  source <(fzf --zsh)
+fi
