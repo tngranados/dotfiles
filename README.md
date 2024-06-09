@@ -40,13 +40,6 @@ To setup the basic macOS configuration, first grant the Terminal full disk acces
 ./setup-mac.sh
 ```
 
-### Setup asdf
-
-```zsh
-asdf plugin add ruby
-asdf plugin add nodejs
-```
-
 ## How to find out defaults commands
 
 In order to figure out the `defaults` commands to change settings in an app, we need to first find out its bundle identifier:

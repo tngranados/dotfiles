@@ -40,7 +40,7 @@ brew 'imagemagick' # image processing
 brew 'ffmpeg' # video processing
 
 # Languages
-brew 'asdf' # version manager
+brew 'mise' # version manager
 
 # Fonts
 tap 'homebrew/cask-fonts'
