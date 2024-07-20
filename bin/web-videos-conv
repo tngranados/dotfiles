@@ -1,0 +1,69 @@
+#!/bin/bash
+
+function show_help() {
+    echo "Usage: $0 -i INPUT_DIRECTORY -o OUTPUT_DIRECTORY [-s SCALE]"
+    echo ""
+    echo "  -i INPUT_DIRECTORY   Directory containing the video files"
+    echo "  -o OUTPUT_DIRECTORY  Directory to save the processed video files"
+    echo "  -s SCALE             Scale factor for the video conversion (default: 320)"
+    echo "  -h                   Show this help message"
+    exit 1
+}
+
+# Default values
+scale=320
+
+# Parse command-line options
+while getopts "hi:o:s:" opt; do
+    case ${opt} in
+        h )
+            show_help
+            ;;
+        i )
+            input_directory=${OPTARG}
+            ;;
+        o )
+            output_directory=${OPTARG}
+            ;;
+        s )
+            scale=${OPTARG}
+            ;;
+        \? )
+            show_help
+            ;;
+    esac
+done
+
+# Check mandatory options
+if [ -z "$input_directory" ] || [ -z "$output_directory" ]; then
+    show_help
+fi
+
+# Create the output directory if it doesn't exist
+mkdir -p "$output_directory"
+
+# Initialize a counter
+counter=1
+
+# Process each video file in the directory
+for input_file in "$input_directory"/*.mp4; do
+    echo "Processing $input_file"
+
+    if [[ -f "$input_file" ]]; then
+        # Create the output file names based on the counter
+        output_base="$output_directory/$counter"
+        output_mp4="$output_base.mp4"
+        output_jpg="$output_base.jpg"
+
+        # Convert to mp4
+        ffmpeg -i "$input_file" -vf "scale=${scale}:-2" -c:v libx264 -preset medium -crf 23 -c:a aac -b:a 128k "$output_mp4"
+
+        # Create the poster image
+        ffmpeg -i "$input_file" -vf "scale=${scale}:-2" -frames:v 1 "$output_jpg"
+
+        # Increment the counter
+        counter=$((counter + 1))
+    fi
+done
+
+echo "Processing complete. Files are saved in $output_directory"
