@@ -29,7 +29,7 @@ brew 'jq' # json parser
 brew 'glow' # markdown reader
 brew 'aria2' # download utility
 brew 'yt-dlp' # download videos
-brew 'ollama' # llms
+brew 'ollama' # LLMs
 
 # CLI Apps
 brew 'nvim' # neovim
@@ -47,22 +47,26 @@ tap 'homebrew/cask-fonts'
 cask 'font-iosevka'
 
 # Casks
+cask "binary-ninja"
 cask "bruno"
+cask "chatgpt"
 cask "cleanshot"
 cask "fork"
 cask "google-chrome"
-cask "hyperkey"
+cask "hopper-disassembler"
 cask "iina"
 cask "istat-menus"
 cask "keyboardcleantool"
 cask "mac-mouse-fix"
 cask "netnewswire"
+cask "notion"
 cask "obsidian"
 cask "raycast"
 cask "rectangle"
 cask "tableplus"
 cask "the-unarchiver"
 cask "transmission"
+cask "utm"
 cask "visual-studio-code"
 cask "vivid"
 cask "wezterm"
@@ -85,6 +89,7 @@ brew "awscli"
 brew "xcodegen"
 cask "1Password"
 cask "android-studio"
+cask "figma"
 cask "microsoft-teams"
 cask "orbstack"
 cask "zoom"
