@@ -74,6 +74,7 @@
 	logcm = !git log-commit
 	nuke = reset --hard
 	purge = clean -fd
+	wt = worktree
 [credential]
 	helper = osxkeychain
 [fetch]
