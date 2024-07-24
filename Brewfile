@@ -38,6 +38,7 @@ brew 'gh' # GitHub CLI
 # Dependencies
 brew 'imagemagick' # image processing
 brew 'ffmpeg' # video processing
+brew 'switchaudio-osx' # switch audio input/output depedency for a shortcut
 
 # Languages
 brew 'mise' # version manager
