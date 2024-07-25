@@ -47,9 +47,16 @@ fco() {
         return
     fi
 
+    preview_cmd='
+    if [[ {1} == branch ]]; then
+        git log -1 --pretty=format:"%C(yellow)%h%C(reset) %s %C(cyan)(%cr)%C(reset)%n%C(green)Author: %an%C(reset)" --color=always {2}
+    else
+        git show --pretty=format:"%C(yellow)%h%C(reset) %s %C(cyan)(%cr)%C(reset)%n%C(green)Author: %an%C(reset)" --color=always --no-patch {2}
+    fi'
+
     target=$(
         (echo "$tagsAndBranches") |
-        fzf-tmux -1 --query "$1" -l30 -- --no-hscroll --ansi +m -d "\t" -n 2
+        fzf -1 --query "$1" --preview="$preview_cmd" --preview-window=down:3:wrap --no-hscroll --ansi +m -n 2
     ) || return
 
     git checkout $(echo "$target" | awk -F"\t" '{print $2}')
