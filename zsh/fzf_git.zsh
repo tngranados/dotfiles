@@ -27,25 +27,32 @@ fbr() {
 
 # fco - checkout git branch/tag
 fco() {
-  local tags branches target
-  tags=$(
-    git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
-  branches=$(
-    git branch --all | grep -v HEAD             |
-    sed "s/.* //"    | sed "s#remotes/[^/]*/##" |
-    sort -u          | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
-  
-  tagsAndBranches=$(echo "$tags"; echo "$branches")
-  # if there is only one branch, just check it out
-  if [ $(echo "$tagsAndBranches" | wc -l) -eq 1 ]; then
-    git checkout $(echo "$tagsAndBranches" | awk '{print $2}')
-    return
-  fi
+    local tags branches tagsAndBranches exact_match target
 
-  target=$(
-    (echo "$tagsAndBranches") |
-    fzf-tmux -1 --query "$1" -l30 -- --no-hscroll --ansi +m -d "\t" -n 2) || return
-  git checkout $(echo "$target" | awk '{print $2}')
+    tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+    branches=$(git branch --all | grep -v HEAD | sed "s/.* //" | sed "s#remotes/[^/]*/##" | sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
+    tagsAndBranches=$(echo "$tags"; echo "$branches")
+
+    exact_match=$(echo "$tagsAndBranches" | awk -v query="$1" -F"\t" '$2 == query {print $2}')
+
+    # If there's an exact match, check it out directly
+    if [ -n "$exact_match" ]; then
+        git checkout "$1"
+        return
+    fi
+
+    # If there is only one match, check it out directly
+    if [ $(echo "$tagsAndBranches" | wc -l) -eq 1 ]; then
+        git checkout $(echo "$tagsAndBranches" | awk -F"\t" '{print $2}')
+        return
+    fi
+
+    target=$(
+        (echo "$tagsAndBranches") |
+        fzf-tmux -1 --query "$1" -l30 -- --no-hscroll --ansi +m -d "\t" -n 2
+    ) || return
+
+    git checkout $(echo "$target" | awk -F"\t" '{print $2}')
 }
 
 # fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
