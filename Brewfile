@@ -34,6 +34,7 @@ brew 'ollama' # LLMs
 # CLI Apps
 brew 'nvim' # neovim
 brew 'gh' # GitHub CLI
+brew 'btop' # better htop
 
 # Dependencies
 brew 'imagemagick' # image processing
