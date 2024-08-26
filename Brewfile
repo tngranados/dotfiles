@@ -14,6 +14,7 @@ brew 'antidote' # zsh plugin manager
 brew 'git-crypt' # encrypt files in a git repo
 brew 'git-delta' # syntax-highlighting pager for git, diff, and grep output
 brew 'difftastic' # git diff tool
+brew 'lazygit' # terminal UI for git
 
 # Built-in tools replacements
 brew 'bat' # better cat
