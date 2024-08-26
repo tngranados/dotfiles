@@ -53,6 +53,9 @@ HISTFILE=$DOTFILES/local/.zsh_history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 
+# Configs
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # ZSH configuration
 setopt hist_ignore_space # Don't record a history entry if it starts with a space
 setopt hist_ignore_all_dups # Remove older duplicate entries from history
