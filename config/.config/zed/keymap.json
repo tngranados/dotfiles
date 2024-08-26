@@ -1,0 +1,64 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "j k": ["workspace::SendKeystrokes", "escape"],
+      "cmd-enter": "workspace::ToggleZoom"
+    }
+  },
+  // From https://stevedylan.dev/posts/leaving-neovim-for-zed/#vim-mode--keybindings
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "space b": "editor::ToggleGitBlame",
+      "shift-k": "editor::Hover",
+      "space l f": "editor::Format",
+      "space d": "diagnostics::Deploy",
+      "space f f": "file_finder::Toggle",
+      "space o": "tab_switcher::Toggle",
+      "space e": "workspace::ToggleLeftDock",
+      "space /": "workspace::NewSearch",
+      "n": "search::SelectNextMatch",
+      "shift-n": "search::SelectPrevMatch",
+      "space t": "workspace::NewCenterTerminal",
+      "g b": "editor::ToggleComments",
+      "+ +": "workspace::Save",
+      // Move around through panes
+      "space w h": ["workspace::ActivatePaneInDirection", "Left"],
+      "space w j": ["workspace::ActivatePaneInDirection", "Down"],
+      "space w k": ["workspace::ActivatePaneInDirection", "Up"],
+      "space w l": ["workspace::ActivatePaneInDirection", "Right"],
+      // Move around panes
+      "space w m h": ["workspace::SwapPaneInDirection", "Left"],
+      "space w m j": ["workspace::SwapPaneInDirection", "Down"],
+      "space w m k": ["workspace::SwapPaneInDirection", "Up"],
+      "space w m l": ["workspace::SwapPaneInDirection", "Right"],
+      // Split
+      "space w v": "pane::SplitDown",
+      "space w s": "pane::SplitRight",
+      // Close
+      "space w c": "pane::CloseActiveItem"
+    }
+  },
+  // From https://stevedylan.dev/posts/leaving-neovim-for-zed/#vim-mode--keybindings
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
+    "bindings": {
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp"
+    }
+  }
+]
