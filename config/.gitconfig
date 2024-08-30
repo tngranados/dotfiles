@@ -3,7 +3,7 @@
 	email = toni@tngranados.com
 	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFkkN7Sposqabq6SUgcxoc/UEH6dcifoTkEFN1WacbhG
 [includeIf "gitdir:~/Developer/Work/"]
-  path = .gitconfig-work
+	path = .gitconfig-work
 [init]
 	defaultBranch = main
 [core]
@@ -29,15 +29,15 @@
 		autosquash = true
 [diff]
     colorMoved = default
-		colorMovedWS = allow-indentation-change
-		tool = difftastic
-		algorithm = histogram
-		submodule = log
-		context = 10
+	colorMovedWS = allow-indentation-change
+	tool = difftastic
+	algorithm = histogram
+	submodule = log
+	context = 10
 [difftool]
-		prompt = false
+	prompt = false
 [difftool "difftastic"]
-		cmd = difft "$LOCAL" "$REMOTE"
+	cmd = difft "$LOCAL" "$REMOTE"
 [alias]
 	s = status --short
 	ss = status
