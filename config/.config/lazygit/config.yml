@@ -1,2 +1,6 @@
 # Don't prompt to return from subprocesses (e.g. `git commit`)
 promptToReturnFromSubprocess: false
+
+gui:
+  # Expand the focused side panel (e.g. `Files` or `Branches`)
+  expandFocusedSidePanel: true
