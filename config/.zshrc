@@ -110,12 +110,11 @@ zstyle ':completion::*:rm:*:*' file-patterns '*.o:object-files:object\ file *(~|
 zstyle ':completion::*:vi:*:*' file-patterns 'Makefile|*(rc|log)|*.(php|tex|bib|sql|zsh|ini|sh|vim|rb|sh|js|tpl|csv|rdf|txt|phtml|tex|py|n3):vi-files:vim\ likes\ these\ files *~(Makefile|*(rc|log)|*.(log|rc|php|tex|bib|sql|zsh|ini|sh|vim|rb|sh|js|tpl|csv|rdf|txt|phtml|tex|py|n3)):all-files:other\ files'
 
 # Keybindings
-bindkey "^[[1;5D" .backward-word
-bindkey "^[[1;5C" .forward-word
-bindkey "^[[1;6D" backward-delete-word
-bindkey "^[[1;6C" delete-word
-bindkey "^[^[[A" beginning-of-line
-bindkey "^[^[[B" end-of-line
+bindkey "^[[1;3D" .backward-word
+bindkey "^[[1;3C" .forward-word
+bindkey "^[[1;9D" beginning-of-line
+bindkey "^[[1;9C" end-of-line
+bindkey "^[[3;3~" delete-word
 
 # fn-left
 bindkey "^[[H" .backward-word

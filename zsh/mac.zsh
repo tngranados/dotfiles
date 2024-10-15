@@ -25,23 +25,6 @@ function chpwd() {
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# Text editing, this is meant to work with this iTerm2 key preset:
-# https://gist.github.com/tngranados/b1aef481755a6b893ac8fd3004bf701c
-bindkey '^[cmddelete' backward-kill-line
-bindkey '^[altdelete' backward-kill-word
-bindkey '^[altleft' backward-word
-bindkey '^[cmdleft' beginning-of-line
-bindkey '^[altright' forward-word
-bindkey '^[cmdright' end-of-line
-bindkey '^[deleteforward' delete-char
-bindkey '^[cmddeleteforward' kill-line
-bindkey '^[altdeleteforward' kill-word
-bindkey '^[home' beginning-of-line
-bindkey '^[end' end-of-line
-
-# iTerm 2
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 # Workaround to avoid multiple VSCode icons in the dock when using the code tool.
 # https://github.com/microsoft/vscode/issues/60579
 code() {
