@@ -27,13 +27,13 @@ bindkey '^[[B' history-substring-search-down
 
 # Workaround to avoid multiple VSCode icons in the dock when using the code tool.
 # https://github.com/microsoft/vscode/issues/60579
-code() {
-    if [ -t 1 ] && [ -t 0 ]; then
-        open -a Visual\ Studio\ Code.app "$@"
-    else
-        open -a Visual\ Studio\ Code.app -f
-    fi
-}
+# code() {
+#     if [ -t 1 ] && [ -t 0 ]; then
+#         open -a Visual\ Studio\ Code.app "$@"
+#     else
+#         open -a Visual\ Studio\ Code.app -f
+#     fi
+# }
 
 # Aliases
 alias logs="cd /usr/local/var/log"
