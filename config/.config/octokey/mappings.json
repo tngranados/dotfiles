@@ -1,0 +1,42 @@
+[
+  {
+    "action" : {
+      "type" : "url",
+      "value" : "octokey:\/\/toggle-debug-view"
+    },
+    "sequence" : [
+      {
+        "value" : "o",
+        "type" : "character"
+      },
+      {
+        "type" : "character",
+        "value" : "d"
+      }
+    ]
+  },
+  {
+    "action" : {
+      "type" : "keyboardShortcut",
+      "value" : {
+        "modifiers" : [
+
+        ],
+        "key" : {
+          "value" : "escape",
+          "type" : "specialKey"
+        }
+      }
+    },
+    "sequence" : [
+      {
+        "type" : "character",
+        "value" : "j"
+      },
+      {
+        "value" : "k",
+        "type" : "character"
+      }
+    ]
+  }
+]
