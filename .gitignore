@@ -1,6 +1,5 @@
 .DS_Store
 Icon*
 /local
-config/.config/raycast/extensions
-config/.config/configstore
+config/.config/*
 Brewfile.lock.json
