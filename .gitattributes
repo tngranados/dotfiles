@@ -1,3 +1,4 @@
 bin/local/** filter=git-crypt diff=git-crypt
 zsh/local/** filter=git-crypt diff=git-crypt
 secrets/** filter=git-crypt diff=git-crypt
+config/.pryrc filter=git-crypt diff=git-crypt
