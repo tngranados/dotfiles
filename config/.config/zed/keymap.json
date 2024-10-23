@@ -13,10 +13,10 @@
     }
   },
   {
-    "context": "Editor",
+    "context": "Editor && !Assistant",
     "bindings": {
       "j k": ["workspace::SendKeystrokes", "escape"],
-      "cmd-enter": "workspace::ToggleZoom"
+      "shift-enter": "workspace::ToggleZoom"
     }
   },
   // From https://stevedylan.dev/posts/leaving-neovim-for-zed/#vim-mode--keybindings
@@ -50,7 +50,14 @@
       "space w v": "pane::SplitDown",
       "space w s": "pane::SplitRight",
       // Close
-      "space w c": "pane::CloseActiveItem"
+      "space w c": "pane::CloseActiveItem",
+      // Buffers
+      "space b b": "tab_switcher::Toggle",
+      "space b h": "pane::ActivatePrevItem",
+      "space b j": "pane::ActivatePrevItem",
+      "space b k": "pane::ActivateNextItem",
+      "space b l": "pane::ActivateNextItem"
+      // "space b n": ""
     }
   },
   // From https://stevedylan.dev/posts/leaving-neovim-for-zed/#vim-mode--keybindings

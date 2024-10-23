@@ -17,8 +17,8 @@
   },
   "vim_mode": true,
   "vim": {},
-  "ui_font_size": 16,
-  "buffer_font_size": 14,
+  "ui_font_size": 15,
+  "buffer_font_size": 13,
   "preferred_line_length": 120,
   "wrap_guides": [120],
   "relative_line_numbers": true,
@@ -27,6 +27,7 @@
       "EDITOR": "zed --wait"
     }
   },
+  "use_on_type_format": true,
   "languages": {
     "JavaScript": {
       "code_actions_on_format": {
@@ -41,9 +42,18 @@
       "format_on_save": "language_server"
     },
     "Ruby": {
-      "language_servers": ["rubocop", "ruby-lsp"],
+      "language_servers": ["rubocop", "ruby-lsp", "!solargraph"],
       "code_actions_on_format": {
         "source.fixAll.rubocop": true
+      }
+    }
+  },
+  "lsp": {
+    "ruby-lsp": {
+      "initialization_options": {
+        "enabledFeatures": {
+          "diagnostic": false // Until Zed is updated to support pull-based diagnostics from lsp
+        }
       }
     }
   }
