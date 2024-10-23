@@ -1,0 +1,17 @@
+# Appearance
+theme = GitHub Dark
+window-colorspace = display-p3
+
+# Behavior
+quit-after-last-window-closed = true
+quick-terminal-screen = macos-menu-bar
+auto-update = download
+
+# Quick terminal ✦t
+keybind = global:super+shift+alt+ctrl+t=toggle_quick_terminal
+
+# Split vim navigation
+keybind = super+shift+k=goto_split:top
+keybind = super+shift+j=goto_split:bottom
+keybind = super+shift+l=goto_split:right
+keybind = super+shift+h=goto_split:left
