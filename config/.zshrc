@@ -48,10 +48,6 @@ else
   export EDITOR=vi
 fi
 
-if hash cursor 2>/dev/null; then
-  export VISUAL=cursor
-fi
-
 # Setup 'infinite' history
 HISTFILE=$DOTFILES/local/.zsh_history
 HISTSIZE=999999999
