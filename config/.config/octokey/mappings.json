@@ -17,6 +17,23 @@
   },
   {
     "action" : {
+      "type" : "url",
+      "value" : "octokey:\/\/toggle-settings-view"
+    },
+    "sequence" : [
+      {
+        "value" : "o",
+        "type" : "character"
+      },
+      {
+        "type" : "character",
+        "value" : "s"
+      }
+    ]
+  },
+
+  {
+    "action" : {
       "type" : "keyboardShortcut",
       "value" : {
         "modifiers" : [
