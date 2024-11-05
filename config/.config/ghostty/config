@@ -9,6 +9,7 @@ auto-update = download
 
 # Quick terminal ✦t
 keybind = global:super+shift+alt+ctrl+t=toggle_quick_terminal
+quick-terminal-animation-duration = 0.1
 
 # Split vim navigation
 keybind = super+shift+k=goto_split:top
