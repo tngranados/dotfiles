@@ -127,10 +127,6 @@ setopt AUTO_PUSHD
 # Don’t push multiple copies of the same directory onto the directory stack.
 setopt PUSHD_IGNORE_DUPS
 
-HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
-HISTDB_FILE=$DOTFILES/local/zsh-history.db
-source "$(antidote home)/https-COLON--SLASH--SLASH-github.com-SLASH-larkery-SLASH-zsh-histdb/sqlite-history.zsh"
-
 # Configure prompt
 GEOMETRY_PATH_SHOW_BASENAME=true
 
@@ -151,3 +147,11 @@ done
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
 fi
+
+# Atuin better history
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+# Restore original up binding: https://til.simonwillison.net/macos/atuin
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
