@@ -1,5 +1,5 @@
 # Appearance
-theme = GitHub Dark
+theme = dark:github dark,light:github
 window-colorspace = display-p3
 
 # Behavior
