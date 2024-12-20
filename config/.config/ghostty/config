@@ -16,3 +16,6 @@ keybind = super+shift+k=goto_split:top
 keybind = super+shift+j=goto_split:bottom
 keybind = super+shift+l=goto_split:right
 keybind = super+shift+h=goto_split:left
+
+# Scrollback
+keybind = super+alt+j=write_scrollback_file:paste
