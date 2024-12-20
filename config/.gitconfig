@@ -75,6 +75,7 @@
 	nuke = reset --hard
 	purge = clean -fd
 	wt = worktree
+	ff = fetch origin master:master staging:staging
 [credential]
 	helper = osxkeychain
 [fetch]
