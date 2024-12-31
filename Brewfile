@@ -4,7 +4,6 @@ tap "homebrew/bundle"
 brew 'git'
 brew 'stow' # symlink manager for dotfiles
 brew "mas" # Mac App Store CLI
-brew "jordanbaird-iceberg" # app to manage menu bar apps
 
 # Shell
 brew 'zoxide' # smarter cd
@@ -61,6 +60,7 @@ cask "google-chrome"
 cask "hopper-disassembler"
 cask "iina"
 cask "istat-menus"
+cask "jordanbaird-ice" # app to manage menu bar apps
 cask "keyboardcleantool"
 cask "mac-mouse-fix"
 cask "monitorcontrol"
