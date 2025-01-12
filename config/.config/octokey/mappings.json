@@ -16,23 +16,32 @@
     ]
   },
   {
-    "action" : {
-      "type" : "url",
-      "value" : "octokey:\/\/toggle-settings-view"
-    },
     "sequence" : [
       {
-        "value" : "o",
-        "type" : "character"
+        "type" : "character",
+        "value" : "o"
       },
       {
         "type" : "character",
         "value" : "s"
       }
-    ]
+    ],
+    "action" : {
+      "type" : "url",
+      "value" : "octokey:\/\/toggle-settings-view"
+    }
   },
-
   {
+    "sequence" : [
+      {
+        "type" : "character",
+        "value" : "j"
+      },
+      {
+        "type" : "character",
+        "value" : "k"
+      }
+    ],
     "action" : {
       "type" : "keyboardShortcut",
       "value" : {
@@ -44,16 +53,45 @@
           "type" : "specialKey"
         }
       }
-    },
+    }
+  },
+  {
+    "sequence" : [
+      {
+        "value" : "o",
+        "type" : "character"
+      },
+      {
+        "type" : "character",
+        "value" : "c"
+      }
+    ],
+    "action" : {
+      "type" : "application",
+      "value" : "com.todesktop.230313mzl4w4u92"
+    }
+  },
+  {
     "sequence" : [
       {
         "type" : "character",
-        "value" : "j"
-      },
-      {
-        "value" : "k",
-        "type" : "character"
+        "value" : "1"
       }
-    ]
+    ],
+    "action" : {
+      "type" : "keyboardShortcut",
+      "value" : {
+        "modifiers" : [
+          "capsLock",
+          "control",
+          "option",
+          "command"
+        ],
+        "key" : {
+          "value" : "1",
+          "type" : "character"
+        }
+      }
+    }
   }
 ]
