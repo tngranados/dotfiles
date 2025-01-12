@@ -151,6 +151,3 @@ fi
 # Atuin better history
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh --disable-up-arrow)"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/tngranados/.cache/lm-studio/bin"
