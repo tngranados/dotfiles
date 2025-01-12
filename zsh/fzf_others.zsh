@@ -12,6 +12,6 @@ fkill() {
 fvim() {
   local file
 
-  file=$(fzf --query="$1" --preview="bat --style=numbers --color=always {}" --preview-window=down:3:wrap --height=80%)
+  file=$(fzf --query="$1" --preview="bat --theme-dark=Coldark-Dark --theme-light=GitHub --style=numbers --color=always {}" --preview-window=down:3:wrap --height=80%)
   [ -n "$file" ] && vim "$file"
 }
