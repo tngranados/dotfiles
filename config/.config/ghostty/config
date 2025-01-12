@@ -3,7 +3,7 @@ theme = dark:github dark,light:github
 window-colorspace = display-p3
 
 # Behavior
-quit-after-last-window-closed = true
+quit-after-last-window-closed = false
 quick-terminal-screen = macos-menu-bar
 auto-update = download
 
@@ -18,4 +18,7 @@ keybind = super+shift+l=goto_split:right
 keybind = super+shift+h=goto_split:left
 
 # Scrollback
-keybind = super+alt+j=write_scrollback_file:paste
+keybind = super+alt+j=write_screen_file:open
+
+# App
+auto-update-channel = tip
