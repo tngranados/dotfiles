@@ -150,8 +150,7 @@ fi
 
 # Atuin better history
 . "$HOME/.atuin/bin/env"
-eval "$(atuin init zsh)"
-# Restore original up binding: https://til.simonwillison.net/macos/atuin
-autoload -U history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-bindkey "^[[A" history-beginning-search-backward-end
+eval "$(atuin init zsh --disable-up-arrow)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/tngranados/.cache/lm-studio/bin"
