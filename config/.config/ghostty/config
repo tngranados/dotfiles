@@ -20,5 +20,18 @@ keybind = super+shift+h=goto_split:left
 # Scrollback
 keybind = super+alt+j=write_screen_file:open
 
-# App
-auto-update-channel = tip
+## Search workaround https://github.com/ghostty-org/ghostty/issues/189#issuecomment-2588366699
+
+# Search entire scrollback history in default text editor
+keybind = cmd+f=write_screen_file:open
+
+# Search Selection
+# HOWTO: Cmd+triple_click to select your last output then press cmd+shift+f to search it
+keybind = cmd+shift+f=write_selection_file:open
+
+# RECOMMENDED: Set this to something big so you can capture all of your scrollback
+scrollback-limit = 200000000
+
+# How to change your system-wide default text editor to Cursor
+# brew install duti
+# duti -s com.todesktop.230313mzl4w4u92 public.plain-text all
