@@ -27,39 +27,92 @@ fbr() {
 
 # fco - checkout git branch/tag
 fco() {
-    local tags branches tagsAndBranches exact_match target
+    local tags branches local_branches remote_branches tagsAndBranches exact_match target selected
 
-    tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
-    branches=$(git branch --all | grep -v HEAD | sed "s/.* //" | sed "s#remotes/[^/]*/##" | sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
-    tagsAndBranches=$(echo "$tags"; echo "$branches")
+    # Function to output colored tags
+    get_tags() {
+        git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}'
+    }
 
+    # Function to output colored local branches
+    get_local_branches() {
+        git for-each-ref --format='%(refname:short)' refs/heads/ | sort | awk '{print "\x1b[34;1mlocal\x1b[m\t" $1}'
+    }
+
+    # Function to output colored remote branches
+    get_remote_branches() {
+        git for-each-ref --format='%(refname:short)' refs/remotes/ | sort | awk '{print "\x1b[34;1mremote\x1b[m\t" $1}'
+    }
+
+    # Fetch tags and branches
+    tags=$(get_tags) || { echo "Failed to retrieve tags."; return 1; }
+    local_branches=$(get_local_branches) || { echo "Failed to retrieve local branches."; return 1; }
+    remote_branches=$(get_remote_branches) || { echo "Failed to retrieve remote branches."; return 1; }
+
+    # Combine tags and branches, prioritizing local branches
+    tagsAndBranches=$(echo "$local_branches"; echo "$remote_branches"; echo "$tags")
+
+    # Check for exact match
     exact_match=$(echo "$tagsAndBranches" | awk -v query="$1" -F"\t" '$2 == query {print $2}')
 
-    # If there's an exact match, check it out directly
-    if [ -n "$exact_match" ]; then
-        git checkout "$1"
-        return
+    if [[ -n "$exact_match" ]]; then
+        git checkout "$1" && return
+        echo "Failed to checkout '$1'. Please ensure it exists."
+        return 1
     fi
 
-    # If there is only one match, check it out directly
-    if [ $(echo "$tagsAndBranches" | wc -l) -eq 1 ]; then
-        git checkout $(echo "$tagsAndBranches" | awk -F"\t" '{print $2}')
-        return
+    # Check if there's only one match
+    local count
+    count=$(echo "$tagsAndBranches" | wc -l)
+    if [[ "$count" -eq 1 ]]; then
+        local single_target
+        single_target=$(echo "$tagsAndBranches" | awk -F"\t" '{print $2}')
+        git checkout "$single_target" && return
+        echo "Failed to checkout '$single_target'. Please ensure it exists."
+        return 1
     fi
 
-    preview_cmd='
-    if [[ {1} == branch ]]; then
-        git log -1 --pretty=format:"%C(yellow)%h%C(reset) %s %C(cyan)(%cr)%C(reset)%n%C(green)Author: %an%C(reset)" --color=always {2}
-    else
-        git show --pretty=format:"%C(yellow)%h%C(reset) %s %C(cyan)(%cr)%C(reset)%n%C(green)Author: %an%C(reset)" --color=always --no-patch {2}
-    fi'
+    # Enhanced preview command with additional context
+    local preview_cmd="
+        ref=\$(echo {} | awk '{print \$2}');
+        if git show-ref --verify --quiet refs/heads/\$ref || git show-ref --verify --quiet refs/remotes/*/\$ref || git show-ref --verify --quiet refs/tags/\$ref; then
+            git log -n 5 --color=always --pretty=format:'%C(yellow)%h %C(cyan)%ar %C(blue)<%an> %C(auto)%d %C(reset)%s' \$ref;
+            echo '\n--------STATS-----------';
+            git show --color=always --stat \$ref | head -n 5;
+            if [ \$(git rev-parse --is-inside-work-tree 2>/dev/null) ]; then
+            echo '\n--------DIFF-----------';
+                git diff --color=always HEAD...\$ref -- . | head -n 20;
+            fi;
+        else
+            echo 'Reference not found';
+        fi"
 
+    # Invoke fzf with improved options
     target=$(
-        (echo "$tagsAndBranches") |
-        fzf -1 --query "$1" --preview="$preview_cmd" --preview-window=down:3:wrap --no-hscroll --ansi +m -n 2
+        echo "$tagsAndBranches" |
+        fzf --height 60% \
+            --layout=reverse \
+            --border \
+            --prompt="Checkout> " \
+            --info=inline \
+            --preview="$preview_cmd" \
+            --preview-window=down:40%:wrap \
+            --no-hscroll \
+            --ansi
     ) || return
 
     git checkout $(echo "$target" | awk -F"\t" '{print $2}')
+
+    # Extract the target branch or tag
+    selected=$(echo "$target" | awk -F"\t" '{print $2}')
+
+    # Attempt to checkout the selected branch or tag
+    if git checkout "$selected"; then
+        echo "Checked out '$selected' successfully."
+    else
+        echo "Failed to checkout '$selected'. Please ensure it exists."
+        return 1
+    fi
 }
 
 # fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
