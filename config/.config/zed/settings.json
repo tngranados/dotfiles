@@ -7,11 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "theme": "GitHub Dark Default",
   "assistant": {
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-20240620"
+      "model": "claude-3-5-sonnet-latest"
     },
     "version": "2"
   },
@@ -42,7 +45,7 @@
       "format_on_save": "language_server"
     },
     "Ruby": {
-      "language_servers": ["rubocop", "ruby-lsp", "!solargraph"],
+      "language_servers": ["rubocop", "ruby-lsp", "tailwindcss-language-server", "!solargraph"],
       "code_actions_on_format": {
         "source.fixAll.rubocop": true
       }
@@ -53,6 +56,25 @@
       "initialization_options": {
         "enabledFeatures": {
           "diagnostic": false // Until Zed is updated to support pull-based diagnostics from lsp
+        }
+      },
+      "settings": {
+        "use_bundler": true
+      }
+    },
+    "rubocop": {
+      "settings": {
+        "use_bundler": false
+      }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "includeLanguages": {
+          "erb": "html",
+          "ruby": "html"
+        },
+        "experimental": {
+          "classRegex": ["\\bclass:\\s*['\"]([^'\"]*)['\"]"]
         }
       }
     }

@@ -67,5 +67,11 @@
       "shift-j": "editor::MoveLineDown",
       "shift-k": "editor::MoveLineUp"
     }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "g d": "editor::FindAllReferences"
+    }
   }
 ]
