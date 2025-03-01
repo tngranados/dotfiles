@@ -12,6 +12,8 @@
 	excludesfile = ~/dotfiles/globalgitignore
 	hooksPath = ~/dotfiles/git-hooks
 	autocrlf = false
+	fsmonitor = true
+	untrackedCache = true
 [interactive]
 	diffFilter = "delta --color-only --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub)"
 	singlekey = true
@@ -24,16 +26,20 @@
     line-numbers = true
 [merge]
     conflictstyle = zdiff3
-		tool = meld
+	tool = meld
 [rebase]
-		autosquash = true
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 [diff]
-    colorMoved = default
+	colorMoved = plain
 	colorMovedWS = allow-indentation-change
 	tool = difftastic
 	algorithm = histogram
 	submodule = log
 	context = 10
+	mnemonicPrefix = true
+	renames = true
 [difftool]
 	prompt = false
 [difftool "difftastic"]
@@ -76,16 +82,19 @@
 	purge = clean -fd
 	wt = worktree
 	ff = fetch origin master:master staging:staging
+	out = "log @{u}.."
 [credential]
 	helper = osxkeychain
 [fetch]
 	prune = true
-	prunetags = true
+	pruneTags = true
 	fsckobjects = true
+	all = true
 [diff "ecmascript"]
 	xfuncname = "^((.*function.*)|([ \t]+it\\(.*))$"
 [rerere]
 	enabled = true
+	autoupdate = true
 [commit]
 	gpgSign = true
 	verbose = true
@@ -98,7 +107,7 @@
 	smudge = git-lfs smudge -- %f
 [push]
 	autoSetupRemote = true
-	followtags = true
+	followTags = true
 [diff "swift"]
     xfuncname = ^[ \t]*(((private |public |internal |final |open )*class|(private |public |internal )*struct|(private |public |internal )*actor|(private |public |internal )*func|(private |public |internal )*extension|(private |public |internal )*enum)[ \t].*)$
 [help]
@@ -117,3 +126,13 @@
 	sort = -committerdate
 [log]
 	date = iso
+[grep]
+	patternType = perl
+[feature]
+	experimental = true
+[column]
+	ui = auto
+[tag]
+	sort = -version:refname
+[pull]
+	rebase = true
