@@ -50,7 +50,6 @@ tap 'homebrew/cask-fonts'
 cask 'font-iosevka'
 
 # Casks
-cask "binary-ninja"
 cask "bruno"
 cask "chatgpt"
 cask "cleanshot"
