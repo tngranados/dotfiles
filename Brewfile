@@ -2,6 +2,7 @@ tap "homebrew/bundle"
 
 # Basics
 brew 'git'
+brew 'atuin' # zsh history manager
 brew 'stow' # symlink manager for dotfiles
 brew "mas" # Mac App Store CLI
 
