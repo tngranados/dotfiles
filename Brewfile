@@ -30,7 +30,10 @@ brew 'jq' # json parser
 brew 'glow' # markdown reader
 brew 'aria2' # download utility
 brew 'yt-dlp' # download videos
+
+# AI
 brew 'ollama' # LLMs
+brew 'repomix' # Tool to pack git repos for LLM consumption
 
 # CLI Apps
 brew 'nvim' # neovim
