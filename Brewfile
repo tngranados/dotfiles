@@ -1,5 +1,3 @@
-tap "homebrew/bundle"
-
 # Basics
 brew 'git'
 brew 'atuin' # zsh history manager
@@ -50,7 +48,6 @@ brew 'switchaudio-osx' # switch audio input/output depedency for a shortcut
 brew 'mise' # version manager
 
 # Fonts
-tap 'homebrew/cask-fonts'
 cask 'font-iosevka'
 
 # Casks
@@ -64,6 +61,7 @@ cask "google-chrome"
 cask "iina"
 cask "istat-menus"
 cask "jordanbaird-ice" # app to manage menu bar apps
+cask "logseq"
 cask "mac-mouse-fix"
 cask "monitorcontrol"
 cask "netnewswire"
