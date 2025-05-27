@@ -31,7 +31,7 @@ brew 'aria2' # download utility
 brew 'yt-dlp' # download videos
 
 # AI
-brew 'ollama' # LLMs
+cask 'ollama' # LLMs
 brew 'repomix' # Tool to pack git repos for LLM consumption
 
 # CLI Apps
