@@ -60,3 +60,7 @@ success-sound() {
 reset-icloud-tabs() {
   rm $HOME/Library/Containers/com.apple.Safari/Data/Library/Safari/CloudTabs.db*
 }
+
+allow_app() {
+  codesign --sign - --force --deep "$@" && xattr -d com.apple.quarantine "$@"
+}
