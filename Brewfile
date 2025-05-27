@@ -42,6 +42,7 @@ brew 'btop' # better htop
 # Dependencies
 brew 'imagemagick' # image processing
 brew 'ffmpeg' # video processing
+brew 'qpdf' # pdf processing
 brew 'switchaudio-osx' # switch audio input/output depedency for a shortcut
 
 # Languages
