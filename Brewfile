@@ -52,6 +52,7 @@ brew 'mise' # version manager
 cask 'font-iosevka'
 
 # Casks
+cask "bambu-studio"
 cask "bruno"
 cask "chatgpt"
 cask "cleanshot"
