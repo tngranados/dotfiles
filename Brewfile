@@ -95,3 +95,7 @@ cask "nordlayer"
 cask "orbstack"
 brew "xcodegen"
 cask "zoom"
+
+# Work dependencies
+brew "libpq" # for ruby pg gem
+brew "libyaml" # ruby
