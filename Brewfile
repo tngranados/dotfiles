@@ -91,7 +91,7 @@ mas "Velja", id: 1607635845
 cask "1Password"
 brew "awscli"
 cask "microsoft-teams"
-cask "nordlayer"
+mas "NordLayer", id: 1488888843
 cask "orbstack"
 brew "xcodegen"
 cask "zoom"
