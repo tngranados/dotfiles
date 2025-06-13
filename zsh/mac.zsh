@@ -62,5 +62,20 @@ reset-icloud-tabs() {
 }
 
 allow_app() {
-  codesign --sign - --force --deep "$@" && xattr -d com.apple.quarantine "$@"
+  local app_path="$1"
+  # Remove .app extension if present
+  app_path="${app_path%.app}"
+  if [[ "$app_path" != *"/"* ]]; then
+    app_path="/Applications/${app_path}.app"
+  fi
+  codesign --sign - --force --deep "$app_path" && xattr -d com.apple.quarantine "$app_path"
 }
+
+# Completion function for allow_app
+_allow_app() {
+  local -a apps
+  apps=($(ls -1 /Applications/*.app 2>/dev/null | sed 's|/Applications/||;s|\.app$||;s/:$//'))
+  compadd -X "Applications" $apps
+}
+
+compdef _allow_app allow_app
