@@ -35,3 +35,6 @@ scrollback-limit = 200000000
 # How to change your system-wide default text editor to Cursor
 # brew install duti
 # duti -s com.todesktop.230313mzl4w4u92 public.plain-text all
+
+# New line with shift+enter (for Claude)
+keybind = shift+enter=text:\n
