@@ -27,7 +27,7 @@ gitg() {
 
 # Help stuff
 cheat() {
-  curl "http://cheat.sh/$1"
+  curl "https://cheat.sh/$1"
 }
 remove-tonidebug() {
   rg "tonidebug" . --files-with-matches | xargs sed -i '' '/tonidebug/d'

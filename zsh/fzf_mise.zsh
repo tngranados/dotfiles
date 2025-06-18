@@ -5,13 +5,13 @@
 vmi() {
   local lang
 
-  lang=$(asdf plugin-list | fzf --query "$1" -1)
+  lang=$(mise list | fzf --query "$1" -1)
 
   if [[ $lang ]]; then
-    local versions=$(asdf list-all $lang | fzf --tac --no-sort --multi)
+    local versions=$(mise list-remote $lang | fzf --tac --no-sort --multi)
     if [[ $versions ]]; then
       for version in $(echo $versions);
-      do; asdf install $lang $version; done;
+      do; mise install $lang $version; done;
     fi
   fi
 }
@@ -23,13 +23,13 @@ vmi() {
 vmc() {
   local lang
 
-  lang=$(asdf plugin-list | fzf --query "$1" -1)
+  lang=$(mise list | fzf --query "$1" -1)
 
   if [[ $lang ]]; then
-    local versions=$(asdf list $lang | fzf -m)
+    local versions=$(mise list $lang | fzf -m)
     if [[ $versions ]]; then
       for version in $(echo $versions);
-      do; asdf uninstall $lang $version; done;
+      do; mise uninstall $lang $version; done;
     fi
   fi
 }
