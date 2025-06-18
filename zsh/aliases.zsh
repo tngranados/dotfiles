@@ -32,3 +32,4 @@ alias whitenoise="play -q -c 2 -n synth brownnoise band -n 1600 1500 tremolo .1 
 alias pinknoise="play -t sl -r48000 -c2 -n synth -1 pinknoise .1 80"
 alias dcup="docker-compose up -d"
 alias dcdown="docker-compose down"
+alias claude-yolo="claude --dangerously-skip-permissions"
