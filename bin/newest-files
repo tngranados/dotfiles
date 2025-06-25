@@ -1,0 +1,181 @@
+#!/usr/bin/env zsh
+#
+# newest-files.sh
+#
+# List the N most-recently-created files in a Git repository (default N=10,
+# default path = current directory).  "Creation" is defined strictly as the
+# first commit that added the file (--diff-filter=A).
+#
+# If the repo's *origin* remote is on GitHub, the script will show the
+# commit URL for each file when --urls flag is used.
+#
+# Usage:
+#   ./newest-files.sh [options] [PATH]
+#   ./newest-files.sh --help
+#   ./newest-files.sh -n 20 .
+#   ./newest-files.sh --urls --count 15 ~/my-repo
+#
+# Requirements:
+#   * git
+#   * zsh
+set -euo pipefail
+
+###############################################################################
+# Help function
+###############################################################################
+show_help() {
+  cat << EOF
+USAGE:
+  newest-files [options] [PATH]
+
+DESCRIPTION:
+  List the N most-recently-created files in a Git repository. "Creation" is
+  defined as the first commit that added the file (--diff-filter=A).
+
+OPTIONS:
+  -n, --count NUMBER     Number of files to show (default: 10)
+  -u, --urls             Show GitHub commit URLs (only if origin is GitHub)
+  -h, --help             Show this help message
+
+ARGUMENTS:
+  PATH                   Git repository path (default: current directory)
+
+EXAMPLES:
+  newest-files                    # Show 10 newest files in current repo
+  newest-files -n 20              # Show 20 newest files
+  newest-files --urls .           # Show URLs for newest files
+  newest-files -n 15 --urls ~/repo  # Show 15 files with URLs from ~/repo
+
+REQUIREMENTS:
+  * git
+  * zsh
+EOF
+}
+
+###############################################################################
+# Argument parsing & sanity checks
+###############################################################################
+DIR="."
+N=10
+SHOW_URLS=false
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -h|--help)
+      show_help
+      exit 0
+      ;;
+    -n|--count)
+      if [[ -z "${2:-}" ]]; then
+        echo "Error: --count requires a number argument" >&2
+        exit 1
+      fi
+      N="$2"
+      shift 2
+      ;;
+    -u|--urls)
+      SHOW_URLS=true
+      shift
+      ;;
+    -*)
+      echo "Error: Unknown option '$1'" >&2
+      echo "Use --help for usage information." >&2
+      exit 1
+      ;;
+    *)
+      # This should be the directory path
+      DIR="$1"
+      shift
+      ;;
+  esac
+done
+
+# Validate that N is a number
+if ! [[ "$N" =~ '^[0-9]+$' ]]; then
+  echo "Error: Count must be a positive integer, got '$N'" >&2
+  exit 1
+fi
+
+# Ensure DIR is a git work-tree
+if ! git -C "$DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "Error: '$DIR' is not inside a Git repository." >&2
+  exit 1
+fi
+
+# Detect GitHub details up-front (optional)
+REMOTE_URL=$(git -C "$DIR" remote get-url origin 2>/dev/null || true)
+GH_REPO=""
+if [[ "$REMOTE_URL" =~ 'github\.com[/:]([^/]+)/([^.]+)(\.git)?$' ]]; then
+  GH_REPO="${match[1]}/${match[2]}"
+fi
+
+###############################################################################
+# Collect "add" commits and the files they introduced
+###############################################################################
+declare -A seen          # file → 1   (to keep uniques)
+declare -a output_lines  # array of final lines we'll print
+
+# We rely on git log being in *reverse chronological* order already.
+# Use process substitution to avoid variable scope issues in zsh pipes
+while IFS= read -r line; do
+  if [[ "$line" =~ '^[0-9a-f]{7,40}\|' ]]; then
+    IFS='|' read -r commit_sha commit_date <<<"$line"
+    continue
+  fi
+
+  file_path="$line"
+  [[ -z "$file_path" ]] && continue
+
+  # Skip duplicates (rare, but guard anyway).
+  if [[ -n "${seen[$file_path]:-}" ]]; then
+    continue
+  fi
+  seen["$file_path"]=1
+
+  # Create commit URL if this is a GitHub repo
+  url_field="—"
+  if [[ -n "$GH_REPO" ]]; then
+    url_field="https://github.com/$GH_REPO/commit/${commit_sha:0:8}"
+  fi
+
+  # Remove common directory prefix to save space
+  display_path="$file_path"
+  if [[ "$DIR" != "." ]]; then
+    # Normalize DIR path (remove trailing slash if present)
+    normalized_dir="${DIR%/}"
+    # Remove DIR prefix if it's not current directory
+    display_path="${file_path#$normalized_dir/}"
+  fi
+
+  # Stash in array; we'll print at the end to avoid race w/ pipe.
+  output_lines+=("$commit_date  $display_path  $commit_sha  $url_field")
+
+  # Stop when we have N results.
+  if [[ "${#output_lines[@]}" -ge "$N" ]]; then
+    break
+  fi
+done < <(git -C "$DIR" log --diff-filter=A --pretty=format:'%H|%cd' --date=format:'%Y-%m-%d %H:%M' --name-only -- .)
+
+###############################################################################
+# Pretty-print
+###############################################################################
+printf "\n%-16s │ %-50s │ %-8s\n" "Created" "File" "Commit"
+printf '%.0s─' {1..80}; printf "\n"
+
+for line in "${output_lines[@]}"; do
+  # shellcheck disable=SC2206
+  parts=(${=line})  # Use zsh parameter expansion to split on spaces
+  created_at="${parts[1]} ${parts[2]}"  # Date and time
+  file="${parts[3]}"
+  commit="${parts[4]:0:8}"   # short SHA
+  url="${parts[5]}"
+
+  # Print main table row
+  printf "%-16s │ %-50s │ %-8s\n" "$created_at" "$file" "$commit"
+
+  # Print URL on separate line if it's a GitHub URL and URLs are enabled
+  if [[ "$url" != "—" && "$SHOW_URLS" == true ]]; then
+    printf "%18s \033[90m%s\033[0m\n" "↳" "$url"
+  fi
+done
