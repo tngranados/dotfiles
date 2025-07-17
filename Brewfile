@@ -73,7 +73,7 @@ cask "raycast"
 cask "tableplus"
 cask "the-unarchiver"
 cask "visual-studio-code"
-cask "vivid"
+cask "vivid-app"
 cask "whatsapp"
 cask "xcodes"
 
