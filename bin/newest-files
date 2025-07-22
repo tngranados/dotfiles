@@ -46,6 +46,9 @@ EXAMPLES:
   newest-files --urls .           # Show URLs for newest files
   newest-files -n 15 --urls ~/repo  # Show 15 files with URLs from ~/repo
 
+OUTPUT COLUMNS:
+  Created, Author, File, Commit
+
 REQUIREMENTS:
   * git
   * zsh
@@ -118,9 +121,14 @@ declare -a output_lines  # array of final lines we'll print
 
 # We rely on git log being in *reverse chronological* order already.
 # Use process substitution to avoid variable scope issues in zsh pipes
+# Output format: SHA|DATE|AUTHOR\nFILE\nFILE...\nSHA|DATE|AUTHOR\nFILE... etc.
 while IFS= read -r line; do
   if [[ "$line" =~ '^[0-9a-f]{7,40}\|' ]]; then
-    IFS='|' read -r commit_sha commit_date <<<"$line"
+    # Parse commit_sha, commit_date, author (author may have spaces)
+    commit_sha="${line%%|*}"
+    rest="${line#*|}"
+    commit_date="${rest%%|*}"
+    author="${rest#*|}"
     continue
   fi
 
@@ -149,33 +157,33 @@ while IFS= read -r line; do
   fi
 
   # Stash in array; we'll print at the end to avoid race w/ pipe.
-  output_lines+=("$commit_date  $display_path  $commit_sha  $url_field")
+  # Use a delimiter unlikely to appear in names (|||)
+  output_lines+=("$commit_date|||$author|||$display_path|||$commit_sha|||$url_field")
 
   # Stop when we have N results.
   if [[ "${#output_lines[@]}" -ge "$N" ]]; then
     break
   fi
-done < <(git -C "$DIR" log --diff-filter=A --pretty=format:'%H|%cd' --date=format:'%Y-%m-%d %H:%M' --name-only -- .)
+done < <(git -C "$DIR" log --diff-filter=A --pretty=format:'%H|%cd|%an' --date=format:'%Y-%m-%d %H:%M' --name-only -- .)
 
 ###############################################################################
 # Pretty-print
 ###############################################################################
-printf "\n%-16s │ %-50s │ %-8s\n" "Created" "File" "Commit"
-printf '%.0s─' {1..80}; printf "\n"
+printf "\n%-16s │ %-20s │ %-40s │ %-8s\n" "Created" "Author" "File" "Commit"
+printf '%.0s─' {1..100}; printf "\n"
 
+setopt shwordsplit
 for line in "${output_lines[@]}"; do
-  # shellcheck disable=SC2206
-  parts=(${=line})  # Use zsh parameter expansion to split on spaces
-  created_at="${parts[1]} ${parts[2]}"  # Date and time
-  file="${parts[3]}"
-  commit="${parts[4]:0:8}"   # short SHA
-  url="${parts[5]}"
+  # Split on custom delimiter to preserve spaces in author and file
+  IFS='|' read -r created_at author file commit url <<< "${line//|||/|}"
+  short_commit="${commit:0:8}"
 
   # Print main table row
-  printf "%-16s │ %-50s │ %-8s\n" "$created_at" "$file" "$commit"
+  printf "%-16s │ %-20s │ %-40s │ %-8s\n" "$created_at" "$author" "$file" "$short_commit"
 
   # Print URL on separate line if it's a GitHub URL and URLs are enabled
   if [[ "$url" != "—" && "$SHOW_URLS" == true ]]; then
     printf "%18s \033[90m%s\033[0m\n" "↳" "$url"
   fi
 done
+unsetopt shwordsplit
