@@ -10,10 +10,12 @@
 # commit URL for each file when --urls flag is used.
 #
 # Usage:
-#   ./newest-files.sh [options] [PATH]
+#   ./newest-files.sh [options] [PATH|GLOB]
 #   ./newest-files.sh --help
 #   ./newest-files.sh -n 20 .
 #   ./newest-files.sh --urls --count 15 ~/my-repo
+#   ./newest-files.sh "*.js" --count 10
+#   ./newest-files.sh "src/**/*.py"
 #
 # Requirements:
 #   * git
@@ -26,7 +28,7 @@ set -euo pipefail
 show_help() {
   cat << EOF
 USAGE:
-  newest-files [options] [PATH]
+  newest-files [options] [PATH|GLOB]
 
 DESCRIPTION:
   List the N most-recently-created files in a Git repository. "Creation" is
@@ -39,12 +41,15 @@ OPTIONS:
 
 ARGUMENTS:
   PATH                   Git repository path (default: current directory)
+  GLOB                   Glob pattern to filter files (e.g., "*.js", "src/**/*.py")
 
 EXAMPLES:
   newest-files                    # Show 10 newest files in current repo
   newest-files -n 20              # Show 20 newest files
   newest-files --urls .           # Show URLs for newest files
   newest-files -n 15 --urls ~/repo  # Show 15 files with URLs from ~/repo
+  newest-files "*.js"             # Show newest JavaScript files
+  newest-files "src/**/*.py" -n 5 # Show 5 newest Python files in src/
 
 OUTPUT COLUMNS:
   Created, Author, File, Commit
@@ -58,7 +63,7 @@ EOF
 ###############################################################################
 # Argument parsing & sanity checks
 ###############################################################################
-DIR="."
+PATH_OR_GLOB="."
 N=10
 SHOW_URLS=false
 
@@ -87,8 +92,8 @@ while [[ $# -gt 0 ]]; do
       exit 1
       ;;
     *)
-      # This should be the directory path
-      DIR="$1"
+      # This should be the directory path or glob pattern
+      PATH_OR_GLOB="$1"
       shift
       ;;
   esac
@@ -100,14 +105,51 @@ if ! [[ "$N" =~ '^[0-9]+$' ]]; then
   exit 1
 fi
 
-# Ensure DIR is a git work-tree
-if ! git -C "$DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  echo "Error: '$DIR' is not inside a Git repository." >&2
+# Determine if we have a directory path or a glob pattern
+# Check if it's an existing directory or if it contains glob characters
+GIT_DIR="."
+GLOB_PATTERN=""
+
+if [[ -d "$PATH_OR_GLOB" ]]; then
+  # It's a directory path
+  GIT_DIR="$PATH_OR_GLOB"
+  GLOB_PATTERN="."
+elif [[ "$PATH_OR_GLOB" == "." ]]; then
+  # Current directory
+  GIT_DIR="."
+  GLOB_PATTERN="."
+elif [[ "$PATH_OR_GLOB" =~ [*?[\]] ]]; then
+  # Contains glob characters - treat as a glob pattern
+  GIT_DIR="."
+  GLOB_PATTERN="$PATH_OR_GLOB"
+else
+  # Could be a non-existent directory or a glob without wildcards
+  # Try to determine the directory part for git operations
+  if [[ "$PATH_OR_GLOB" =~ ^(.+)/[^/]*$ ]]; then
+    potential_dir="${match[1]}"
+    if [[ -d "$potential_dir" ]]; then
+      GIT_DIR="$potential_dir"
+      GLOB_PATTERN="$PATH_OR_GLOB"
+    else
+      # Assume it's a glob pattern in current directory
+      GIT_DIR="."
+      GLOB_PATTERN="$PATH_OR_GLOB"
+    fi
+  else
+    # Treat as glob pattern in current directory
+    GIT_DIR="."
+    GLOB_PATTERN="$PATH_OR_GLOB"
+  fi
+fi
+
+# Ensure GIT_DIR is a git work-tree
+if ! git -C "$GIT_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "Error: '$GIT_DIR' is not inside a Git repository." >&2
   exit 1
 fi
 
 # Detect GitHub details up-front (optional)
-REMOTE_URL=$(git -C "$DIR" remote get-url origin 2>/dev/null || true)
+REMOTE_URL=$(git -C "$GIT_DIR" remote get-url origin 2>/dev/null || true)
 GH_REPO=""
 if [[ "$REMOTE_URL" =~ 'github\.com[/:]([^/]+)/([^.]+)(\.git)?$' ]]; then
   GH_REPO="${match[1]}/${match[2]}"
@@ -135,6 +177,16 @@ while IFS= read -r line; do
   file_path="$line"
   [[ -z "$file_path" ]] && continue
 
+  # Filter by glob pattern if specified
+  if [[ "$GLOB_PATTERN" != "." ]]; then
+    # Use zsh glob matching
+    setopt NULL_GLOB
+    if ! [[ "$file_path" = ${~GLOB_PATTERN} ]]; then
+      continue
+    fi
+    unsetopt NULL_GLOB
+  fi
+
   # Skip duplicates (rare, but guard anyway).
   if [[ -n "${seen[$file_path]:-}" ]]; then
     continue
@@ -149,10 +201,10 @@ while IFS= read -r line; do
 
   # Remove common directory prefix to save space
   display_path="$file_path"
-  if [[ "$DIR" != "." ]]; then
-    # Normalize DIR path (remove trailing slash if present)
-    normalized_dir="${DIR%/}"
-    # Remove DIR prefix if it's not current directory
+  if [[ "$GIT_DIR" != "." ]]; then
+    # Normalize GIT_DIR path (remove trailing slash if present)
+    normalized_dir="${GIT_DIR%/}"
+    # Remove GIT_DIR prefix if it's not current directory
     display_path="${file_path#$normalized_dir/}"
   fi
 
@@ -164,7 +216,7 @@ while IFS= read -r line; do
   if [[ "${#output_lines[@]}" -ge "$N" ]]; then
     break
   fi
-done < <(git -C "$DIR" log --diff-filter=A --pretty=format:'%H|%cd|%an' --date=format:'%Y-%m-%d %H:%M' --name-only -- .)
+done < <(git -C "$GIT_DIR" log --diff-filter=A --pretty=format:'%H|%cd|%an' --date=format:'%Y-%m-%d %H:%M' --name-only)
 
 ###############################################################################
 # Pretty-print
