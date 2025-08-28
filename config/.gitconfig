@@ -54,6 +54,7 @@
 	cane = commit --amend --no-edit
 	lo = log --branches --remotes --tags --graph --oneline --decorate
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	pullr = pull --rebase
 	pr = pull --rebase
 	rh = reset --hard
 	rs = reset --soft
@@ -135,4 +136,4 @@
 [tag]
 	sort = -version:refname
 [pull]
-	rebase = true
+	# rebase = true
