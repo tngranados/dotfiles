@@ -28,6 +28,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Mise
 eval "$(mise activate zsh)"
 
+# VSCode shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
 # Antidote plugin manager
 source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
