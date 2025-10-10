@@ -7,7 +7,7 @@
 [init]
 	defaultBranch = main
 [core]
-	pager = "delta --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub)"
+	pager = "sh -c 'if [ -n \"$GIT_NO_PAGER\" ]; then cat; else delta --syntax-theme $(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo Coldark-Dark || echo GitHub); fi'"
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/dotfiles/globalgitignore
 	hooksPath = ~/dotfiles/git-hooks
