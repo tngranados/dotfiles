@@ -66,6 +66,38 @@ copy-pr() {
     gh pr view --json url -q ".url" | pbcopy
 }
 
+update_code_agents() {
+  local exit_code=0
+  local npm_packages=(
+    "@openai/codex@latest"
+    "@github/copilot@latest"
+  )
+
+  if command -v npm >/dev/null 2>&1; then
+    for pkg in "${npm_packages[@]}"; do
+      echo "==> npm install -g ${pkg}"
+      if ! npm install -g "${pkg}"; then
+        echo "!! Failed to update ${pkg}"
+          exit_code=1
+      fi
+    done
+  else
+    echo "npm not found; skipping npm-based agent updates."
+  fi
+
+  if command -v claude >/dev/null 2>&1; then
+    echo "==> claude update"
+    if ! claude update; then
+      echo "!! Failed to update Claude CLI"
+      exit_code=1
+    fi
+  else
+    echo "claude CLI not found; skipping Claude update."
+  fi
+
+  return $exit_code
+}
+
 # Retries a command a with backoff.
 #
 # The retry count is given by ATTEMPTS (default 100), the
