@@ -1,6 +1,10 @@
 # Appearance
 theme = dark:github dark,light:github
 window-colorspace = display-p3
+window-height = 40
+window-width = 130
+window-position-x = 30
+window-position-y = 30
 
 # Behavior
 quit-after-last-window-closed = false
