@@ -79,3 +79,7 @@ _allow_app() {
 }
 
 compdef _allow_app allow_app
+
+remove-ds-store() {
+  find . -name '.DS_Store' -type f -delete
+}
