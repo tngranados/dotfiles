@@ -89,7 +89,6 @@
 [fetch]
 	prune = true
 	pruneTags = true
-	fsckobjects = true
 	all = true
 [diff "ecmascript"]
 	xfuncname = "^((.*function.*)|([ \t]+it\\(.*))$"
@@ -115,10 +114,6 @@
 	autocorrect = prompt
 [url "git@github.com:"]
 	insteadOf = "gh:"
-[transfer]
-	fsckobjects = true
-[receive]
-	fsckobjects = true
 [status]
 	submoduleSummary = true
 [submodule]
