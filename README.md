@@ -20,7 +20,13 @@ cd dotfiles
 brew bundle
 ```
 
-After all dependencies are installed, you can run `stow` from the dotfiles directory to link the files:
+After all dependencies are installed, you can run `install.sh`:
+
+```zsh
+./install.sh
+```
+
+Alternatively, you can run `stow` from the dotfiles directory to link the files:
 
 ```zsh
 stow -t $HOME -d $HOME/dotfiles/config .
