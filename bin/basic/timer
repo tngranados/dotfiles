@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+set -e
+set -u
+set -o pipefail
+
+sleep "$1"
+repeat 5 afplay -t 0.2 /System/Library/Sounds/Basso.aiff &
+notify 'timer complete' "$1"

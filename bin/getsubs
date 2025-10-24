@@ -1,0 +1,128 @@
+#!/usr/bin/env node
+
+import { spawn } from 'child_process';
+import { promises as fs } from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+async function getVtt(url, arg) {
+  const tempDir = await fs.mkdtemp(path.join(__dirname, 'temp-'));
+
+  try {
+    const ytDlp = spawn('yt-dlp', [
+      '--skip-download',
+      arg,
+      '--sub-lang',
+      'en',
+      '--sub-format',
+      'vtt',
+      '-o',
+      path.join(tempDir, '%(id)s.%(ext)s'),
+      url,
+    ], {
+      stdio: ['inherit', 'pipe', 'inherit'],
+    });
+
+    await new Promise((resolve, reject) => {
+      ytDlp.on('close', (code) => {
+        if (code !== 0) {
+          reject(new Error(`yt-dlp command failed with code ${code}`));
+        } else {
+          resolve();
+        }
+      });
+      ytDlp.on('error', reject);
+    });
+
+    const files = await fs.readdir(tempDir);
+    for (const file of files) {
+      if (!file.endsWith('.vtt')) continue;
+
+      const vttPath = path.join(tempDir, file);
+      return await fs.readFile(vttPath, 'utf8');
+    }
+
+    return null;
+  } finally {
+    await fs.rm(tempDir, { recursive: true, force: true });
+  }
+}
+
+function removeConsecutiveDuplicates(list) {
+  const result = [];
+  let previous = undefined;
+
+  for (const item of list) {
+    if (item !== previous) {
+      result.push(item);
+    }
+    previous = item;
+  }
+
+  return result;
+}
+
+function parseVttText(vttContent) {
+  // Simple VTT parser that extracts text content from cues
+  const lines = vttContent.split('\n');
+  const textLines = [];
+  let currentCue = null;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+
+    // Skip empty lines, headers, and timestamps
+    if (!trimmed || trimmed.startsWith('WEBVTT') || trimmed.includes('-->')) {
+      continue;
+    }
+
+    // If we have a cue number or text, collect the text
+    if (trimmed && !/^\d+$/.test(trimmed)) {
+      textLines.push(trimmed);
+    }
+  }
+
+  return textLines;
+}
+
+function vttLines(vtt) {
+  const rawLines = parseVttText(vtt)
+    .map(line => line.replace(/(?:\s+;)*/g, '').trim())
+    .filter(Boolean);
+
+  return removeConsecutiveDuplicates(rawLines);
+}
+
+async function main() {
+  const [, , url, ...rest] = process.argv;
+
+  if (rest.length) {
+    console.error('too many args');
+    process.exit(1);
+  }
+
+  if (!url) {
+    console.error('needs a URL');
+    process.exit(1);
+  }
+
+  const vtt = await getVtt(url, '--write-sub') ||
+    await getVtt(url, '--write-auto-sub');
+
+  if (!vtt) {
+    console.error('no subs found');
+    process.exit(1);
+  }
+
+  for (const line of vttLines(vtt)) {
+    console.log(line);
+  }
+}
+
+main().catch((error) => {
+  console.error(error.message);
+  process.exit(1);
+});
