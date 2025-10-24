@@ -71,6 +71,7 @@ update_code_agents() {
   local npm_packages=(
     "@openai/codex@latest"
     "@github/copilot@latest"
+    "cline"
   )
 
   if command -v npm >/dev/null 2>&1; then
