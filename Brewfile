@@ -38,6 +38,10 @@ brew 'repomix' # Tool to pack git repos for LLM consumption
 brew 'nvim' # neovim
 brew 'gh' # GitHub CLI
 brew 'btop' # better htop
+brew 'lazydocker' # terminal UI for docker
+brew 'csvlens' # view CSV files
+brew 'bandwhich' # bandwidth utilization tool
+brew 'dua-cli' # disk usage analyzer
 
 # Dependencies
 brew 'imagemagick' # image processing
