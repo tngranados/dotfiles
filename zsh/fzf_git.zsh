@@ -31,17 +31,17 @@ fco() {
 
     # Function to output colored tags
     get_tags() {
-        git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}'
+        git tag | awk '{print "3\t\x1b[31;1mtag\x1b[m\t" $1}'
     }
 
     # Function to output colored local branches
     get_local_branches() {
-        git for-each-ref --format='%(refname:short)' refs/heads/ | sort | awk '{print "\x1b[34;1mlocal\x1b[m\t" $1}'
+        git for-each-ref --format='%(refname:short)' refs/heads/ | sort | awk '{print "1\t\x1b[34;1mlocal\x1b[m\t" $1}'
     }
 
     # Function to output colored remote branches
     get_remote_branches() {
-        git for-each-ref --format='%(refname:short)' refs/remotes/ | sort | awk '{print "\x1b[34;1mremote\x1b[m\t" $1}'
+        git for-each-ref --format='%(refname:short)' refs/remotes/ | sort | awk '{print "2\t\x1b[34;1mremote\x1b[m\t" $1}'
     }
 
     # Fetch tags and branches
@@ -53,7 +53,7 @@ fco() {
     tagsAndBranches=$(echo "$local_branches"; echo "$remote_branches"; echo "$tags")
 
     # Check for exact match
-    exact_match=$(echo "$tagsAndBranches" | awk -v query="$1" -F"\t" '$2 == query {print $2}')
+    exact_match=$(echo "$tagsAndBranches" | awk -v query="$1" -F"\t" '$3 == query {print $3}')
 
     if [[ -n "$exact_match" ]]; then
         git checkout "$1" && return
@@ -66,7 +66,7 @@ fco() {
     count=$(echo "$tagsAndBranches" | wc -l)
     if [[ "$count" -eq 1 ]]; then
         local single_target
-        single_target=$(echo "$tagsAndBranches" | awk -F"\t" '{print $2}')
+        single_target=$(echo "$tagsAndBranches" | awk -F"\t" '{print $3}')
         git checkout "$single_target" && return
         echo "Failed to checkout '$single_target'. Please ensure it exists."
         return 1
@@ -74,8 +74,8 @@ fco() {
 
     # Enhanced preview command with additional context
     local preview_cmd="
-        ref=\$(echo {} | awk '{print \$2}');
-        if git show-ref --verify --quiet refs/heads/\$ref || git show-ref --verify --quiet refs/remotes/*/\$ref || git show-ref --verify --quiet refs/tags/\$ref; then
+        ref=\$(echo {} | awk -F'\t' '{print \$3}');
+        if git show-ref --verify --quiet "refs/heads/\$ref" || git show-ref --verify --quiet "refs/remotes/\$ref" || git show-ref --verify --quiet "refs/tags/\$ref"; then
             git log -n 5 --color=always --pretty=format:'%C(yellow)%h %C(cyan)%ar %C(blue)<%an> %C(auto)%d %C(reset)%s' \$ref;
             echo '\n--------STATS-----------';
             git show --color=always --stat \$ref | head -n 5;
@@ -98,13 +98,14 @@ fco() {
             --preview="$preview_cmd" \
             --preview-window=down:40%:wrap \
             --no-hscroll \
-            --ansi
+            --ansi \
+            --with-nth=2,3 \
+            --nth=2,3 \
+            --tiebreak=index
     ) || return
 
-    git checkout $(echo "$target" | awk -F"\t" '{print $2}')
-
     # Extract the target branch or tag
-    selected=$(echo "$target" | awk -F"\t" '{print $2}')
+    selected=$(echo "$target" | awk -F"\t" '{print $3}')
 
     # Attempt to checkout the selected branch or tag
     if git checkout "$selected"; then
