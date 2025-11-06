@@ -124,8 +124,6 @@
 	date = iso
 [grep]
 	patternType = perl
-[feature]
-	experimental = true
 [column]
 	ui = auto
 [tag]
