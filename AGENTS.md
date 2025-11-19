@@ -9,11 +9,11 @@ Personal macOS dotfiles managed with modern tooling. GNU Stow drives symlink man
 ## Setup Workflow
 
 Run these steps when provisioning a new machine:
+
 ```bash
 # Install Homebrew and bundle tap
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-brew tap Homebrew/bundle
 
 # Install packages and apps
 brew bundle
@@ -68,4 +68,3 @@ source ~/.zshrc
   mdls -name kMDItemCFBundleIdentifier -r /Applications/AppName.app
   defaults read <bundle_identifier>
   ```
-

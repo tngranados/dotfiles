@@ -9,7 +9,6 @@ First step is to [install Homebrew](https://brew.sh):
 ```zsh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-brew tap Homebrew/bundle
 ```
 
 After setting up the ssh keys, clone the repository and install all of the dependencies and tools:
