@@ -31,8 +31,11 @@ brew 'aria2' # download utility
 brew 'yt-dlp' # download videos
 
 # AI
-cask 'ollama' # LLMs
-brew 'repomix' # Tool to pack git repos for LLM consumption
+cask 'codex' # OpenAI Codex
+cask 'claude-code' # Anthropic Claude
+brew 'gemini-cli' # Google Gemini CLI
+brew 'copilot' # GitHub Copilot CLI
+brew 'ollama' # LLMs
 
 # CLI Apps
 brew 'nvim' # neovim
