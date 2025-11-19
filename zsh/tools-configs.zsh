@@ -8,7 +8,7 @@ eval "$(zoxide init zsh)"
 if (( $+commands[duf] )); then
   alias df='duf'
 fi
-if (( $+commands[bat] )); then
+if (( $+commands[bat] )) && [[ "$AI_AGENT" != "true" ]]; then
   alias cat="bat -p --theme=auto:system --theme-dark=OneHalfDark --theme-light=GitHub"
 fi
 if (( $+commands[dust] )); then
