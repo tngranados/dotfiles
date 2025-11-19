@@ -14,3 +14,6 @@ fi
 if (( $+commands[dust] )); then
   alias du="dust"
 fi
+
+# Try  https://github.com/tobi/try
+eval "$(/opt/homebrew/bin/try init ~/Developer/tries)"

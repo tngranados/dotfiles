@@ -15,6 +15,9 @@ brew 'git-delta' # syntax-highlighting pager for git, diff, and grep output
 brew 'difftastic' # git diff tool
 brew 'lazygit' # terminal UI for git
 
+tap 'toby/try', 'git@github.com:tobi/try.git'
+brew 'try' # easily create and manage folders for testing things
+
 # Built-in tools replacements
 brew 'bat' # better cat
 brew 'eza' # better ls
