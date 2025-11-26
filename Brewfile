@@ -41,6 +41,10 @@ brew 'gemini-cli' # Google Gemini CLI
 brew 'copilot' # GitHub Copilot CLI
 brew 'ollama' # LLMs
 
+# AI Tools
+tap 'tngranados/newest-files', 'git@github.com:tngranados/newest-files.git'
+brew 'newest-files' # find newest files in a git repo
+
 # CLI Apps
 brew 'nvim' # neovim
 brew 'gh' # GitHub CLI
