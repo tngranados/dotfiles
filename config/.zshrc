@@ -56,8 +56,11 @@ HISTFILE=$DOTFILES/local/.zsh_history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 
-# Configs
+# XDG Base Directory Specification
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # ZSH configuration
 setopt hist_ignore_space # Don't record a history entry if it starts with a space
