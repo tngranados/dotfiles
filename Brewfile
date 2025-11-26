@@ -20,6 +20,7 @@ brew 'try' # easily create and manage folders for testing things
 
 # Built-in tools replacements
 brew 'bat' # better cat
+brew 'duf' # better df
 brew 'eza' # better ls
 brew 'ripgrep' # better grep
 brew 'fd' # better find
