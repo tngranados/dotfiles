@@ -67,7 +67,7 @@ setopt inc_append_history_time # Save history entries as soon as they are entere
 setopt extended_history # Save command duration as well as timestamp
 
 autoload -Uz compinit
-compinit
+compinit -C
 
 # Load completions system
 zmodload -i zsh/complist
