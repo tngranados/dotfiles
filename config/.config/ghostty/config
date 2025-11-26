@@ -10,6 +10,7 @@ window-position-y = 30
 quit-after-last-window-closed = false
 quick-terminal-screen = macos-menu-bar
 auto-update = download
+auto-update-channel = tip
 
 # Quick terminal ✦t
 keybind = global:super+shift+alt+ctrl+t=toggle_quick_terminal
@@ -24,14 +25,10 @@ keybind = super+shift+h=goto_split:left
 # Scrollback
 keybind = super+alt+j=write_screen_file:open
 
-## Search workaround https://github.com/ghostty-org/ghostty/issues/189#issuecomment-2588366699
-
 # Search entire scrollback history in default text editor
-keybind = cmd+f=write_screen_file:open
-
-# Search Selection
-# HOWTO: Cmd+triple_click to select your last output then press cmd+shift+f to search it
-keybind = cmd+shift+f=write_selection_file:open
+# keybind = cmd+f=write_screen_file:open
+keybind = cmd+f=search:Ghostty
+keybind = shift+cmd+f=search:
 
 # RECOMMENDED: Set this to something big so you can capture all of your scrollback
 scrollback-limit = 200000000
