@@ -156,6 +156,7 @@ dothelp() {
   echo "  plain-clipboard     Convert clipboard to plain text"
   echo "  preman <cmd>        Open man page as PDF in Preview"
   echo "  copy-pr             Copy current PR URL to clipboard"
+  echo "  zsh-clean           Remove compiled .zwc files"
   echo ""
   echo "\033[1mFZF Commands:\033[0m (run 'fzfgit' for git-specific)"
   echo "  fkill [query]       Fuzzy kill processes"
@@ -167,6 +168,13 @@ dothelp() {
   echo "\033[1mMise Commands:\033[0m"
   echo "  vmi [lang]          Install language versions"
   echo "  vmc [lang]          Remove language versions"
+}
+
+# Clean compiled zsh files
+zsh-clean() {
+  find "$DOTFILES" -name "*.zwc" -delete
+  rm -f ~/.zshrc.zwc
+  echo "Compiled zsh files cleaned"
 }
 
 tempe () {
