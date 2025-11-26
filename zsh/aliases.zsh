@@ -36,4 +36,11 @@ alias dcdown="docker compose down"
 alias dclogs="docker compose logs -f"
 alias dcrestart="docker compose restart"
 alias claude-yolo="claude --dangerously-skip-permissions"
+
 alias yt-dlp="yt-dlp --downloader 'aria2c'"
+
+# Quick directory navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
