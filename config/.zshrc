@@ -68,6 +68,9 @@ setopt hist_ignore_all_dups # Remove older duplicate entries from history
 setopt hist_reduce_blanks # Remove superfluous blanks from history items
 setopt inc_append_history_time # Save history entries as soon as they are entered, keeping different terminal separated while running
 setopt extended_history # Save command duration as well as timestamp
+setopt correct # Command spelling correction
+setopt interactive_comments # Allow comments in interactive shell
+setopt no_beep # No beep on error
 
 autoload -Uz compinit
 compinit -C
