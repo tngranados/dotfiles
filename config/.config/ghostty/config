@@ -25,11 +25,6 @@ keybind = super+shift+h=goto_split:left
 # Scrollback
 keybind = super+alt+j=write_screen_file:open
 
-# Search entire scrollback history in default text editor
-# keybind = cmd+f=write_screen_file:open
-keybind = cmd+f=search:Ghostty
-keybind = shift+cmd+f=search:
-
 # RECOMMENDED: Set this to something big so you can capture all of your scrollback
 scrollback-limit = 200000000
 
