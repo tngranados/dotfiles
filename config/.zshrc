@@ -157,3 +157,18 @@ fi
 
 # Atuin better history
 eval "$(atuin init zsh --disable-up-arrow)"
+
+# Compile zsh files for faster startup
+{
+  # Compile .zshrc
+  if [[ ! -f ~/.zshrc.zwc ]] || [[ ~/.zshrc -nt ~/.zshrc.zwc ]]; then
+    zcompile ~/.zshrc
+  fi
+  # Compile all custom zsh modules
+  for file in $DOTFILES/zsh/*.zsh $DOTFILES/zsh/local/*.zsh; do
+    if [[ -f "$file" ]] && [[ ! -f "$file.zwc" || "$file" -nt "$file.zwc" ]]; then
+      zcompile "$file" 2>/dev/null
+    fi
+  done
+} &!
+

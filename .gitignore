@@ -3,3 +3,4 @@ Icon*
 /local
 config/.config/*
 Brewfile.lock.json
+*.zwc
