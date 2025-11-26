@@ -2,6 +2,9 @@
 atuinsh/atuin
 zsh-users/zsh-history-substring-search
 
+# Completions
+zsh-users/zsh-completions kind:fpath path:src
+
 # Basics
 geometry-zsh/geometry
 zdharma-continuum/fast-syntax-highlighting kind:defer
