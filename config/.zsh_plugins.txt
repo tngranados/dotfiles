@@ -1,5 +1,4 @@
 # History
-larkery/zsh-histdb
 atuinsh/atuin
 zsh-users/zsh-history-substring-search
 
