@@ -140,7 +140,8 @@ done
 
 # Source all the custom zsh files in ./zsh/local
 for file in $DOTFILES/zsh/local/*.zsh; do
-  if head -n 1 "$file" | grep -q 'GITCRYPT'; then
+  # Check first bytes for git-crypt signature
+  if [[ $(head -c 10 "$file" 2>/dev/null | tr -d '\0') == "GITCRYPT" ]]; then
     echo "Warning: $file is encrypted with git-crypt and was not loaded"
     continue
   fi
