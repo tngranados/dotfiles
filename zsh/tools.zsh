@@ -144,6 +144,31 @@ mkcd () {
   cd "$1"
 }
 
+# Show help for custom dotfiles commands
+dothelp() {
+  echo "\033[1mCustom Commands:\033[0m"
+  echo "  cheat <topic>       Get cheatsheet from cheat.sh"
+  echo "  mkcd <dir>          Create and cd into directory"
+  echo "  tempe [dir]         Create temp directory and cd into it"
+  echo "  retry <cmd> <sec>   Retry command with exponential backoff"
+  echo "  shttp [port]        Start simple HTTP server (default: 8000)"
+  echo "  boop                Play sound based on last command status"
+  echo "  plain-clipboard     Convert clipboard to plain text"
+  echo "  preman <cmd>        Open man page as PDF in Preview"
+  echo "  copy-pr             Copy current PR URL to clipboard"
+  echo ""
+  echo "\033[1mFZF Commands:\033[0m (run 'fzfgit' for git-specific)"
+  echo "  fkill [query]       Fuzzy kill processes"
+  echo "  fvim [query]        Fuzzy find and open file in vim"
+  echo "  fco [query]         Fuzzy checkout git branch/tag"
+  echo "  flog                Browse git commits"
+  echo "  fstash              Browse and manage git stashes"
+  echo ""
+  echo "\033[1mMise Commands:\033[0m"
+  echo "  vmi [lang]          Install language versions"
+  echo "  vmc [lang]          Remove language versions"
+}
+
 tempe () {
   cd "$(mktemp -d)"
   chmod -R 0700 .

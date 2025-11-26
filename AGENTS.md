@@ -62,6 +62,7 @@ source ~/.zshrc
 - Preserve existing structure; use GNU Stow patterns when adding dotfiles.
 - Keep secrets encrypted; verify `git-crypt` status before editing `secrets/`.
 - When modifying shell configs, mirror changes in the corresponding file inside `zsh/`.
+- When adding new shell functions or commands, update the `dothelp` function in `zsh/tools.zsh` to document them.
 - Favor repeatable automation: if a manual step is required, add it to `setup-mac.sh` or document it.
 - Confirm macOS defaults by inspecting bundle identifiers:
   ```bash
