@@ -86,6 +86,7 @@ cask "qbittorrent"
 cask "raycast"
 cask "tableplus"
 cask "the-unarchiver"
+cask "thumbhost3mf" # 3MF viewer (thumbnails and quick look, for 3D printing files)
 cask "visual-studio-code"
 cask "vivid-app"
 cask "whatsapp"
