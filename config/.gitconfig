@@ -1,7 +1,7 @@
 [user]
 	name = Toni Granados
 	email = toni@tngranados.com
-	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFkkN7Sposqabq6SUgcxoc/UEH6dcifoTkEFN1WacbhG
+	signingKey = ~/.ssh/tngranados.pub
 [includeIf "gitdir:~/Developer/Work/"]
 	path = .gitconfig-work
 [init]
