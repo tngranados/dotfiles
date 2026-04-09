@@ -8,5 +8,5 @@ yt-dlp \
   --embed-thumbnail \
   --extract-audio \
   --audio-format mp3 \
-  -f worstaudio \
+  -f bestaudio \
   "$@"
