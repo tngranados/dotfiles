@@ -5,6 +5,41 @@ dockerrmf() {
 dockerrmif() {
   docker rmi -f $(docker images -a -q)
 }
+dockernuke() {
+  local prefix=$1
+  local -a containers images volumes networks
+
+  if [[ -z "$prefix" ]]; then
+    docker stop $(docker ps -aq) 2>/dev/null
+    docker rm $(docker ps -aq) 2>/dev/null
+    docker rmi $(docker images -aq) 2>/dev/null
+    docker volume rm $(docker volume ls -q) 2>/dev/null
+    docker network rm $(docker network ls -q) 2>/dev/null
+    docker system prune -a --volumes -f
+    return
+  fi
+
+  containers=(${(@f)$(docker ps -a --format '{{.ID}} {{.Names}}' | awk -v prefix="$prefix" 'index($2, prefix) == 1 { print $1 }')})
+  if (( ${#containers[@]} )); then
+    docker stop "${containers[@]}" 2>/dev/null
+    docker rm "${containers[@]}" 2>/dev/null
+  fi
+
+  images=(${(@f)$(docker image ls --format '{{.Repository}}:{{.Tag}} {{.ID}}' | awk -v prefix="$prefix" 'index($1, prefix) == 1 { print $2 }' | awk '!seen[$0]++')})
+  if (( ${#images[@]} )); then
+    docker rmi "${images[@]}" 2>/dev/null
+  fi
+
+  volumes=(${(@f)$(docker volume ls --format '{{.Name}}' | awk -v prefix="$prefix" 'index($1, prefix) == 1 { print $1 }')})
+  if (( ${#volumes[@]} )); then
+    docker volume rm "${volumes[@]}" 2>/dev/null
+  fi
+
+  networks=(${(@f)$(docker network ls --format '{{.Name}}' | awk -v prefix="$prefix" 'index($1, prefix) == 1 { print $1 }')})
+  if (( ${#networks[@]} )); then
+    docker network rm "${networks[@]}" 2>/dev/null
+  fi
+}
 
 # Git rebase progress
 rprogress() {
