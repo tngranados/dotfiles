@@ -47,7 +47,6 @@
 [alias]
 	s = status --short
 	ss = status
-	d = diff
 	co = checkout
 	br = branch
 	last = log -1 HEAD
@@ -72,7 +71,10 @@
 	revertfile = checkout --
 	ap = add -p
 	rp = reset -p
-	rmp = restore -p
+	rs = restore
+	rsc = restore --staged
+	rsp = restore -p
+	rspc = restore -p --staged
 	authors-list = shortlog -e -s -n
 	amend = commit --amend
 	authors-count = shortlog -s -n
@@ -84,6 +86,17 @@
 	wt = worktree
 	ff = fetch origin master:master staging:staging
 	out = "log @{u}.."
+	df = diff
+	dfs = diff --stat
+	dfc = diff --cached
+	dfh = diff --histogram
+	dfn = diff --name-status
+	who = shortlog -sn --no-merges HEAD
+	dmg = log --oneline -i -E --grep='(incident|outage|downtime|rollback|revert|mitigate|mitigation|hotfix|broke|prod)' --since='1 year ago'
+	bugs = log --oneline -i -E --grep='(bug|bugfix|fix|fixed|fixes|defect|regression|hotfix|broke)' --since='1 year ago'
+	bugfiles = !git log --name-only --format='' -i -E --grep='(bug|bugfix|fix|fixed|fixes|defect|regression|hotfix|broke)' --since='1 year ago' | sort | uniq -c | sort -nr
+	monthly = !git log --since='1 year ago' --format='%ad' --date=format:'%Y-%m' | sort | uniq -c
+	churn = !git log --format='' --name-only --diff-filter=AM --since='1 year ago' | sort | uniq -c | sort -nr | head -20
 [credential]
 	helper = osxkeychain
 [fetch]
