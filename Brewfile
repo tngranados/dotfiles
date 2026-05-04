@@ -71,6 +71,7 @@ cask "bambu-studio"
 cask "bruno"
 cask "chatgpt"
 cask "cleanshot"
+cask "flux-markdown", tap: "xykong/tap" # markdown quicklook plugin
 cask "fork"
 cask "ghostty"
 cask "google-chrome"
