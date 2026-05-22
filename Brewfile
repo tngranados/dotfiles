@@ -77,7 +77,7 @@ cask "ghostty"
 cask "google-chrome"
 cask "iina"
 cask "istat-menus"
-cask "jordanbaird-ice" # app to manage menu bar apps
+cask "thaw" # app to manage menu bar apps
 cask "logseq"
 cask "mac-mouse-fix"
 cask "monitorcontrol"
