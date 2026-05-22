@@ -1,4 +1,5 @@
 # Appearance
+
 theme = dark:github dark,light:github
 window-colorspace = display-p3
 window-height = 40
@@ -7,30 +8,53 @@ window-position-x = 30
 window-position-y = 30
 
 # Behavior
+
 quit-after-last-window-closed = false
 quick-terminal-screen = macos-menu-bar
 auto-update = download
-auto-update-channel = tip
+notify-on-command-finish-after = 30s
 
 # Quick terminal ✦t
+
 keybind = global:super+shift+alt+ctrl+t=toggle_quick_terminal
 quick-terminal-animation-duration = 0.1
 
 # Split vim navigation
+
 keybind = super+shift+k=goto_split:top
 keybind = super+shift+j=goto_split:bottom
 keybind = super+shift+l=goto_split:right
 keybind = super+shift+h=goto_split:left
 
 # Scrollback
+
 keybind = super+alt+j=write_screen_file:open
 
 # RECOMMENDED: Set this to something big so you can capture all of your scrollback
+
 scrollback-limit = 200000000
 
 # How to change your system-wide default text editor to Cursor
+
 # brew install duti
+
 # duti -s com.todesktop.230313mzl4w4u92 public.plain-text all
 
 # New line with shift+enter (for Claude)
+
 keybind = shift+enter=text:\n
+
+# Resize panels
+
+keybind = resize/arrow_up=resize_split:up,10
+keybind = resize/arrow_down=resize_split:down,10
+keybind = resize/arrow_left=resize_split:left,10
+keybind = resize/arrow_right=resize_split:right,10
+keybind = resize/escape=deactivate_key_table
+keybind = resize/catch_all=ignore
+
+# keybind = ctrl+a=activate_key_table:resize
+
+# SSH integration (https://ghostty.org/docs/features/shell-integration#ssh-integration)
+
+shell-integration-features = ssh-env,ssh-terminfo
