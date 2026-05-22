@@ -4,3 +4,4 @@
 opencode.json
 **/zzz_local/
 .agents/skills
+.claude/
