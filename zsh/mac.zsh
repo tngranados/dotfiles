@@ -15,6 +15,10 @@ else
   alias ls="ls -G -h"
 fi
 
+if (( $+commands[ssh-add] )) && [[ -S "${SSH_AUTH_SOCK:-}" ]] && [[ -r "$HOME/.ssh/tngranados" ]]; then
+  ssh-add -q --apple-load-keychain "$HOME/.ssh/tngranados" >/dev/null 2>&1
+fi
+
 # Auto ls after cd
 function chpwd() {
     emulate -L zsh
