@@ -1,68 +1,122 @@
 #!/usr/bin/env ruby
 
-require 'bundler/inline'
+require 'tmpdir'
 
-gemfile do
-  source 'https://rubygems.org'
+def main(args)
+  paths, out, width = parse_args(args)
+  gif = File.extname(out).downcase == '.gif'
 
-  gem 'tempfile'
+  Dir.mktmpdir('sschanges') do |dir|
+    prepared_paths = paths.each_with_index.map do |path, index|
+      prepare_image(path, width, dir, index)
+    end
+
+    if gif
+      make_gif(prepared_paths, out)
+    else
+      join(prepared_paths, out)
+    end
+  end
 end
 
-def main(arg)
-  before = arg[0]
-  after = arg[1]
-  out = arg[2]
-
-  gif = File.extname(out) == '.gif'
-
+def parse_args(args)
+  paths = args.dup
   width = 350
-  if arg[3] == '--resize'
-    width = arg[4]
+  resize_index = paths.index('--resize')
+
+  if resize_index
+    width = Integer(paths.fetch(resize_index + 1))
+    raise ArgumentError, usage if width <= 0
+
+    paths.slice!(resize_index, 2)
   end
 
-  before = annotate(before, 'Before')
-  after = annotate(after, 'After')
+  out = paths.pop
+  raise ArgumentError, usage if out.nil? || paths.empty?
 
-  before = resize(before, width)
-  after = resize(after, width)
+  [paths, out, width]
+rescue IndexError, ArgumentError
+  raise ArgumentError, usage
+end
 
-  if gif
-    make_gif(before, after, out)
-  else
-    join(before, after, out)
+def command_available?(name)
+  ENV.fetch('PATH', '').split(File::PATH_SEPARATOR).any? do |dir|
+    executable = File.join(dir, name)
+    File.executable?(executable) && !File.directory?(executable)
   end
 end
 
-def resize(path, width = 350)
-  file = Tempfile.new
-
-  `convert #{path} -resize #{width} #{file.path}`
-
-  file.path
+def convert_command
+  command_available?('magick') ? ['magick'] : ['convert']
 end
 
-def annotate(path, text)
-  file = Tempfile.new
-
-  `convert #{path} -gravity North -pointsize 90 -fill red -annotate -0+40 '#{text}' #{file.path}`
-
-  file.path
+def montage_command
+  command_available?('montage') ? ['montage'] : ['magick', 'montage']
 end
 
-def join(path1, path2, out)
-  `montage #{path1} #{path2} -tile 2x1 -geometry +10+10 -background none #{out}`
+def annotation_font
+  [
+    '/System/Library/Fonts/Menlo.ttc',
+    '/System/Library/Fonts/Supplemental/Arial.ttf',
+    '/System/Library/Fonts/Helvetica.ttc'
+  ].find { |path| File.exist?(path) }
 end
 
-def make_gif(path1, path2, out)
-  `convert -delay 100 -loop 0 #{path1} #{path2} #{out}`
+def prepare_image(path, width, dir, index)
+  out = File.join(dir, format('%02d-%s', index, File.basename(path)))
+  label = File.basename(path, File.extname(path))
+  command = [
+    *convert_command,
+    path,
+    '-resize', width.to_s,
+    '-gravity', 'North',
+    '-pointsize', '70',
+    '-fill', 'red'
+  ]
+
+  font = annotation_font
+  command += ['-font', font] if font
+  command += ['-annotate', '-0+40', label, out]
+
+  system(*command, exception: true)
+
+  out
 end
 
-if ARGV.size < 2
-  puts 'Usage:'
-  puts 'sschanges before.png after.png out.png # Join two screenshots side by side annotated'
-  puts 'sschanges before.png after.png out.gif # Create a gif of the before and after changes annotated'
-  puts 'sschanges before.png after.png out.png --resize 500 # Resize the images to 500px wide'
-  exit 1
-else
+def join(paths, out)
+  command = [
+    *montage_command,
+    *paths
+  ]
+
+  font = annotation_font
+  command += ['-font', font] if font
+  command += [
+    '-tile', "#{paths.length}x1",
+    '-geometry', '+10+10',
+    '-background', 'none',
+    out
+  ]
+
+  system(*command, exception: true)
+end
+
+def make_gif(paths, out)
+  system(*convert_command, '-delay', '100', '-loop', '0', *paths, out, exception: true)
+end
+
+def usage
+  <<~USAGE
+    Usage:
+    sschanges pic1.png [pic2.png ...] out.png # Join screenshots side by side annotated with their file names
+    sschanges pic1.png [pic2.png ...] out.gif # Create a gif from screenshots annotated with their file names
+    sschanges pic1.png [pic2.png ...] out.png --resize 500 # Resize each image to 500px wide
+  USAGE
+end
+
+begin
   main(ARGV)
+rescue ArgumentError => e
+  warn e.message
+  exit 1
 end
