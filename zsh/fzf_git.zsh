@@ -27,22 +27,62 @@ fbr() {
 
 # fco - checkout git branch/tag
 fco() {
-    local tags branches local_branches remote_branches tagsAndBranches exact_match target selected
+  local tags local_branches remote_branches tags_and_branches target selected query
+
+  query="$1"
+
+  checkout_ref() {
+    local ref="$1"
+    local local_name
+
+    if git show-ref --verify --quiet "refs/remotes/$ref"; then
+      local_name="${ref#*/}"
+      git checkout --track -b "$local_name" "$ref"
+    else
+      git checkout "$ref"
+    fi
+  }
 
     # Function to output colored tags
     get_tags() {
         git tag | awk '{print "3\t\x1b[31;1mtag\x1b[m\t" $1}'
     }
 
-    # Function to output colored local branches
-    get_local_branches() {
-        git for-each-ref --format='%(refname:short)' refs/heads/ | sort | awk '{print "1\t\x1b[34;1mlocal\x1b[m\t" $1}'
-    }
+  # Function to output local branches, annotating those that also exist remotely
+  get_local_branches() {
+    local branch upstream label
 
-    # Function to output colored remote branches
-    get_remote_branches() {
-        git for-each-ref --format='%(refname:short)' refs/remotes/ | sort | awk '{print "2\t\x1b[34;1mremote\x1b[m\t" $1}'
-    }
+    while IFS=$'\t' read -r branch upstream; do
+      [[ -n "$branch" ]] || continue
+      label=$'\x1b[34;1mlocal\x1b[m'
+      [[ -n "$upstream" ]] && label=$'\x1b[36;1mtracked\x1b[m'
+      printf '1\t%s\t%s\n' "$label" "$branch"
+    done < <(git for-each-ref --format=$'%(refname:short)\t%(upstream:short)' refs/heads/ | sort)
+  }
+
+  # Function to output only remote branches that do not already exist locally
+  get_remote_branches() {
+    local branch short_name
+
+    while IFS=$'\t' read -r branch short_name; do
+      [[ -n "$branch" ]] || continue
+      printf '2\t\x1b[34;1mremote\x1b[m\t%s\n' "$branch"
+    done < <(
+      awk -F '\t' '
+          NR == FNR {
+            if ($0 != "") {
+              local[$0] = 1
+            }
+            next
+          }
+          $1 ~ /\/HEAD$/ { next }
+          $1 !~ /\// { next }
+          !($2 in local) { print $1 "\t" $2 }
+        ' \
+        <(git for-each-ref --format='%(refname:short)' refs/heads/ | sort) \
+        <(git for-each-ref --format=$'%(refname:short)\t%(refname:lstrip=3)' refs/remotes/ | sort)
+    )
+  }
 
     # Fetch tags and branches
     tags=$(get_tags) || { echo "Failed to retrieve tags."; return 1; }
@@ -50,27 +90,7 @@ fco() {
     remote_branches=$(get_remote_branches) || { echo "Failed to retrieve remote branches."; return 1; }
 
     # Combine tags and branches, prioritizing local branches
-    tagsAndBranches=$(echo "$local_branches"; echo "$remote_branches"; echo "$tags")
-
-    # Check for exact match
-    exact_match=$(echo "$tagsAndBranches" | awk -v query="$1" -F"\t" '$3 == query {print $3}')
-
-    if [[ -n "$exact_match" ]]; then
-        git checkout "$1" && return
-        echo "Failed to checkout '$1'. Please ensure it exists."
-        return 1
-    fi
-
-    # Check if there's only one match
-    local count
-    count=$(echo "$tagsAndBranches" | wc -l)
-    if [[ "$count" -eq 1 ]]; then
-        local single_target
-        single_target=$(echo "$tagsAndBranches" | awk -F"\t" '{print $3}')
-        git checkout "$single_target" && return
-        echo "Failed to checkout '$single_target'. Please ensure it exists."
-        return 1
-    fi
+  tags_and_branches=$(printf '%s\n%s\n%s\n' "$local_branches" "$remote_branches" "$tags")
 
     # Enhanced preview command with additional context
     local preview_cmd="
@@ -89,11 +109,13 @@ fco() {
 
     # Invoke fzf with improved options
     target=$(
-        echo "$tagsAndBranches" |
+      printf '%s\n' "$tags_and_branches" |
         fzf --height 60% \
             --layout=reverse \
             --border \
             --prompt="Checkout> " \
+        --query="$query" \
+        --select-1 \
             --info=inline \
             --preview="$preview_cmd" \
             --preview-window=down:40%:wrap \
@@ -108,7 +130,7 @@ fco() {
     selected=$(echo "$target" | awk -F"\t" '{print $3}')
 
     # Attempt to checkout the selected branch or tag
-    if git checkout "$selected"; then
+    if checkout_ref "$selected"; then
         echo "Checked out '$selected' successfully."
     else
         echo "Failed to checkout '$selected'. Please ensure it exists."
