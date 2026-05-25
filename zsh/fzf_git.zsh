@@ -7,7 +7,7 @@ fzfgit() {
     printf "${fn}: ${color}${desc}\033[0m\n"
   }
   echo_color "fbr" "checkout git branch (including remote branches)"
-  echo_color "fco" "checkout git branch/tag, automatically checkouts if only one branch/tag"
+  echo_color "fco" "checkout git branch/tag, use -r to include remote branches"
   echo_color "fco_preview" "checkout git branch/tag with preview"
   echo_color "flog" "git commit browser"
   echo_color "fcoc" "checkout git commit"
@@ -27,9 +27,25 @@ fbr() {
 
 # fco - checkout git branch/tag
 fco() {
-  local tags local_branches remote_branches tags_and_branches target selected query
+  local tags local_branches remote_branches tags_and_branches target selected query include_remotes arg
 
-  query="$1"
+  include_remotes=0
+
+  for arg in "$@"; do
+    case "$arg" in
+      -r)
+        include_remotes=1
+        ;;
+      *)
+        if [[ -z "$query" ]]; then
+          query="$arg"
+        else
+          echo "Usage: fco [-r] [query]"
+          return 1
+        fi
+        ;;
+    esac
+  done
 
   checkout_ref() {
     local ref="$1"
@@ -87,10 +103,14 @@ fco() {
     # Fetch tags and branches
     tags=$(get_tags) || { echo "Failed to retrieve tags."; return 1; }
     local_branches=$(get_local_branches) || { echo "Failed to retrieve local branches."; return 1; }
-    remote_branches=$(get_remote_branches) || { echo "Failed to retrieve remote branches."; return 1; }
 
-    # Combine tags and branches, prioritizing local branches
-  tags_and_branches=$(printf '%s\n%s\n%s\n' "$local_branches" "$remote_branches" "$tags")
+    # Combine tags and branches, only including remotes when requested
+    if (( include_remotes )); then
+      remote_branches=$(get_remote_branches) || { echo "Failed to retrieve remote branches."; return 1; }
+      tags_and_branches=$(printf '%s\n%s\n%s\n' "$local_branches" "$remote_branches" "$tags")
+    else
+      tags_and_branches=$(printf '%s\n%s\n' "$local_branches" "$tags")
+    fi
 
     # Enhanced preview command with additional context
     local preview_cmd="
