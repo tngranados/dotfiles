@@ -34,7 +34,17 @@ link_dotfiles() {
   stow --restow --dir="$ROOT_DIR/config" --target="$HOME" .
 }
 
+# Tool-agnostic agent guidance lives in agents/ and is symlinked to the path
+# each tool expects. Kept outside config/ so stow doesn't mirror it into $HOME.
+link_agents() {
+  log "Linking agent files..."
+  mkdir -p "$HOME/.claude"
+  ln -sfn "$ROOT_DIR/agents/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+}
+
 main() {
+  link_agents
+
   if ! ensure_stow; then
     log "Install stow manually and rerun this script to complete setup."
     return 0
