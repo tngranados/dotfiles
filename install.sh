@@ -39,7 +39,7 @@ link_dotfiles() {
 link_agents() {
   log "Linking agent files..."
   mkdir -p "$HOME/.claude"
-  ln -sfn "$ROOT_DIR/agents/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+  ln -sfn "$ROOT_DIR/config/.agents/AGENTS.md" "$HOME/.claude/CLAUDE.md"
 }
 
 main() {

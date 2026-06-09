@@ -16,7 +16,8 @@ dotfiles/
 ├── setup-mac.sh        # macOS defaults configuration
 ├── config/             # Files symlinked to $HOME via stow
 │   ├── .zshrc          # Main shell config
-│   └── .zsh_plugins.txt
+│   ├── .zsh_plugins.txt
+│   └── .agents/        # Agent skills and config (symlinked to ~/.agents)
 ├── zsh/                # Modular shell configs (sourced by .zshrc)
 │   ├── aliases.zsh     # Command aliases
 │   ├── tools.zsh       # Custom functions + dothelp
