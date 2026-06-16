@@ -16,7 +16,7 @@ brew 'difftastic' # git diff tool
 brew 'lazygit' # terminal UI for git
 
 tap 'toby/try', 'git@github.com:tobi/try.git'
-brew 'try' # easily create and manage folders for testing things
+brew 'try # easily create and manage folders for testing things
 
 # Built-in tools replacements
 brew 'bat' # better cat
@@ -37,9 +37,7 @@ brew 'yt-dlp' # download videos
 # AI
 cask 'codex' # OpenAI Codex
 cask 'claude-code' # Anthropic Claude
-brew 'gemini-cli' # Google Gemini CLI
-brew 'copilot' # GitHub Copilot CLI
-brew 'ollama' # LLMs
+cask 'lm-studio'
 
 # AI Tools
 tap 'tngranados/newest-files', 'git@github.com:tngranados/newest-files.git'
@@ -67,10 +65,9 @@ brew 'mise' # version manager
 cask 'font-iosevka'
 
 # Casks
-cask "bambu-studio"
+# cask "bambu-studio"
 cask "bruno"
 cask "chatgpt"
-cask "cleanshot"
 cask "flux-markdown", tap: "xykong/tap" # markdown quicklook plugin
 cask "fork"
 cask "ghostty"
@@ -78,7 +75,6 @@ cask "google-chrome"
 cask "iina"
 cask "istat-menus"
 cask "thaw" # app to manage menu bar apps
-cask "logseq"
 cask "mac-mouse-fix"
 cask "monitorcontrol"
 cask "netnewswire"
@@ -91,16 +87,14 @@ cask "thumbhost3mf" # 3MF viewer (thumbnails and quick look, for 3D printing fil
 cask "visual-studio-code"
 cask "vivid-app"
 cask "whatsapp"
-cask "xcodes"
+cask "xcodes-app"
 
 # Mac App Store
-mas "1Blocker", id: 1365531024
 mas "Amphetamine", id: 937984704
 mas "Day One", id: 1055511498
 mas "Developer", id: 640199958
 mas "Pixelmator Pro", id: 1289583905
 mas "TestFlight", id: 899247664
-mas "Userscripts", id: 1463298887
 mas "Velja", id: 1607635845
 
 # Work

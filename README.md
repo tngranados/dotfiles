@@ -16,6 +16,7 @@ After setting up the ssh keys, clone the repository and install all of the depen
 ```zsh
 git clone git@github.com:tngranados/dotfiles.git
 cd dotfiles
+brew trust --taps tngranados/newest-files xykong/tap
 brew bundle
 ```
 
