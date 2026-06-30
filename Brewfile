@@ -33,9 +33,11 @@ brew 'jq' # json parser
 brew 'glow' # markdown reader
 brew 'aria2' # download utility
 brew 'yt-dlp' # download videos
+brew 'music-decoy' # prevents play/pause button from opening Apple Music
 
 # AI
 cask 'codex' # OpenAI Codex
+cask 'codexbar', tap: 'steipete/tap' # Track AI usage
 cask 'claude-code' # Anthropic Claude
 cask 'lm-studio'
 
@@ -72,6 +74,7 @@ cask "flux-markdown", tap: "xykong/tap" # markdown quicklook plugin
 cask "fork"
 cask "ghostty"
 cask "google-chrome"
+cask "hyperkey"
 cask "iina"
 cask "istat-menus"
 cask "thaw" # app to manage menu bar apps
