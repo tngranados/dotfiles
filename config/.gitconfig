@@ -97,6 +97,7 @@
 	bugfiles = !git log --name-only --format='' -i -E --grep='(bug|bugfix|fix|fixed|fixes|defect|regression|hotfix|broke)' --since='1 year ago' | sort | uniq -c | sort -nr
 	monthly = !git log --since='1 year ago' --format='%ad' --date=format:'%Y-%m' | sort | uniq -c
 	churn = !git log --format='' --name-only --diff-filter=AM --since='1 year ago' | sort | uniq -c | sort -nr | head -20
+	pushf = push --force-with-lease --force-if-includes
 [credential]
 	helper = osxkeychain
 [fetch]
