@@ -65,9 +65,9 @@ brew 'mise' # version manager
 cask 'font-iosevka'
 
 # Casks
-# cask "bambu-studio"
-cask "bruno"
+cask "bambu-studio"
 cask "chatgpt"
+tap 'xykong/tap'
 cask "flux-markdown", tap: "xykong/tap" # markdown quicklook plugin
 cask "fork"
 cask "ghostty"
@@ -78,7 +78,6 @@ cask "istat-menus"
 cask "thaw" # app to manage menu bar apps
 cask "mac-mouse-fix"
 cask "macshot" # screenshot tool
-cask "monitorcontrol"
 cask "music-decoy" # prevents play/pause button from opening Apple Music
 cask "netnewswire"
 cask "obsidian"
@@ -90,7 +89,6 @@ cask "thumbhost3mf" # 3MF viewer (thumbnails and quick look, for 3D printing fil
 cask "visual-studio-code"
 cask "vivid-app"
 cask "whatsapp"
-cask "xcodes-app"
 
 # Mac App Store
 mas "Amphetamine", id: 937984704
@@ -103,10 +101,13 @@ mas "Velja", id: 1607635845
 # Work
 cask "1Password"
 brew "awscli"
+cask "bruno"
 cask "microsoft-teams"
+cask "monitorcontrol"
 mas "NordLayer", id: 1488888843
 cask "orbstack"
 brew "xcodegen"
+
 cask "zoom"
 
 # Work dependencies
