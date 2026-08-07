@@ -16,7 +16,7 @@ brew 'difftastic' # git diff tool
 brew 'lazygit' # terminal UI for git
 
 tap 'toby/try', 'git@github.com:tobi/try.git'
-brew 'try # easily create and manage folders for testing things
+brew 'try' # easily create and manage folders for testing things
 
 # Built-in tools replacements
 brew 'bat' # better cat
@@ -33,12 +33,10 @@ brew 'jq' # json parser
 brew 'glow' # markdown reader
 brew 'aria2' # download utility
 brew 'yt-dlp' # download videos
-brew 'music-decoy' # prevents play/pause button from opening Apple Music
 
 # AI
-cask 'codex' # OpenAI Codex
+cask 'chatgpt'
 cask 'codexbar', tap: 'steipete/tap' # Track AI usage
-cask 'claude-code' # Anthropic Claude
 cask 'lm-studio'
 
 # AI Tools
@@ -79,7 +77,9 @@ cask "iina"
 cask "istat-menus"
 cask "thaw" # app to manage menu bar apps
 cask "mac-mouse-fix"
+cask "macshot" # screenshot tool
 cask "monitorcontrol"
+cask "music-decoy" # prevents play/pause button from opening Apple Music
 cask "netnewswire"
 cask "obsidian"
 cask "qbittorrent"
