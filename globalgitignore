@@ -5,3 +5,5 @@ opencode.json
 **/zzz_local/
 .agents/skills
 .claude/
+.claude
+**/.claude/settings.local.json
