@@ -38,8 +38,9 @@ link_dotfiles() {
 # each tool expects. Kept outside config/ so stow doesn't mirror it into $HOME.
 link_agents() {
   log "Linking agent files..."
-  mkdir -p "$HOME/.claude"
+  mkdir -p "$HOME/.claude" "$HOME/.codex"
   ln -sfn "$ROOT_DIR/config/.agents/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+  ln -sfn "$ROOT_DIR/config/.agents/AGENTS.md" "$HOME/.codex/AGENTS.md"
 }
 
 main() {
