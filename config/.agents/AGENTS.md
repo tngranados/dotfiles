@@ -10,6 +10,7 @@ Output tokens are precious, be succinct in your responses. Use ASD-STE100 simpli
   (e.g. "Add scheduled tasks page", "Fix sidebar toggle"). No body, no bullet
   lists, no co-author/footer trailers, no emoji.
 - Prefer a feature branch over committing directly to the default branch.
+- Always use english for the commits, regardless of the project language.
 
 ### If you are ask to commit, only commit your own work
 
@@ -59,6 +60,7 @@ cold reader cannot reasonably infer from names, types, control flow, or tests.
   pad it with prose that restates the signature or implementation.
 - Preserve useful existing comments, but update or remove one when your change
   makes it false. Do not sweep unrelated files for comment cleanup unless asked.
+- Always use english for the comments, regardless of the project language.
 
 Before finishing, inspect every comment added or changed in the diff and apply
 both tests:
