@@ -136,5 +136,3 @@ mas "Developer", id: 640199958
 mas "Pixelmator Pro", id: 1289583905
 mas "TestFlight", id: 899247664
 mas "Velja", id: 1607635845
-npm "@earendil-works/pi-coding-agent"
-npm "corepack"
