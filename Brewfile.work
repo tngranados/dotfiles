@@ -1,0 +1,10 @@
+brew "awscli"
+brew "libpq"
+brew "xcodegen"
+cask "1password"
+cask "bruno"
+cask "microsoft-teams"
+cask "monitorcontrol"
+cask "orbstack"
+cask "zoom"
+mas "NordLayer", id: 1488888843

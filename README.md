@@ -11,14 +11,20 @@ First step is to [install Homebrew](https://brew.sh):
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-After setting up the ssh keys, clone the repository and install all of the dependencies and tools:
+After setting up the SSH keys, clone the repository and install the personal dependencies and tools:
 
 ```zsh
 git clone git@github.com:tngranados/dotfiles.git
 cd dotfiles
-brew trust --taps tngranados/newest-files xykong/tap
+brew trust --taps tngranados/newest-files toby/try xykong/tap
 brew trust --formula tngranados/newest-files/newest-files
-brew bundle
+brew bundle --file=Brewfile
+```
+
+On a work machine, install the additional work dependencies after the personal bundle:
+
+```zsh
+brew bundle --file=Brewfile.work
 ```
 
 After all dependencies are installed, you can run `install.sh`:
