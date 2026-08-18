@@ -1,6 +1,6 @@
 # Personal working preferences (tngranados)
 
-Output tokens are precious, be succinct in your responses. Use ASD-STE100 simplified technical english
+Output tokens are precious, be succinct in your responses. Use ASD-STE100 simplified technical english. Avoid using em-dashes `—`, instead use commas or a phrase structure that does not need it.
 
 ## Committing
 
