@@ -84,6 +84,15 @@ both tests:
 
 Then cut every surviving comment to the shortest wording that keeps the fact.
 
+## Validation
+
+- For bug fixes, first reproduce the defect with the narrowest test or command.
+  Confirm it fails for the expected reason, then apply the fix and confirm it
+  passes.
+- Prefer tests, linters, formatters, type checks, or hooks for mechanically
+  enforceable rules. Use prose instructions for judgment that tools cannot
+  check.
+
 ## Code cleanliness
 
 - Keep the smallest implementation that owns the behavior. Avoid speculative
