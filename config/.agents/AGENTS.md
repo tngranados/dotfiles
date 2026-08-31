@@ -1,6 +1,16 @@
 # Personal working preferences (tngranados)
 
-Output tokens are precious, be succinct in your responses. Use ASD-STE100 simplified technical english. Avoid using em-dashes `—`, instead use commas or a phrase structure that does not need it.
+Output tokens are precious, be succinct in your responses. Use ASD-STE100
+simplified technical english. Avoid using em-dashes `—`, instead use commas or
+a phrase structure that does not need it.
+
+- When writing something intended for human consumption, (comment, commit
+  message, reply to prompt) use as few words as possible. Pick every word
+  meticulously to reduce the volume to a strict minimum. Be down to the point.
+  Less is more.
+
+- Avoid superlatives and praise. Stop telling me I am absolutely right. Give
+  me the cold hard truth.
 
 ## Committing
 
@@ -11,6 +21,8 @@ Output tokens are precious, be succinct in your responses. Use ASD-STE100 simpli
   lists, no co-author/footer trailers, no emoji.
 - Prefer a feature branch over committing directly to the default branch.
 - Always use english for the commits, regardless of the project language.
+- Limit the subject to 50 characters when practical, with 72 as the hard limit.
+- Capitalize the first word and do not end the subject with punctuation.
 
 ### If you are ask to commit, only commit your own work
 
