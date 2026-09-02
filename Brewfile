@@ -104,8 +104,6 @@ cask "istat-menus"
 cask "lm-studio"
 # Mouse utility to add gesture functions and smooth scrolling to 3rd party mice
 cask "mac-mouse-fix"
-# Screenshot and screen recording tool
-cask "macshot"
 # Music app blocker utility
 cask "music-decoy"
 # Free and open-source RSS reader
@@ -116,6 +114,8 @@ cask "obsidian"
 cask "qbittorrent"
 # Control your tools with a few keystrokes
 cask "raycast"
+# Native screenshots, recording, annotation, and editing from the menu bar
+cask "snapzy"
 # Native GUI tool for relational databases
 cask "tableplus"
 # Menu bar manager
