@@ -1,0 +1,12 @@
+{
+  "lastChangelogVersion": "0.84.4",
+  "defaultProvider": "meta",
+  "defaultModel": "muse-spark-1.3-contributor",
+  "defaultThinkingLevel": "high",
+  "hideThinkingBlock": false,
+  "packages": [
+    "npm:pi-lmstudio"
+  ],
+  "theme": "dark",
+  "quietStartup": true
+}

@@ -43,8 +43,18 @@ link_agents() {
   ln -sfn "$ROOT_DIR/config/.agents/AGENTS.md" "$HOME/.codex/AGENTS.md"
 }
 
+# Pi keeps sessions, auth, and caches next to its config, so only the two
+# safe files are linked per-file instead of stowing the whole ~/.pi tree.
+link_pi() {
+  log "Linking pi files..."
+  mkdir -p "$HOME/.pi/agent"
+  ln -sfn "$ROOT_DIR/pi/settings.json" "$HOME/.pi/agent/settings.json"
+  ln -sfn "$ROOT_DIR/pi/models.json" "$HOME/.pi/agent/models.json"
+}
+
 main() {
   link_agents
+  link_pi
 
   if ! ensure_stow; then
     log "Install stow manually and rerun this script to complete setup."
