@@ -14,6 +14,8 @@ dotfiles/
 ├── Brewfile            # Homebrew packages, casks, and MAS apps
 ├── install.sh          # Cross-platform stow installer
 ├── setup-mac.sh        # macOS defaults configuration
+├── overlays/           # Per-file links into stateful app dirs (never stowed)
+│   └── pi/             # Pi agent settings (→ ~/.pi/agent/)
 ├── config/             # Files symlinked to $HOME via stow
 │   ├── .zshrc          # Main shell config
 │   ├── .zsh_plugins.txt
@@ -76,6 +78,7 @@ git-crypt status
 | Component           | Location       | Purpose                                    |
 | ------------------- | -------------- | ------------------------------------------ |
 | **Config files**    | `config/`      | Mirrors `$HOME`; GNU Stow creates symlinks |
+| **Overlays**          | `overlays/`    | Per-file links into stateful app dirs      |
 | **Packages**        | `Brewfile`     | CLI tools, casks, and Mac App Store apps   |
 | **Shell modules**   | `zsh/*.zsh`    | Modular configs sourced by `.zshrc`        |
 | **Custom scripts**  | `bin/`         | Executables added to `$PATH`               |
