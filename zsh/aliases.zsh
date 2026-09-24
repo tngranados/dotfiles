@@ -36,6 +36,7 @@ alias dcdown="docker compose down"
 alias dclogs="docker compose logs -f"
 alias dcrestart="docker compose restart"
 alias claude-yolo="claude --dangerously-skip-permissions"
+alias brewup="brew update && brew upgrade -y && brew upgrade --cask -y && brew cleanup && brew autoremove"
 
 alias yt-dlp="yt-dlp --downloader 'aria2c'"
 
