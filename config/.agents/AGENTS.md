@@ -1,18 +1,20 @@
 # Personal working preferences (tngranados)
 
+Write commit messages and code comments in English, regardless of the project
+language.
+
 ## Committing
 
-- Do NOT commit on your own. Only commit when I explicitly ask you to. Do not
-  commit after each change or "as you go" unless I say so in that request.
+- Commit only when the current request explicitly asks for it, and never after
+  each change or "as you go" unless that request says so.
 - When I do ask for a commit, use a simple, single-line, imperative subject
   (e.g. "Add scheduled tasks page", "Fix sidebar toggle"). No body, no bullet
   lists, no co-author/footer trailers, no emoji.
 - Prefer a feature branch over committing directly to the default branch.
-- Always use english for the commits, regardless of the project language.
 - Limit the subject to 50 characters when practical, with 72 as the hard limit.
 - Capitalize the first word and do not end the subject with punctuation.
 
-### If you are ask to commit, only commit your own work
+### If you are asked to commit, only commit your own work
 
 If the task may end in a commit, run `git status` before you start. Note every
 pre-existing modified or untracked path and keep it out of your commits. A
@@ -40,12 +42,11 @@ cold reader cannot reasonably infer from names, types, control flow, or tests.
   assertion, partial locals, or data structure already says.
 - Prefer clearer naming, smaller control flow, stronger types, or a better test
   description over a comment that explains confusing code.
-- Do not reference the request, conversation, diff, review feedback, rejected
-  alternatives, or the writing process. Put change rationale in the PR or commit
-  description, not in the code.
-- Comment the constraint that outlives the change, never the change itself. "So
-  the caller no longer has to…", "this used to…", "instead of…", and any
-  restatement of the problem you just fixed all belong in the PR.
+- Comment the constraint that outlives the change, never the change itself. Do
+  not reference the request, conversation, diff, review feedback, rejected
+  alternatives, or the writing process. "So the caller no longer has to…",
+  "this used to…", "instead of…", and any restatement of the problem you just
+  fixed belong in the PR or commit description.
 - Keep it to one or two lines. If it needs a paragraph, an em dash, or a list of
   the cases it covers, it belongs in the PR description.
 - Do not comment a group of constants, enum values, or config keys whose names
@@ -60,7 +61,6 @@ cold reader cannot reasonably infer from names, types, control flow, or tests.
   pad it with prose that restates the signature or implementation.
 - Preserve useful existing comments, but update or remove one when your change
   makes it false. Do not sweep unrelated files for comment cleanup unless asked.
-- Always use english for the comments, regardless of the project language.
 
 Before finishing, inspect every comment added or changed in the diff and apply
 both tests:
