@@ -17,6 +17,9 @@
 #
 # Note: ZSH seems to read ~/.profile as well, if ~/.zshrc is not present.
 
+# Fallback in case ~/.zshenv wasn't sourced (e.g. missing symlink).
+: ${DOTFILES:=$HOME/dotfiles}
+
 # Brew shellenv
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -123,12 +126,12 @@ setopt PUSHD_IGNORE_DUPS
 GEOMETRY_PATH_SHOW_BASENAME=true
 
 # Source all modules
-for file in $DOTFILES/zsh/*.zsh; do
+for file in $DOTFILES/zsh/*.zsh(N); do
   source "$file"
 done
 
 # Source all the custom zsh files in ./zsh/local
-for file in $DOTFILES/zsh/local/*.zsh; do
+for file in $DOTFILES/zsh/local/*.zsh(N); do
   # Check first bytes for git-crypt signature
   if [[ $(head -c 10 "$file" 2>/dev/null | tr -d '\0') == "GITCRYPT" ]]; then
     echo "Warning: $file is encrypted with git-crypt and was not loaded"
@@ -155,7 +158,7 @@ cached-init atuin init zsh --disable-up-arrow
     zcompile $dump
   fi
   # Compile all custom zsh modules
-  for file in $DOTFILES/zsh/*.zsh $DOTFILES/zsh/local/*.zsh; do
+  for file in $DOTFILES/zsh/*.zsh(N) $DOTFILES/zsh/local/*.zsh(N); do
     if [[ -f "$file" ]] && [[ ! -f "$file.zwc" || "$file" -nt "$file.zwc" ]]; then
       zcompile "$file" 2>/dev/null
     fi
