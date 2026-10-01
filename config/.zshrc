@@ -17,19 +17,11 @@
 #
 # Note: ZSH seems to read ~/.profile as well, if ~/.zshrc is not present.
 
-# Check dotfiles location
-if [ "${DOTFILES+set}" != set ]; then
-  DOTFILES="$HOME/dotfiles"
-fi
-
 # Brew shellenv
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Mise
 eval "$(mise activate zsh)"
-
-# VSCode shell integration
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 
 # Antidote plugin manager
 source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
@@ -43,24 +35,10 @@ alias down="cd $HOME/Downloads"
 alias desk="cd $HOME/Desktop"
 alias dotfiles="cd $DOTFILES"
 
-if hash nvim 2>/dev/null; then
-  export EDITOR=nvim
-elif hash vim 2>/dev/null; then
-  export EDITOR=vim
-else
-  export EDITOR=vi
-fi
-
 # Setup 'infinite' history
 HISTFILE=$DOTFILES/local/.zsh_history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
-
-# XDG Base Directory Specification
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_CACHE_HOME="$HOME/.cache"
 
 # ZSH configuration
 setopt hist_ignore_space # Don't record a history entry if it starts with a space

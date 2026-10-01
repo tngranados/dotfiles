@@ -17,6 +17,7 @@ dotfiles/
 ├── overlays/           # Per-file links into stateful app dirs (never stowed)
 │   └── pi/             # Pi agent settings (→ ~/.pi/agent/)
 ├── config/             # Files symlinked to $HOME via stow
+│   ├── .zshenv         # Env exports for every zsh, including scripts
 │   ├── .zshrc          # Main shell config
 │   ├── .zsh_plugins.txt
 │   └── .agents/        # Agent skills and config (symlinked to ~/.agents)
