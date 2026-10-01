@@ -1,13 +1,7 @@
-export COLORS_PATH=$DOTFILES/zsh/dircolors-solarized/dircolors.ansi-universal
-
 # Enable ls colors and use human readable file sizes
 if (( $+commands[eza] )); then
-  eval "`gdircolors -b $COLORS_PATH 2> /dev/null`"
-  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # Use LS_COLORS for completion
   alias ls='eza --color=auto'
 elif (( $+commands[gls] )); then
-  eval "`gdircolors -b $COLORS_PATH 2> /dev/null`"
-  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # Use LS_COLORS for completion
   alias ls="gls --color=auto -h"
 else
   export LSCOLORS=exfxfeaeBxxehehbadacea
@@ -15,7 +9,9 @@ else
   alias ls="ls -G -h"
 fi
 
-if (( $+commands[ssh-add] )) && [[ -S "${SSH_AUTH_SOCK:-}" ]] && [[ -r "$HOME/.ssh/tngranados" ]]; then
+# Git commit signing needs this key in the agent before any ssh connection adds it
+if (( $+commands[ssh-add] )) && [[ -S "${SSH_AUTH_SOCK:-}" && -r "$HOME/.ssh/tngranados" ]] \
+  && ! ssh-add -T "$HOME/.ssh/tngranados.pub" >/dev/null 2>&1; then
   ssh-add -q --apple-load-keychain "$HOME/.ssh/tngranados" >/dev/null 2>&1
 fi
 
