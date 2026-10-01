@@ -73,7 +73,14 @@ setopt interactive_comments # Allow comments in interactive shell
 setopt no_beep # No beep on error
 
 autoload -Uz compinit
-compinit -C
+# Full check (picks up newly installed completions) only when the dump is over a day old
+() {
+  if (( $# )); then
+    compinit && touch $1
+  else
+    compinit -C
+  fi
+} ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
 
 # Load completions system
 zmodload -i zsh/complist
@@ -81,8 +88,6 @@ zmodload -i zsh/complist
 # Auto rehash commands
 # http://www.zsh.org/mla/users/2011/msg00531.html
 zstyle ':completion:*' rehash true
-# Menu selection
-zstyle ':completion:*' menu select=1
 # Select completions with arrow keys
 zstyle ':completion:*' menu select
 # Completion of .. directories
@@ -100,18 +105,18 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' completer _complete _correct _approximate
 # (1 error on 3 characters)
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-# Case insensitivity
-zstyle ":completion:*" matcher-list 'm:{A-Zöäüa-zÖÄÜ}={a-zÖÄÜA-Zöäü}'
 # Statusline for many hits
 zstyle ':completion:*:default' select-prompt $'\e[01;35m -- Match %M    %P -- \e[00;00m'
 # Show comments when present
 zstyle ':completion:*' verbose yes
 # Case-insensitive -> partial-word (cs) -> substring completion:
-zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{A-Zöäüa-zÖÄÜ}={a-zÖÄÜA-Zöäü}' \
+  'm:{A-Zöäüa-zÖÄÜ}={a-zÖÄÜA-Zöäü} r:|[._-]=* r:|=*' \
+  'm:{A-Zöäüa-zÖÄÜ}={a-zÖÄÜA-Zöäü} l:|=* r:|=*'
 # Reorder output sorting: named dirs over userdirs
 zstyle ':completion::*:-tilde-:*:*' group-order named-directories users
 # Advanced kill completion
-zstyle ':completion::*:kill:*:*' command 'ps xf -U $USER -o pid,%cpu,cmd'
+zstyle ':completion::*:kill:*:*' command 'ps -U $USER -o pid,%cpu,command'
 zstyle ':completion::*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;32'
 # Advanced rm completion (e.g. bak files first)
 zstyle ':completion::*:rm:*:*' file-patterns '*.o:object-files:object\ file *(~|.(old|bak|BAK)):backup-files:backup\ files *~*(~|.(o|old|bak|BAK)):all-files:all\ files'
@@ -166,6 +171,10 @@ cached-init atuin init zsh --disable-up-arrow
   # Compile .zshrc
   if [[ ! -f ~/.zshrc.zwc ]] || [[ ~/.zshrc -nt ~/.zshrc.zwc ]]; then
     zcompile ~/.zshrc
+  fi
+  dump=${ZDOTDIR:-$HOME}/.zcompdump
+  if [[ -s $dump && ( ! -f $dump.zwc || $dump -nt $dump.zwc ) ]]; then
+    zcompile $dump
   fi
   # Compile all custom zsh modules
   for file in $DOTFILES/zsh/*.zsh $DOTFILES/zsh/local/*.zsh; do
