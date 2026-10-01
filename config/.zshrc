@@ -155,11 +155,11 @@ for file in $DOTFILES/zsh/local/*.zsh; do
 done
 
 if (( $+commands[fzf] )); then
-  source <(fzf --zsh)
+  cached-init fzf --zsh
 fi
 
 # Atuin better history
-eval "$(atuin init zsh --disable-up-arrow)"
+cached-init atuin init zsh --disable-up-arrow
 
 # Compile zsh files for faster startup
 {

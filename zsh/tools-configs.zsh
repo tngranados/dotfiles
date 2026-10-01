@@ -1,8 +1,17 @@
+# Source a tool's generated shell init, regenerating it when the binary is upgraded or the args change
+cached-init() {
+  local cache=$XDG_CACHE_HOME/zsh/init-${${(j:_:)@}//[^[:alnum:]_-]/}.zsh
+  if [[ ! -s $cache || $commands[$1] -nt $cache ]]; then
+    mkdir -p $cache:h && command "$@" >| $cache
+  fi
+  source $cache
+}
+
 # GitHub
-eval "$(gh completion -s zsh)"
+cached-init gh completion -s zsh
 
 # Zoxide
-eval "$(zoxide init zsh)"
+cached-init zoxide init zsh
 
 # Unix tools replacements
 if (( $+commands[duf] )); then
@@ -16,4 +25,4 @@ if (( $+commands[dust] )); then
 fi
 
 # Try  https://github.com/tobi/try
-eval "$(/opt/homebrew/bin/try init ~/Developer/tries)"
+cached-init try init ~/Developer/tries
