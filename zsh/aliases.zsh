@@ -1,7 +1,7 @@
 # Useful command aliases
 alias fullhistory="history -fD 0"
-alias vimrc="$EDITOR $HOME/.config/nvim/init.vim"
-alias zprofile="$EDITOR $DOTFILES/local/zsh/zprofile.zsh"
+alias vimrc="$EDITOR $HOME/.config/nvim/init.lua"
+alias zprofile="$EDITOR $DOTFILES/zsh/local/zprofile.zsh"
 alias rsource="source $HOME/.zshrc"
 alias g="git"
 alias gs="g s"
