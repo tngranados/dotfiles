@@ -53,6 +53,10 @@ setopt correct # Command spelling correction
 setopt interactive_comments # Allow comments in interactive shell
 setopt no_beep # No beep on error
 
+if type brew &>/dev/null; then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 autoload -Uz compinit
 # Full check (picks up newly installed completions) only when the dump is over a day old
 () {
