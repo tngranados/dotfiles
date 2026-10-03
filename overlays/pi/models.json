@@ -17,7 +17,7 @@
             "medium": "medium",
             "high": "high",
             "xhigh": "xhigh",
-            "max": null
+            "max": "max"
           },
           "input": ["text", "image"],
           "cost": { "input": 0.1, "output": 0.2, "cacheRead": 0.002, "cacheWrite": 0.1 },
