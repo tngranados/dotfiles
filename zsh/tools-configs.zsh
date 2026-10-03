@@ -1,10 +1,11 @@
 # Source a tool's generated shell init, regenerating it when the binary is upgraded or the args change
 cached-init() {
-  local cache=$XDG_CACHE_HOME/zsh/init-${${(j:_:)@}//[^[:alnum:]_-]/}.zsh
+  : ${XDG_CACHE_HOME:=$HOME/.cache}
+  local cache=${XDG_CACHE_HOME}/zsh/init-${${(j:_:)@}//[^[:alnum:]_-]/}.zsh
   if [[ ! -s $cache || $commands[$1] -nt $cache ]]; then
-    mkdir -p $cache:h && command "$@" >| $cache
+    mkdir -p "${cache:h}" && command "$@" >| "$cache"
   fi
-  source $cache
+  [[ -s $cache ]] && source "$cache"
 }
 
 # GitHub

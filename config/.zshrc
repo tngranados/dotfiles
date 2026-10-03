@@ -19,6 +19,7 @@
 
 # Fallback in case ~/.zshenv wasn't sourced (e.g. missing symlink).
 : ${DOTFILES:=$HOME/dotfiles}
+: ${XDG_CACHE_HOME:=$HOME/.cache}
 
 # Brew shellenv
 eval "$(/opt/homebrew/bin/brew shellenv)"
