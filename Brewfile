@@ -13,6 +13,8 @@ brew "bandwhich"
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# Statistics utility to count lines of code
+brew "cloc"
 # Command-line csv viewer
 brew "csvlens"
 # Diff that understands syntax
@@ -51,8 +53,6 @@ brew "jq"
 brew "lazydocker"
 # Simple terminal UI for git commands
 brew "lazygit"
-# YAML Parser
-brew "libyaml"
 # Mac App Store command-line interface
 brew "mas"
 # Polyglot runtime manager (asdf rust clone)
@@ -71,6 +71,8 @@ brew "switchaudio-osx"
 brew "tldr"
 # Quickly manage and navigate project directories for experiments
 brew "try"
+# UDP-based SSH server with roaming support
+brew "tsshd"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # Shell extension to navigate your filesystem faster
