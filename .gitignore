@@ -6,3 +6,4 @@ Brewfile.lock.json
 *.zwc
 config/.agents/skills/.system/
 config/.agents/skills/synced/
+config/.agents/skills/.trash/
