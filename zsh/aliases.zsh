@@ -16,15 +16,10 @@ alias ldk="lazydocker"
 alias vi="nvim"
 alias vim="nvim"
 alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
-alias -g G="| grep -i"
-alias -s git="git clone"
 alias cls="clear; printf '\033[3J'" # Clear screen and scroll buffer
-alias cp="cp -i"; # Confirm before overwrite
-alias mv="mv -i"; # Confirm before overwrite
 alias df="df -h"; # Human-readable sizes
 alias gitprune="git branch --merged | grep -vFf <({ echo \"master\"; echo \"main\"; git worktree list --porcelain | awk '/^branch/ {sub(\"refs/heads/\", \"\", \$2); print \$2}'; } | awk '{print \"  \" \$0; print \"* \" \$0; print \"+ \" \$0}') >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
 alias gitprunef="git branch --merged | grep -vFf <({ echo \"master\"; echo \"main\"; git worktree list --porcelain | awk '/^branch/ {sub(\"refs/heads/\", \"\", \$2); print \$2}'; } | awk '{print \"  \" \$0; print \"* \" \$0; print \"+ \" \$0}') | xargs git branch -d"
-alias -g C="| cat --paging=never"
 alias lastcommitfiles="git show --pretty="" --name-only HEAD"
 alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc"
 alias brownnoise="play -n synth brownnoise synth pinknoise mix"
@@ -39,6 +34,14 @@ alias claude-yolo="claude --dangerously-skip-permissions"
 alias brewup="brew update && brew upgrade -y && brew upgrade --cask -y && brew cleanup && brew autoremove"
 
 alias yt-dlp="yt-dlp --downloader 'aria2c'"
+
+if [[ -z $AGENT_SHELL ]]; then
+  alias -g G="| grep -i"
+  alias -g C="| cat --paging=never"
+  alias -s git="git clone"
+  alias cp="cp -i" # Confirm before overwrite
+  alias mv="mv -i" # Confirm before overwrite
+fi
 
 # Quick directory navigation
 alias ..="cd .."

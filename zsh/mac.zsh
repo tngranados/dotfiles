@@ -1,5 +1,5 @@
 # Enable ls colors and use human readable file sizes
-if (( $+commands[eza] )); then
+if (( $+commands[eza] )) && [[ -z $AGENT_SHELL ]]; then
   alias ls='eza --color=auto'
 elif (( $+commands[gls] )); then
   alias ls="gls --color=auto -h"
@@ -16,10 +16,12 @@ if (( $+commands[ssh-add] )) && [[ -S "${SSH_AUTH_SOCK:-}" && -r "$HOME/.ssh/tng
 fi
 
 # Auto ls after cd
-function chpwd() {
-    emulate -L zsh
-    ls
-}
+if [[ -z $AGENT_SHELL ]]; then
+  function chpwd() {
+      emulate -L zsh
+      ls
+  }
+fi
 
 # History keybindings
 bindkey '^[[A' history-substring-search-up

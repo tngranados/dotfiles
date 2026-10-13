@@ -21,6 +21,9 @@
 : ${DOTFILES:=$HOME/dotfiles}
 : ${XDG_CACHE_HOME:=$HOME/.cache}
 
+# Coding agents load this config too; prompts and replaced core commands are skipped for them
+[[ -n $AGENT_SHELL || -n $CLAUDECODE || -n $AI_AGENT ]] && typeset -gx AGENT_SHELL=1
+
 # Brew shellenv
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -50,7 +53,7 @@ setopt hist_ignore_all_dups # Remove older duplicate entries from history
 setopt hist_reduce_blanks # Remove superfluous blanks from history items
 setopt inc_append_history_time # Save history entries as soon as they are entered, keeping different terminal separated while running
 setopt extended_history # Save command duration as well as timestamp
-setopt correct # Command spelling correction
+[[ -z $AGENT_SHELL ]] && setopt correct # Command spelling correction
 setopt interactive_comments # Allow comments in interactive shell
 setopt no_beep # No beep on error
 
