@@ -75,9 +75,3 @@ Created          │ Author        │ File                                     
 ```
 
 Then read those 3 files to see how services are currently structured before writing your own.
-
-### Key Benefits
-
-- **Avoids mimicking legacy code** — Old files may have outdated patterns, deprecated methods, or pre-refactor structures
-- **Learns from recent decisions** — Recent files incorporate lessons learned and current team conventions
-- **Consistent codebase** — New code matches recent code, not code from years ago
