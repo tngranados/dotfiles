@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.0.1",
+  "lastChangelogVersion": "1.3.0",
   "defaultModel": "deepseek-flash",
   "defaultProvider": "deepseek",
   "defaultThinkingLevel": "high",
@@ -8,5 +8,6 @@
     "npm:pi-lmstudio"
   ],
   "theme": "dark",
-  "quietStartup": true
+  "quietStartup": true,
+  "deviceId": "5e6b79d3-c1e4-46ca-983f-73e231eebe07"
 }
