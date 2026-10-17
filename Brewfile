@@ -1,3 +1,4 @@
+tap "saffsanity/sill"
 tap "tngranados/newest-files", "git@github.com:tngranados/newest-files.git"
 tap "toby/try", "git@github.com:tobi/try.git"
 tap "xykong/tap"
@@ -116,6 +117,8 @@ cask "obsidian"
 cask "qbittorrent"
 # Control your tools with a few keystrokes
 cask "raycast"
+# Streams windows to an iPhone or iPad with touch, Pencil and keyboard control
+cask "saffsanity/sill/sill"
 # Native screenshots, recording, annotation, and editing from the menu bar
 cask "snapzy"
 # Native GUI tool for relational databases
