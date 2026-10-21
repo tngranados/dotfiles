@@ -16,8 +16,8 @@ After setting up the SSH keys, clone the repository and install the personal dep
 ```zsh
 git clone git@github.com:tngranados/dotfiles.git
 cd dotfiles
-brew trust --taps tngranados/newest-files toby/try xykong/tap
-brew trust --formula tngranados/newest-files/newest-files
+brew trust --taps tngranados/tap toby/try xykong/tap
+brew trust --formula tngranados/tap/newest-files
 brew bundle --file=Brewfile
 ```
 

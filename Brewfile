@@ -1,5 +1,5 @@
 tap "saffsanity/sill"
-tap "tngranados/newest-files", "git@github.com:tngranados/newest-files.git"
+tap "tngranados/tap"
 tap "toby/try", "git@github.com:tobi/try.git"
 tap "xykong/tap"
 # Plugin manager for zsh, inspired by antigen and antibody
@@ -79,7 +79,7 @@ brew "yt-dlp"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # List the N most-recently-created files in a Git repository
-brew "tngranados/newest-files/newest-files"
+brew "tngranados/tap/newest-files"
 # 3D model slicing software for 3D printers, maintained by Bambu Lab
 cask "bambu-studio"
 # OpenAI's official ChatGPT desktop app
@@ -91,6 +91,8 @@ cask "codexbar"
 # Markdown previews in Finder QuickLook with diagrams and math
 cask "xykong/tap/flux-markdown"
 cask "font-iosevka"
+# Compact monospace neo-grotesque font, used in Ghostty
+cask "tngranados/tap/font-nordwand-mono"
 # GIT client
 cask "fork"
 # Terminal emulator that uses platform-native UI and GPU acceleration
