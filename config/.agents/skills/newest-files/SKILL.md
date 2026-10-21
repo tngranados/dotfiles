@@ -7,7 +7,7 @@ description: Use this only when adding a substantial, convention-sensitive code 
 
 ### Why This Matters
 
-In large, long-lived codebases, patterns evolve. Older files may contain legacy approaches we no longer want to replicate. **Always prefer learning from the newest files** in a category—they reflect current best practices, recent refactors, and the team's latest conventions.
+In large, long-lived codebases, patterns evolve. Older files may contain legacy approaches we no longer want to replicate. When an example is needed, prefer the newest files in a category: they reflect current best practices, recent refactors, and the team's latest conventions.
 
 ### The Tool
 
@@ -49,17 +49,11 @@ When it is warranted, use `newest-files` to find exemplary files to study:
 | New model            | `newest-files -n 5 "app/models/**/*.rb"`            |
 | New Vue component    | `newest-files -n 5 "app/javascript/**/*.vue"`       |
 | New composable       | `newest-files -n 5 "app/javascript/**/use*.ts"`     |
-| New RSpec test       | `newest-files -n 5 "spec/**/*_spec.rb"`             |
 | New worker           | `newest-files -n 5 "app/workers/**/*.rb"`           |
 
 ### Workflow
 
-1. Confirm the task meets the conditions above.
-2. Identify the category of file you need to create (service, mutation, component, etc.).
-3. Run `newest-files` with the appropriate glob to get 3-5 recent examples.
-4. Read only the examples needed to resolve the convention.
-5. Also check `.templates/` when that directory exists and is relevant.
-6. Write the new file following the pattern you observed.
+Ask for 3-5 results with a glob for the file's category, read only the examples needed to settle the convention, and also check `.templates/` when it exists and is relevant.
 
 ### Example
 
