@@ -44,6 +44,8 @@ brew "git"
 brew "git-crypt"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Scan git commits for leaked secrets (used by the global pre-commit hook)
+brew "gitleaks"
 # Render markdown on the CLI
 brew "glow"
 # Tools and libraries to manipulate images in select formats

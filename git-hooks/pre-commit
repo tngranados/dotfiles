@@ -1,7 +1,35 @@
-#!/bin/sh
-if [ $(git diff --cached --name-only --diff-filter=ACM -z | xargs -0 rg "tonidebug" --files-with-matches | wc -l | xargs) = 0 ]; then
-  $(exit 0)
-else
+#!/bin/bash
+if [ $(git diff --cached --name-only --diff-filter=ACM -z | xargs -0 rg "tonidebug" --files-with-matches | wc -l | xargs) != 0 ]; then
   echo "There are tonidebug statement left"
-  $(exit -1)
+  exit 1
+fi
+
+encrypted_path_regexes=()
+plaintext_paths=()
+while IFS= read -r -d '' file && IFS= read -r -d '' _ && IFS= read -r -d '' filter; do
+  [ "$filter" = git-crypt ] || continue
+  encrypted_path_regexes+=("'''^$(printf '%s' "$file" | sed 's/[][\.*^$+?(){}|/]/\\&/g')\$'''")
+  header=$(git cat-file blob ":$file" | head -c 10 | tr '\0' '_')
+  [ -n "$header" ] && [ "$header" != _GITCRYPT_ ] && plaintext_paths+=("$file")
+done < <(git diff --cached --name-only --diff-filter=ACMR -z | git check-attr -z --stdin filter)
+
+if [ ${#plaintext_paths[@]} -gt 0 ]; then
+  echo "These files should be encrypted by git-crypt but are staged in plaintext:"
+  printf '  %s\n' "${plaintext_paths[@]}"
+  echo "Run 'git-crypt unlock', then 'git rm --cached' and re-add them."
+  exit 1
+fi
+
+if git grep -q 'filter=git-crypt' -- .gitattributes '**/.gitattributes'; then
+  if command -v gitleaks >/dev/null; then
+    # Encrypted files are meant to hold secrets, and git diff shows them decrypted.
+    gitleaks git --pre-commit --staged --redact --verbose --no-banner --log-level warn \
+      --config <(
+        printf '[extend]\nuseDefault = true\n'
+        [ ${#encrypted_path_regexes[@]} -gt 0 ] &&
+          printf '[allowlist]\npaths = [%s]\n' "$(IFS=,; echo "${encrypted_path_regexes[*]}")"
+      ) || exit 1
+  else
+    echo "gitleaks is not installed; skipping secret scan" >&2
+  fi
 fi
