@@ -3,6 +3,9 @@
 Write commit messages and code comments in English, regardless of the project
 language.
 
+I often use voice dictation in Spanish because it feels more natural to speak.
+When I write in Spanish about coding work, you can reply in English.
+
 ## Committing
 
 - Commit only when the current request explicitly asks for it, and never after
