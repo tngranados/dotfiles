@@ -9,6 +9,7 @@ fzfgit() {
   echo_color "fbr" "checkout git branch (including remote branches)"
   echo_color "fco" "checkout git branch/tag, use -r to include remote branches"
   echo_color "fco_preview" "checkout git branch/tag with preview"
+  echo_color "fwo" "switch to git worktree (cd into it)"
   echo_color "flog" "git commit browser"
   echo_color "fcoc" "checkout git commit"
   echo_color "fcs" "get git commit sha (ex: git rebase -i \`fcs\`)"
@@ -172,6 +173,48 @@ fco_preview() {
     fzf --query "$1" --no-hscroll --no-multi -n 2 \
         --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
   git checkout $(awk '{print $2}' <<<"$target" )
+}
+
+# fwo - switch to a git worktree
+fwo() {
+  local current target selected
+
+  current=$(git rev-parse --show-toplevel) || return
+
+  target=$(
+    git worktree list --porcelain |
+      awk -v current="$current" -v home="$HOME" '
+        function emit() {
+          if (path == "" || bare) return
+          label = (path == current) ? "\x1b[32;1mcurrent\x1b[m" : "\x1b[34;1mworktree\x1b[m"
+          shown = path
+          if (index(shown, home) == 1) shown = "~" substr(shown, length(home) + 1)
+          printf "%s\t%s\t%s\t%s\n", path, label, ref, shown
+        }
+        /^worktree / { emit(); path = substr($0, 10); ref = ""; bare = 0 }
+        /^branch / { ref = substr($0, 8); sub("^refs/heads/", "", ref) }
+        /^detached$/ { ref = "(detached)" }
+        /^bare$/ { bare = 1 }
+        END { emit() }
+      ' |
+      fzf --height 60% \
+          --layout=reverse \
+          --border \
+          --prompt="Worktree> " \
+          --query="$1" \
+          --select-1 \
+          --info=inline \
+          --delimiter=$'\t' \
+          --with-nth=2,3,4 \
+          --preview='git -C {1} log -n 10 --color=always --pretty=format:"%C(yellow)%h %C(cyan)%ar %C(blue)<%an> %C(auto)%d %C(reset)%s"; echo "\n\n--------STATUS-----------"; git -C {1} -c color.status=always status --short' \
+          --preview-window=down:40%:wrap \
+          --no-hscroll \
+          --ansi \
+          --tiebreak=index
+  ) || return
+
+  selected="${target%%$'\t'*}"
+  cd "$selected"
 }
 
 # flog - git commit browser

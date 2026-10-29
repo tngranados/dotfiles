@@ -197,6 +197,7 @@ dothelp() {
   echo "  fkill [query]       Fuzzy kill processes"
   echo "  fvim [query]        Fuzzy find and open file in vim"
   echo "  fco [query]         Fuzzy checkout git branch/tag"
+  echo "  fwo [query]         Fuzzy switch to git worktree"
   echo "  flog                Browse git commits"
   echo "  fstash              Browse and manage git stashes"
   echo ""
