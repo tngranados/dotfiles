@@ -25,8 +25,12 @@
     navigate = true
     line-numbers = true
 [merge]
-    conflictstyle = zdiff3
+    # diff3 keeps the base revision, which mergiraf needs to reconstruct conflicts
+    conflictstyle = diff3
 	tool = meld
+[merge "mergiraf"]
+	name = mergiraf
+	driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 [rebase]
 	autoSquash = true
 	autoStash = true

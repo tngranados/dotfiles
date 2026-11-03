@@ -58,6 +58,8 @@ brew "lazydocker"
 brew "lazygit"
 # Mac App Store command-line interface
 brew "mas"
+# Syntax-aware git merge driver
+brew "mergiraf"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
 # Ambitious Vim-fork focused on extensibility and agility

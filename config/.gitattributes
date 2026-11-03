@@ -35,3 +35,6 @@
 *.gif   diff=exif
 
 *.swift diff=swift
+
+# Syntax-aware merging for all supported languages (falls back to line-based for others)
+* merge=mergiraf
