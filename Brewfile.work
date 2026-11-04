@@ -1,3 +1,4 @@
+tap "r3dbars/transcripted", "https://github.com/r3dbars/transcripted", trusted: true
 brew "awscli"
 brew "libpq"
 brew "xcodegen"
@@ -6,5 +7,6 @@ cask "bruno"
 cask "microsoft-teams"
 cask "monitorcontrol"
 cask "orbstack"
+cask "transcripted"
 cask "zoom"
 mas "NordLayer", id: 1488888843
