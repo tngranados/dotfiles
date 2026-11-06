@@ -92,8 +92,6 @@ cask "chatgpt"
 cask "codex"
 # Menu bar usage monitor for Codex and Claude
 cask "codexbar"
-# Markdown previews in Finder QuickLook with diagrams and math
-cask "xykong/tap/flux-markdown"
 cask "font-iosevka"
 # Compact monospace neo-grotesque font, used in Ghostty
 cask "tngranados/tap/font-nordwand-mono"
