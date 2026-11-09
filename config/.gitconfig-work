@@ -1,3 +1,6 @@
 [user]
 	name = Toni Granados
 	email = toni@alkimii.com
+	signingKey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOiC2VntY0rIJrLTbZ47fC6dPiiZEu4r4pt3zhXhZMOs
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
