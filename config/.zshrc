@@ -30,6 +30,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Mise
 eval "$(mise activate zsh)"
 
+# zsh defaults to vi mode because EDITOR contains "vi"
+bindkey -e
+
 # Antidote plugin manager
 source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
