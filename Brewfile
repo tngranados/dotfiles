@@ -101,6 +101,8 @@ cask "fork"
 cask "ghostty"
 # Web browser
 cask "google-chrome"
+# Disk usage visualizer that shows what is taking up space
+cask "grandperspective"
 # Convert your caps lock key or any of your modifier keys to the hyper key
 cask "hyperkey"
 # Free and open-source media player
