@@ -101,8 +101,6 @@ cask "fork"
 cask "ghostty"
 # Web browser
 cask "google-chrome"
-# Disk usage visualizer that shows what is taking up space
-cask "grandperspective"
 # Convert your caps lock key or any of your modifier keys to the hyper key
 cask "hyperkey"
 # Free and open-source media player
@@ -121,6 +119,8 @@ cask "netnewswire"
 cask "obsidian"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
+# Disk space analyzer
+cask "radix"
 # Control your tools with a few keystrokes
 cask "raycast"
 # Streams windows to an iPhone or iPad with touch, Pencil and keyboard control
